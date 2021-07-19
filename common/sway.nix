@@ -52,7 +52,8 @@
 
     multimc
   ];
-
+  
+  programs.waybar.enable = true;
 
   # Expose barrier in firewall
   # networking.firewall.allowedTCPPorts = [ 24800 ];
