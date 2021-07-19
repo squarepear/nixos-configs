@@ -47,10 +47,6 @@
   # Disable built-ins
   programs.gnome-terminal.enable = false;
 
-  # Programs
-  programs.steam.enable = true;
-  programs.steam.remotePlay.openFirewall = true;
-
   # Expose barrier in firewall
   # networking.firewall.allowedTCPPorts = [ 24800 ];
   # networking.firewall.allowedUDPPorts = [ 24800 ];

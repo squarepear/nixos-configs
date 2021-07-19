@@ -84,6 +84,17 @@ in {
 
       bars = [];
     };
+
+    extraConfig = ''
+      # Auto lock (this does not configure sleeping)
+      exec ${pkgs.swayidle}/bin/swayidle -w \
+        timeout 300 "swaylock-fancy" \
+        timeout 300 'swaymsg "output * dpms off"' \
+          resume 'swaymsg "output * dpms on"' \
+        before-sleep "swaylock-fancy"
+      # Cursor
+      seat seat0 xcursor_theme Adwaita 24
+    '';
   };
 } 
 

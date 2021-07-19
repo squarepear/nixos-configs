@@ -12,11 +12,13 @@
       /home/jeffrey/nixos-configs/common/jeffrey_user.nix
 
       /home/jeffrey/nixos-configs/common/base.nix
+      /home/jeffrey/nixos-configs/common/games.nix
       /home/jeffrey/nixos-configs/common/sway.nix
       /home/jeffrey/nixos-configs/common/virtualization.nix
       /home/jeffrey/nixos-configs/common/tailscale.nix
 
       <home-manager/nixos>
+      /home/jeffrey/nixos-configs/home-manager
     ];
 
   # Enables CPU microcode updates
@@ -116,12 +118,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "21.05"; # Did you read the comment?
-
-  home-manager.useUserPackages = true;
-  home-manager.useGlobalPkgs = true;
-  home-manager.users.jeffrey = { ... }: {
-    imports = [
-      /home/jeffrey/nixos-configs/home-manager
-    ];
-  };
 }

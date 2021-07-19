@@ -1,23 +1,32 @@
 { pkgs, ... }:
 
 {
+  # use gnome keyring
+  services.gnome.gnome-keyring.enable = true;
+
+  services.greetd = {
+    enable = true;
+
+    settings.default_session.command = "${pkgs.greetd.greetd}/bin/agreety --cmd sway";
+  };
+
   # Enable sway
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
 
      extraPackages = with pkgs; [
-      swaylock
+      swaylock-fancy
       swayidle
       wl-clipboard
       mako
       wofi
       waybar
       sway-contrib.grimshot
+      swaybg
 
       adwaita-qt
       gnome3.adwaita-icon-theme
-      gnome3.networkmanagerapplet
     ];
   };
 
@@ -31,6 +40,7 @@
     feh
     gparted
     psensor
+    dolphin
 
     vscode
 
@@ -42,12 +52,6 @@
 
     multimc
   ];
-
-  # Programs
-  programs.steam.enable = true;
-  programs.steam.remotePlay.openFirewall = true;
-
-  programs.waybar.enable = true;
 
 
   # Expose barrier in firewall
