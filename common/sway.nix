@@ -24,6 +24,7 @@
       waybar
       sway-contrib.grimshot
       swaybg
+      libnotify
 
       adwaita-qt
       gnome3.adwaita-icon-theme
@@ -52,8 +53,6 @@
 
     multimc
   ];
-  
-  programs.waybar.enable = true;
 
   # Expose barrier in firewall
   # networking.firewall.allowedTCPPorts = [ 24800 ];

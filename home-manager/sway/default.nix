@@ -3,6 +3,7 @@
 let
   terminal = "${pkgs.kitty}/bin/kitty";
   menu = "${pkgs.wofi}/bin/wofi --show run";
+  bar = "${pkgs.waybar}/bin/waybar";
 
   grimshot = "${pkgs.sway-contrib.grimshot}/bin/grimshot";
 
@@ -82,7 +83,17 @@ in {
         "${mod}+Shift+c" = "reload";
       };
 
-      bars = [];
+      bars = [{ command = bar; }];
+
+      gaps = {
+        inner = 12;
+      };
+
+      output = {
+        DP-1 = {
+          bg = "~/Pictures/Wallpapers/wallpaper.jpg fill";
+        };
+      };
     };
 
     extraConfig = ''
