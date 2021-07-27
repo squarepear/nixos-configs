@@ -25,9 +25,11 @@
       sway-contrib.grimshot
       swaybg
       libnotify
+      xdg-desktop-portal-wlr
+      qt5.qtwayland
 
+      quintom-cursor-theme
       adwaita-qt
-      gnome3.adwaita-icon-theme
     ];
   };
 
@@ -39,6 +41,8 @@
     brave
     
     feh
+    mpv
+    
     gparted
     psensor
     dolphin
@@ -50,8 +54,6 @@
     zoom-us
     libreoffice
     apple-music-electron
-
-    multimc
   ];
 
   # Expose barrier in firewall

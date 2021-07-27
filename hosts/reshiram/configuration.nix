@@ -12,7 +12,10 @@
       /home/jeffrey/nixos-configs/common/jeffrey_user.nix
 
       /home/jeffrey/nixos-configs/common/base.nix
+      /home/jeffrey/nixos-configs/common/game-dev.nix
       /home/jeffrey/nixos-configs/common/games.nix
+      /home/jeffrey/nixos-configs/common/programming.nix
+      /home/jeffrey/nixos-configs/common/recording.nix
       /home/jeffrey/nixos-configs/common/sway.nix
       /home/jeffrey/nixos-configs/common/virtualization.nix
       /home/jeffrey/nixos-configs/common/tailscale.nix
@@ -54,14 +57,6 @@
   # GPU setup
   boot.initrd.kernelModules = [ "amdgpu" ];
   services.xserver.videoDrivers = [ "amdgpu" ];
-  hardware.opengl.driSupport = true;
-  hardware.opengl.driSupport32Bit = true;
-  hardware.opengl.extraPackages = with pkgs; [
-    amdvlk
-  ];
-  hardware.opengl.extraPackages32 = with pkgs; [
-    driversi686Linux.amdvlk
-  ];
  
   # Configure keymap in X11
   services.xserver.layout = "us";
@@ -71,7 +66,8 @@
   services.pipewire = {
 		enable = true;
 		alsa.enable = true;
-		pulse.enable = true;	
+		pulse.enable = true;
+    jack.enable = true;
 	};
   hardware.pulseaudio.enable = false;
 
@@ -117,5 +113,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "21.05"; # Did you read the comment?
+  system.stateVersion = "21.11"; # Did you read the comment?
 }
