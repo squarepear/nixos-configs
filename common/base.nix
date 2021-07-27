@@ -14,6 +14,7 @@
     wget
     pfetch
     neofetch
+    rsync
     git
     htop
     bat
@@ -21,7 +22,12 @@
     lm_sensors
     hddtemp
     pure-prompt
+    cowsay
+    unzip
+    jq
   ];
+
+  programs.noisetorch.enable = true;
 
   # Extra fonts
   fonts.fonts = with pkgs; [

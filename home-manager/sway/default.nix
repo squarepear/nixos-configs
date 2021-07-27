@@ -13,7 +13,8 @@ let
 in {
   imports = [
     ./mako.nix
-    ./waybar.nix    
+    ./waybar.nix
+    # ./wofi.nix (Currently Broken)
   ];
 
   wayland.windowManager.sway = {
@@ -67,8 +68,11 @@ in {
         "${mod}+8" = "workspace number 8";
         "${mod}+9" = "workspace number 9";
 
-        "${mod}+Control+${left}" = "workspace prev";
-        "${mod}+Control+${right}" = "workspace next";
+        "${mod}+Control+${left}" = "workspace prev_on_output";
+        "${mod}+Control+${right}" = "workspace next_on_output";
+
+        "${mod}+Control+Left" = "workspace prev_on_output";
+        "${mod}+Control+Right" = "workspace next_on_output";
 
         "${mod}+Shift+1" = "move container to workspace number 1";
         "${mod}+Shift+2" = "move container to workspace number 2";
@@ -85,26 +89,61 @@ in {
 
       bars = [{ command = bar; }];
 
+      floating.criteria = [
+        { title = "^Steam - News$"; }
+      ];
+
+      assigns = {
+        "8" = [ { class = "^Steam$"; } { app_id = "org.multimc."; } ];
+        "9" = [ { class = "^steam_app_.*$"; } { class = "^Minecraft.*$"; } { class = "^OSFE.x86_64$"; } { class = "^StardewValley.*$"; } ];
+      };
+
       gaps = {
-        inner = 12;
+        inner = 20;
       };
 
       output = {
-        DP-1 = {
+        "*" = {
           bg = "~/Pictures/Wallpapers/wallpaper.jpg fill";
+        };
+
+        DP-1 = {
+          res = "3840x2160";
+          # scale = "2";
+        };
+
+        HDMI-A-1 = {
+          res = "1920x1080";
+          pos = "-1920 0";
         };
       };
     };
 
+    # extraSessionCommands = ''
+    #   export XDG_SESSION_TYPE=wayland
+    #   export XDG_CURRENT_DESKTOP=sway
+      
+    #   export SDL_VIDEODRIVER=wayland
+      
+    #   export QT_QPA_PLATFORM=wayland
+    #   export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+    # '';
+
     extraConfig = ''
+      for_window [class="^steam_app_.*$"] inhibit_idle focus
+      for_window [class="^Minecraft.*$"] inhibit_idle focus
+      for_window [class="^OSFE.x86_64$"] inhibit_idle focus
+      for_window [class="^StardewValley.*$"] inhibit_idle focus
+
       # Auto lock (this does not configure sleeping)
       exec ${pkgs.swayidle}/bin/swayidle -w \
         timeout 300 "swaylock-fancy" \
-        timeout 300 'swaymsg "output * dpms off"' \
-          resume 'swaymsg "output * dpms on"' \
+        timeout 305 'swaymsg "output * dpms off"' \
+        resume 'swaymsg "output * dpms on"' \
         before-sleep "swaylock-fancy"
+      
       # Cursor
-      seat seat0 xcursor_theme Adwaita 24
+      seat seat0 xcursor_theme Quintom_Ink 32
     '';
   };
 } 
