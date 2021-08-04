@@ -39,7 +39,16 @@
 
   # Define your hostname.
   networking.hostName = "reshiram";
-  networking.firewall.trustedInterfaces = [ "eno1" ];
+  networking.networkmanager.enable = true;
+  networking.firewall.trustedInterfaces = [ "eno1" "wlp4s0" ];
+
+  # Enable Bluetooth
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    wirelesstools
+  ];
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config

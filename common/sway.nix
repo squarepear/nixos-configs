@@ -24,12 +24,17 @@
       waybar
       sway-contrib.grimshot
       swaybg
+      seatd
       libnotify
       xdg-desktop-portal-wlr
-      qt5.qtwayland
+      xorg.xlsclients
 
+      # lxappearance
+      qt5.qtwayland
+      glfw-wayland
+      whitesur-gtk-theme
+      whitesur-icon-theme
       quintom-cursor-theme
-      adwaita-qt
     ];
   };
 
@@ -45,11 +50,11 @@
     
     gparted
     psensor
-    dolphin
+    pcmanfm
 
     vscode
 
-    discord
+    discord-canary
     slack
     zoom-us
     libreoffice
