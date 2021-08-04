@@ -1,6 +1,10 @@
 { pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    pure-prompt
+  ];
+
   programs.zsh = {
     enable = true;
 
@@ -8,7 +12,8 @@
     enableCompletion = true;
     enableSyntaxHighlighting = true;
     autocd = true;
-    dotDir = ".config/zsh/";
+    dotDir = ".config/zsh";
+    history.path = "$HOME/.cache/.zsh_history";
 
     completionInit = ''
       autoload -Uz compinit
@@ -26,7 +31,7 @@
       TERMINAL = "kitty";
       EDITOR = "nvim";
       BROWSER = "brave";
-      FILEBROWSER = "nautilus";
+      FILEBROWSER = "pcmanfm";
     };
 
     shellAliases = {

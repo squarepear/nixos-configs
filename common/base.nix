@@ -16,15 +16,18 @@
     neofetch
     rsync
     git
+    cacert
     htop
     bat
     tree
     lm_sensors
     hddtemp
-    pure-prompt
+    # pure-prompt
     cowsay
     unzip
     jq
+    pciutils
+    usbutils
   ];
 
   programs.noisetorch.enable = true;

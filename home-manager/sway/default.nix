@@ -2,7 +2,7 @@
 
 let
   terminal = "${pkgs.kitty}/bin/kitty";
-  menu = "${pkgs.wofi}/bin/wofi --show run";
+  menu = "${pkgs.wofi}/bin/wofi --show drun";
   bar = "${pkgs.waybar}/bin/waybar";
 
   grimshot = "${pkgs.sway-contrib.grimshot}/bin/grimshot";
@@ -90,12 +90,12 @@ in {
       bars = [{ command = bar; }];
 
       floating.criteria = [
-        { title = "^Steam - News$"; }
+        { title = "^Steam - News*$"; } { title = "^UnityEditor.*$"; }
       ];
 
       assigns = {
         "8" = [ { class = "^Steam$"; } { app_id = "org.multimc."; } ];
-        "9" = [ { class = "^steam_app_.*$"; } { class = "^Minecraft.*$"; } { class = "^OSFE.x86_64$"; } { class = "^StardewValley.*$"; } ];
+        "9" = [ { class = "^steam_app_.*$"; } { class = "^Minecraft.*$"; } { class = "^OSFE.x86_64$"; } { class = "^StardewValley.*$"; } { class = "^Unity$"; } ];
       };
 
       gaps = {
@@ -109,6 +109,7 @@ in {
 
         DP-1 = {
           res = "3840x2160";
+          adaptive_sync = "on";
           # scale = "2";
         };
 
@@ -119,15 +120,15 @@ in {
       };
     };
 
-    # extraSessionCommands = ''
-    #   export XDG_SESSION_TYPE=wayland
-    #   export XDG_CURRENT_DESKTOP=sway
+    extraSessionCommands = ''
+      export XDG_SESSION_TYPE=wayland
+      export XDG_CURRENT_DESKTOP=sway
       
-    #   export SDL_VIDEODRIVER=wayland
+      # export SDL_VIDEODRIVER=wayland
       
-    #   export QT_QPA_PLATFORM=wayland
-    #   export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
-    # '';
+      export QT_QPA_PLATFORM=wayland
+      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+    '';
 
     extraConfig = ''
       for_window [class="^steam_app_.*$"] inhibit_idle focus
@@ -137,13 +138,22 @@ in {
 
       # Auto lock (this does not configure sleeping)
       exec ${pkgs.swayidle}/bin/swayidle -w \
-        timeout 300 "swaylock-fancy" \
-        timeout 305 'swaymsg "output * dpms off"' \
-        resume 'swaymsg "output * dpms on"' \
-        before-sleep "swaylock-fancy"
+        timeout 300 'swaylock-fancy' \
+        timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+        before-sleep 'swaylock-fancy"'
       
       # Cursor
       seat seat0 xcursor_theme Quintom_Ink 32
+
+      # GTK Theme
+      set $gnome-schema org.gnome.desktop.interface
+
+      exec_always {
+          gsettings set $gnome-schema gtk-theme 'WhiteSur-dark'
+          gsettings set $gnome-schema icon-theme 'WhiteSur-dark'
+          gsettings set $gnome-schema cursor-theme 'Quintom_Ink'
+          gsettings set $gnome-schema font-name 'NotoMono Nerd Font 16'
+      }
     '';
   };
 } 

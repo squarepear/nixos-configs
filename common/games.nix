@@ -12,6 +12,8 @@
     multimc
 
     sidequest
+
+    mangohud
   ];
   
   # Enable steam

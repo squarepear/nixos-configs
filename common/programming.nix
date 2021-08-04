@@ -7,7 +7,8 @@
     deno
     nodejs
     go
-    rustup
+    rustc
+    cargo
   ];
 
   programs.java.enable = true;
