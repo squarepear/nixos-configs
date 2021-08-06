@@ -50,7 +50,10 @@
     
     gparted
     psensor
+
     pcmanfm
+    lxmenu-data
+    shared_mime_info
 
     vscode
 

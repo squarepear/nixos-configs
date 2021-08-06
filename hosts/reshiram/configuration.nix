@@ -97,6 +97,11 @@
   services.avahi.publish.addresses = true;
   services.avahi.publish.workstation = true;
 
+  # USB auto-mount
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
+  services.devmon.enable = true;
+
   # Openrgb
   # programs.openrgb.server.enable = true;
 
