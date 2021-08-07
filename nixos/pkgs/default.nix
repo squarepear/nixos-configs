@@ -3,7 +3,7 @@
 {
 	imports = [
 		./base.nix
-		./podman.nix
+		./docker.nix
 		./programming.nix
 		./tailscale.nix
 		./virtualization.nix
