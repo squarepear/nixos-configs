@@ -5,7 +5,7 @@
 		isNormalUser = true;
 		home = "/home/jeffrey";
 		description = "Jeffrey Harmon";
-		extraGroups = [ "wheel" "libvirtd" "podman" ];
+		extraGroups = [ "wheel" "libvirtd" "docker" ];
 		shell = pkgs.zsh;
 	};
 }
