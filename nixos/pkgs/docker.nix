@@ -1,12 +1,7 @@
 { pkgs, ... }:
 
 {
-	virtualisation.podman = {
-		enable = true;
-
-		dockerCompat = true;
-		dockerSocket.enable = true;
-	};
+	virtualisation.docker.enable = true;
 
 	# Portainer agent port
 	networking.firewall = {
