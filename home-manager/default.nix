@@ -1,23 +1,21 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
-  home-manager.useUserPackages = true;
-  home-manager.useGlobalPkgs = true;
+	imports = [
+		<home-manager/nixos>
+	];
 
-  home-manager.users.jeffrey = { ... }: {
-    programs.home-manager.enable = true;
+	home-manager.useUserPackages = true;
+	home-manager.useGlobalPkgs = true;
 
-    imports = [
-      ./bat.nix
-      ./brave.nix
-      ./git.nix
-      ./kitty.nix
-      ./neovim.nix
-      ./sway
-      # ./vscode.nix
-      ./zsh.nix
-    ];
+	home-manager.users.jeffrey = { ... }: {
+		programs.home-manager.enable = true;
 
-    home.stateVersion = "21.11";
-  };
+		imports = [
+			./pkgs
+			./gui
+		];
+
+		home.stateVersion = "21.11";
+	};
 }
