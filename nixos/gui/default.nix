@@ -7,5 +7,6 @@
 		./game-dev.nix
 		./games.nix
 		./recording.nix
+		./sway.nix
 	];
 }

@@ -18,7 +18,7 @@ in {
 	];
 
 	home.packages = with pkgs; [
-		swaylock-fancy # Lock screen
+		swaylock-effects # Lock screen
 		glfw-wayland
 		libnotify
 		mako # Notification daemon
