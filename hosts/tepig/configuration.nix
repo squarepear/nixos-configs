@@ -21,12 +21,6 @@
 		];
 	};
 
-	# Use Raspbery Pi bootloader
-	boot.loader.raspberryPi = {
-		enable = true;
-		version = 4;
-	};
-
 	# Set your time zone.
 	time.timeZone = "America/Indiana/Indianapolis";
 
