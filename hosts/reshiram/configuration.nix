@@ -12,6 +12,8 @@
 			/home/jeffrey/nixos-configs/nixos/users/jeffrey.nix
 
 			/home/jeffrey/nixos-configs/nixos
+			/home/jeffrey/nixos-configs/nixos/pkgs/docker.nix
+			/home/jeffrey/nixos-configs/nixos/pkgs/virtualization.nix
 			/home/jeffrey/nixos-configs/home-manager
 		];
 

@@ -10,6 +10,7 @@
 
 			/home/jeffrey/nixos-configs/nixos/base.nix
 			/home/jeffrey/nixos-configs/nixos/pkgs
+			/home/jeffrey/nixos-configs/nixos/pkgs/k3s/server.nix
 
 			/home/jeffrey/nixos-configs/home-manager/base.nix
 		];
