@@ -15,7 +15,7 @@
 			];
 			modules-left = [ "sway/workspaces" ];
 			modules-center = [ "sway/window" ];
-			modules-right = [ "pulseaudio" "cpu" "temperature#CPU" "clock" ];
+			modules-right = [ "pulseaudio" "memory" "cpu" "temperature#CPU" "clock" "custom/power" ];
 			modules = {
 				"sway/workspaces" = {
 					all-outputs = true;
@@ -25,26 +25,36 @@
 				};
 				"pulseaudio" = {
 					format = "{volume}% {icon}";
+					format-bluetooth = "{volume}% {icon}";
+					format-muted = "";
 					format-icons = {
-						headphone = "";
-						phone = "";
-						portable = "";
-						car = "";
 						default = [ "" "" ];
+						headphone = "";
 					};
 				};
+				"memory" = {
+					interval = 5;
+					format = "{used:0.01f} GB ";
+					max-length = 10;
+				};
 				"cpu" = {
-					interval = 10;
-					format = "{usage}% ";
+					interval = 5;
+					format = "{usage}% ";
 					max-length = 10;
 				};
 				"temperature#CPU" = {
+					interval = 5;
 					hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
 					format = "{temperatureC}°C ";
 				};
 				"clock" = {
 					interval = 1;
 					format = "{:%a %b %d %I:%M %p}";
+				};
+				"custom/power" = {
+					format = "⏻";
+					on-click = "notify-send 'Powering off...'"; # TODO: Power state management
+					tooltip = false;
 				};
 			};
 		}];
@@ -85,6 +95,11 @@
 				margin: 0 6px;
 			}
 
+			#memory {
+				padding: 0 20px;
+				margin: 0 6px;
+			}
+
 			#cpu {
 				padding: 0 20px;
 				margin: 0 6px;
@@ -97,6 +112,12 @@
 
 			#clock {
 				padding: 0 20px;
+				margin: 0 6px;
+			}
+
+			#custom-power {
+				padding: 0 20px;
+				padding-right: 30px;
 				margin: 0 6px;
 			}
 		'';
