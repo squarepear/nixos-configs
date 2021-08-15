@@ -37,6 +37,16 @@
 		wirelesstools
 	];
 
+	# Enable NFS Server
+	services.nfs.server = {
+		enable = true;
+
+		exports = ''
+			/cluster-nfs 100.0.0.0/8(rw,sync,no_root_squash,insecure)
+		'';
+	};
+	networking.firewall.allowedTCPPorts = [ 2049 ];
+
 	# The global useDHCP flag is deprecated, therefore explicitly set to false here.
 	# Per-interface useDHCP will be mandatory in the future, so this generated config
 	# replicates the default behaviour.
