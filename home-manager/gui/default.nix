@@ -5,7 +5,7 @@
 		./base.nix
 		
 		./sway
-		./brave.nix
+		./chromium.nix
 		./kitty.nix
 		./vscode.nix
 	];
