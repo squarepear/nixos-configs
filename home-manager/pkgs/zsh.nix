@@ -2,6 +2,7 @@
 
 {
 	home.packages = with pkgs; [
+		direnv
 		pure-prompt
 	];
 
@@ -27,6 +28,7 @@
 			pfetch
 			fpath+=${pkgs.pure-prompt}/share/zsh/site-functions
 			autoload -Uz promptinit; promptinit; prompt pure
+			eval "$(direnv hook zsh)"
 		'';
 
 		localVariables = {
