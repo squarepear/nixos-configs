@@ -129,13 +129,14 @@ in {
 
 				DP-1 = {
 					res = "3840x2160";
+					pos = "1920 0";
 					adaptive_sync = "on";
 					# scale = "2";
 				};
 
 				HDMI-A-1 = {
 					res = "1920x1080";
-					pos = "-1920 0";
+					pos = "0 540";
 				};
 			};
 		};
