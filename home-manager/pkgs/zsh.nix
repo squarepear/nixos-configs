@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
 	home.packages = with pkgs; [
@@ -18,8 +18,9 @@
 		completionInit = ''
 			autoload -Uz compinit
 			compinit
+
 			# Completion for kitty
-			kitty + complete setup zsh | source /dev/stdin
+			${ if config.programs.kitty.enable then "kitty + complete setup zsh | source /dev/stdin" else "# Not installed" }
 		'';
 		
 		initExtra = ''
@@ -37,7 +38,7 @@
 
 		shellAliases = {
 			cat = "bat";
-			ssh = "kitty +kitten ssh";
+			ssh = if config.programs.kitty.enable then "kitty +kitten ssh" else "ssh";
 		};
 
 		shellGlobalAliases = {
