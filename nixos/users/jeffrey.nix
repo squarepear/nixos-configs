@@ -8,4 +8,8 @@
 		extraGroups = [ "wheel" "libvirtd" "docker" ];
 		shell = pkgs.zsh;
 	};
+
+	nix.trustedUsers = [
+		"jeffrey"
+	];
 }
