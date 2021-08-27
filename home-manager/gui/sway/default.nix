@@ -174,7 +174,7 @@ in {
 				gsettings set $gnome-schema gtk-theme "WhiteSur-dark"
 				gsettings set $gnome-schema icon-theme "WhiteSur-dark"
 				gsettings set $gnome-schema cursor-theme "Quintom_Ink"
-				gsettings set $gnome-schema font-name "NotoMono Nerd Font 16"
+				gsettings set $gnome-schema font-name "Ubuntu Nerd Font 16"
 			}
 		'';
 	};
