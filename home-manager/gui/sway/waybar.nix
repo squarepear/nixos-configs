@@ -62,7 +62,7 @@
 		style = ''
 			* {
 				color: white;
-				font-family: NotoMono Nerd Font;
+				font-family: Ubuntu Nerd Font;
 				font-size: 20px;
 			}
 
