@@ -8,7 +8,9 @@
 		sidequest # Oculus Quest sideload store
 
 		mangohud # Game metrics HUD
-		];
+
+		protonup # Proton-GE version manager
+	];
 
 	# Enable Java for MultiMC
 	programs.java.enable = true;
