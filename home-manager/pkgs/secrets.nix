@@ -26,6 +26,9 @@
 		]));
 	};
 
+	# Enable pass-secret (gnome-keyring alternative)
+	services.pass-secret-service.enable = true;
+
 	services.password-store-sync = {
 		enable = true;
 
