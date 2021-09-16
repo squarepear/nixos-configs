@@ -10,6 +10,10 @@
 		mangohud # Game metrics HUD
 
 		protonup # Proton-GE version manager
+		
+		(steam.override { # Temporary fix for steam issues
+			extraPkgs = pkgs: with pkgs; [ pango harfbuzz libthai ];
+		})
 	];
 
 	# Enable Java for MultiMC
