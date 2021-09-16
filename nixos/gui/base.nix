@@ -10,4 +10,8 @@
 
 		settings.default_session.command = "${pkgs.greetd.greetd}/bin/agreety --cmd sway";
 	};
+
+	# Greeter group
+	users.users.greeter.group = "greeter";
+	users.groups.greeter = {};
 }
