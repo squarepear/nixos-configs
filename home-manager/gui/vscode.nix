@@ -20,6 +20,8 @@
 			"files.exclude" = {
 				"**/*.meta" = true; # Unity meta files
 			};
+
+			"omnisharp.useGlobalMono" = "always";
 		};
 
 		extensions = with pkgs.vscode-extensions; [
