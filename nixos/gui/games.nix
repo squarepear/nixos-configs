@@ -14,6 +14,8 @@
 		(steam.override { # Temporary fix for steam issues
 			extraPkgs = pkgs: with pkgs; [ pango harfbuzz libthai ];
 		})
+
+		lutris # Game launcher
 	];
 
 	# Enable Java for MultiMC
