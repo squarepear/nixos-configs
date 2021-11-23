@@ -27,6 +27,7 @@
 			pfetch
 			fpath+=${pkgs.pure-prompt}/share/zsh/site-functions
 			autoload -Uz promptinit; promptinit; prompt pure
+			PATH=$PATH:$(go env GOPATH)/bin
 		'';
 
 		localVariables = {
