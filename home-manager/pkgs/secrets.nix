@@ -1,37 +1,37 @@
 { pkgs, ... }:
 
 {
-	home.packages = with pkgs; [
-		pinentry-gtk2 # GTK pinentry
-	];
+  home.packages = with pkgs; [
+    pinentry-gtk2 # GTK pinentry
+  ];
 
-	# Enable GPG
-	programs.gpg = {
-		enable = true;
-	};
+  # Enable GPG
+  programs.gpg = {
+    enable = true;
+  };
 
-	# Enable GPG agent
-	services.gpg-agent = {
-		enable = true;
-		enableSshSupport = true;
+  # Enable GPG agent
+  services.gpg-agent = {
+    enable = true;
+    enableSshSupport = true;
 
-		pinentryFlavor = "gtk2";
-	};
+    pinentryFlavor = "gtk2";
+  };
 
-	# Enable password-store
-	programs.password-store = {
-		enable = true;
-		package = with pkgs; (pass-wayland.withExtensions (ext: with ext; [
-			pass-update
-		]));
-	};
+  # Enable password-store
+  programs.password-store = {
+    enable = true;
+    package = with pkgs; (pass-wayland.withExtensions (ext: with ext; [
+      pass-update
+    ]));
+  };
 
-	# Enable pass-secret (gnome-keyring alternative)
-	services.pass-secret-service.enable = true;
+  # Enable pass-secret (gnome-keyring alternative)
+  services.pass-secret-service.enable = true;
 
-	services.password-store-sync = {
-		enable = true;
+  services.password-store-sync = {
+    enable = true;
 
-		frequency = "*:0/5";
-	};
+    frequency = "*:0/5";
+  };
 }

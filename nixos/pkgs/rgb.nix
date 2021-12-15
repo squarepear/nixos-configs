@@ -1,26 +1,26 @@
 { pkgs, ... }:
 
 {
-	environment.systemPackages = with pkgs; [
-		openrgb
-		i2c-tools
-	];
+  environment.systemPackages = with pkgs; [
+    openrgb
+    i2c-tools
+  ];
 
-	hardware.i2c.enable = true;
+  hardware.i2c.enable = true;
 
-	services.udev.packages = with pkgs; [
-		openrgb
-	];
+  services.udev.packages = with pkgs; [
+    openrgb
+  ];
 
-	systemd.services.openrgb = {
-		description = "OpenRGB server";
+  systemd.services.openrgb = {
+    description = "OpenRGB server";
 
-		after = [ "network.target" ];
-		wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
 
-    	serviceConfig = {
-    		ExecStart = "${pkgs.openrgb}/bin/openrgb --server --server-port 6742";
-    		Restart = "always";
-		};
-	};
+    serviceConfig = {
+      ExecStart = "${pkgs.openrgb}/bin/openrgb --server --server-port 6742";
+      Restart = "always";
+    };
+  };
 }

@@ -1,16 +1,16 @@
 { ... }:
 
 {
-	imports = [
-		<home-manager/nixos>
-	];
+  imports = [
+    <home-manager/nixos>
+  ];
 
-	home-manager.useUserPackages = true;
-	home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
+  home-manager.useGlobalPkgs = true;
 
-	home-manager.users.jeffrey = { ... }: {
-		programs.home-manager.enable = true;
+  home-manager.users.jeffrey = { ... }: {
+    programs.home-manager.enable = true;
 
-		home.stateVersion = "21.11";
-	};
+    home.stateVersion = "21.11";
+  };
 }

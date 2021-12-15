@@ -1,29 +1,30 @@
 { pkgs, ... }:
 
 {
-	environment.systemPackages = with pkgs; [
-		legendary-gl # Epic Games Store launcher
-		multimc # Minecraft launcher
+  environment.systemPackages = with pkgs; [
+    legendary-gl # Epic Games Store launcher
+    multimc # Minecraft launcher
 
-		sidequest # Oculus Quest sideload store
+    sidequest # Oculus Quest sideload store
 
-		mangohud # Game metrics HUD
+    mangohud # Game metrics HUD
 
-		protonup # Proton-GE version manager
-		
-		(steam.override { # Temporary fix for steam issues
-			extraPkgs = pkgs: with pkgs; [ pango harfbuzz libthai ];
-		})
+    protonup # Proton-GE version manager
 
-		lutris # Game launcher
-	];
+    (steam.override {
+      # Temporary fix for steam issues
+      extraPkgs = pkgs: with pkgs; [ pango harfbuzz libthai ];
+    })
 
-	# Enable Java for MultiMC
-	programs.java.enable = true;
-	
-	# Enable Steam
-	programs.steam.enable = true;
-	programs.steam.remotePlay.openFirewall = true;
-	hardware.steam-hardware.enable = true;
+    lutris # Game launcher
+  ];
+
+  # Enable Java for MultiMC
+  programs.java.enable = true;
+
+  # Enable Steam
+  programs.steam.enable = true;
+  programs.steam.remotePlay.openFirewall = true;
+  hardware.steam-hardware.enable = true;
 }
-	
+  
