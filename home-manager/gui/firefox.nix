@@ -1,14 +1,14 @@
 { pkgs, ... }:
 
 {
-	programs.firefox = {
-		enable = true;
-		package = pkgs.firefox-wayland;
-	};
+  programs.firefox = {
+    enable = true;
+    package = pkgs.firefox-wayland;
+  };
 
-	programs.browserpass = {
-		enable = true;
+  programs.browserpass = {
+    enable = true;
 
-		browsers = [ "firefox" ];
-	};
+    browsers = [ "firefox" ];
+  };
 }

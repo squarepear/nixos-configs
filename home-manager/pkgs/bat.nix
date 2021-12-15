@@ -1,12 +1,12 @@
 { ... }:
 
 {
-	programs.bat = {
-		enable = true;
+  programs.bat = {
+    enable = true;
 
-		config = {
-			theme = "Visual Studio Dark+";
-			tabs = "2";
-		};
-	};
+    config = {
+      theme = "Visual Studio Dark+";
+      tabs = "2";
+    };
+  };
 }

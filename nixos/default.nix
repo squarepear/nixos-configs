@@ -1,10 +1,10 @@
 { ... }:
 
 {
-	imports = [
-		./base.nix
+  imports = [
+    ./base.nix
 
-		./pkgs
-		./gui
-	];
+    ./pkgs
+    ./gui
+  ];
 }

@@ -1,9 +1,9 @@
 { ... }:
 
 {
-	programs.mako = {
-		enable = true;
+  programs.mako = {
+    enable = true;
 
-		backgroundColor = "#2B303BAA";
-	};
+    backgroundColor = "#2B303BAA";
+  };
 } 

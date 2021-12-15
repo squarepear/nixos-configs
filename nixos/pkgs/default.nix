@@ -1,9 +1,9 @@
 { ... }:
 
 {
-	imports = [
-		./base.nix
-		./programming.nix
-		./tailscale.nix
-	];
+  imports = [
+    ./base.nix
+    ./programming.nix
+    ./tailscale.nix
+  ];
 }
