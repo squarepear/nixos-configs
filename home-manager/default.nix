@@ -1,14 +1,14 @@
 { ... }:
 
 {
-	imports = [
-		./base.nix
-	];
+  imports = [
+    ./base.nix
+  ];
 
-	home-manager.users.jeffrey = { ... }: {
-		imports = [
-			./pkgs
-			./gui
-		];
-	};
+  home-manager.users.jeffrey = { ... }: {
+    imports = [
+      ./pkgs
+      ./gui
+    ];
+  };
 }

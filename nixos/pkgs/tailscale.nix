@@ -1,18 +1,18 @@
 { config, pkgs, ... }:
 
 {
-	services.tailscale = {
-		enable = true;
-		package = pkgs.tailscale;
-	};
+  services.tailscale = {
+    enable = true;
+    package = pkgs.tailscale;
+  };
 
-	networking.firewall = {
-		trustedInterfaces = [ "tailscale0" ];
-		allowedUDPPorts = [ config.services.tailscale.port ];
-	};
+  networking.firewall = {
+    trustedInterfaces = [ "tailscale0" ];
+    allowedUDPPorts = [ config.services.tailscale.port ];
+  };
 
-	boot.kernel.sysctl = {
-		"net.ipv6.conf.all.forwarding" = 1;
-	};
+  boot.kernel.sysctl = {
+    "net.ipv6.conf.all.forwarding" = 1;
+  };
 }
-	
+  
