@@ -34,7 +34,7 @@
   # Define your hostname.
   networking.hostName = "reshiram";
   networking.networkmanager.enable = true;
-  networking.firewall.trustedInterfaces = [ "eno1" "wlp4s0" ];
+  networking.firewall.trustedInterfaces = [ "eno1" "wlp5s0" ];
 
   # Enable Bluetooth
   hardware.bluetooth.enable = true;
@@ -44,12 +44,20 @@
     wirelesstools
   ];
 
+  boot.extraModulePackages = with config.boot.kernelPackages; [
+    zenpower # AMD Zen CPU monitoring
+  ];
+
+  boot.blacklistedKernelModules = [
+    "k10temp" # Disable generic monitoring
+  ];
+
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
   networking.useDHCP = false;
   networking.interfaces.eno1.useDHCP = true;
-  networking.interfaces.wlp4s0.useDHCP = true;
+  networking.interfaces.wlp5s0.useDHCP = true;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -60,7 +68,6 @@
 
   # GPU setup
   boot.initrd.kernelModules = [ "amdgpu" ];
-  services.xserver.videoDrivers = [ "amdgpu" ];
 
   # Configure keymap in X11
   services.xserver.layout = "us";
