@@ -22,7 +22,7 @@
   hardware.cpu.amd.updateMicrocode = true;
 
   # Linux Kernel Version
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = pkgs.linuxPackages_xanmod;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
