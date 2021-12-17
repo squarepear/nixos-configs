@@ -5,7 +5,7 @@
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      "${fetchTarball "https://github.com/NixOS/nixos-hardware/archive/7da029f26849f8696ac49652312c9171bf9eb170.tar.gz" }/raspberry-pi/4"
+      "${fetchTarball "https://github.com/NixOS/nixos-hardware/archive/2a7063461c3751d83869a2a0a8ebc59e34bec5b2.tar.gz" }/raspberry-pi/4"
 
       /home/jeffrey/nixos-configs/nixos/users/jeffrey.nix
 
