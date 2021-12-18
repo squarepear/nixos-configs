@@ -55,7 +55,7 @@
 
   environment.systemPackages = with pkgs; [
     wirelesstools
-    java17
+    jdk17
   ];
 
   # Enable NFS Server
