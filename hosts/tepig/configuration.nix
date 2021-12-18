@@ -34,8 +34,28 @@
   # Enable Bluetooth
   hardware.bluetooth.enable = true;
 
+  # Enable Minecraft Server
+  systemd.services.minecraft-server = {
+        description = "Run the HFGS Minecraft server";
+
+        wants = [ "network.target" ];
+        after = [ "network.target" ];
+
+        unitConfig = {
+          Type = "simple";
+          RequiresMountsFor = "/cluster-nfs";
+        };
+
+        serviceConfig = {
+          ExecStart = "/cluster-nfs/minecraft/survival-hfgs/start.sh";
+        };
+
+        wantedBy = [ "multi-user.target" ];
+    };
+
   environment.systemPackages = with pkgs; [
     wirelesstools
+    java17
   ];
 
   # Enable NFS Server
