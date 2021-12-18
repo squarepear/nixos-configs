@@ -36,22 +36,23 @@
 
   # Enable Minecraft Server
   systemd.services.minecraft-server = {
-        description = "Run the HFGS Minecraft server";
+    description = "Run the HFGS Minecraft server";
 
-        wants = [ "network.target" ];
-        after = [ "network.target" ];
+    wants = [ "network.target" ];
+    after = [ "network.target" ];
 
-        unitConfig = {
-          Type = "simple";
-          RequiresMountsFor = "/cluster-nfs";
-        };
-
-        serviceConfig = {
-          ExecStart = "/cluster-nfs/minecraft/survival-hfgs/start.sh";
-        };
-
-        wantedBy = [ "multi-user.target" ];
+    unitConfig = {
+      Type = "simple";
+      RequiresMountsFor = "/cluster-nfs";
     };
+
+    serviceConfig = {
+      WorkingDirectory="/cluster-nfs/minecraft/survival-hfgs/";
+      ExecStart = "${pkgs.jdk17}/bin/java -Xmx4G --add-modules jdk.incubator.vector -jar fabric-server-mc.1.18.1-loader.0.12.12-launcher.0.10.2.jar nogui";
+    };
+
+    wantedBy = [ "multi-user.target" ];
+  };
 
   environment.systemPackages = with pkgs; [
     wirelesstools
