@@ -107,6 +107,11 @@ in
           "${mod}+Shift+8" = "move container to workspace number 8";
           "${mod}+Shift+9" = "move container to workspace number 9";
 
+          "${mod}+Alt+Left" = "resize shrink width";
+          "${mod}+Alt+Right" = "resize grow width";
+          "${mod}+Alt+Down" = "resize shrink height";
+          "${mod}+Alt+Up" = "resize grow height";
+
           "${mod}+Shift+c" = "reload";
         };
 
@@ -117,13 +122,14 @@ in
         { title = "^UnityEditor.*$"; }
       ];
 
-      assigns = {
-        "8" = [{ class = "^Steam$"; } { app_id = "org.multimc."; }];
-        "9" = [{ class = "^steam_app_.*$"; } { class = "^Minecraft.*$"; } { class = "^OSFE.x86_64$"; } { class = "^StardewValley.*$"; } { class = "^Unity$"; }];
-      };
+
+      window.border = 0;
 
       gaps = {
-        inner = 20;
+        inner = 0;
+
+        smartBorders = "on";
+        smartGaps = true;
       };
 
       output = {
@@ -156,30 +162,19 @@ in
     '';
 
     extraConfig = ''
-      for_window [class="^steam_app_.*$"] inhibit_idle focus
-      for_window [class="^Minecraft.*$"] inhibit_idle focus
-      for_window [class="^OSFE.x86_64$"] inhibit_idle focus
-      for_window [class="^StardewValley.*$"] inhibit_idle focus
+      for_window [shell=".*"] inhibit_idle fullscreen
 
       # Auto lock (this does not configure sleeping)
-      set $lock "swaylock --indicator --indicator-radius 120 --indicator-thickness 8 --clock --timestr '%I:%M %p' --screenshots --effect-scale 0.5 --effect-blur 8x3 --effect-scale 2 --fade-in 0.2"
+      set $lock 'swaylock --indicator --indicator-radius 120 --indicator-thickness 8 --clock --timestr "%I:%M %p" --screenshots --effect-scale 0.5 --effect-blur 8x3 --effect-scale 2 --fade-in 0.2'
+
       exec ${pkgs.swayidle}/bin/swayidle -w \
-        timeout 300 $lock \
-        timeout 600 "swaymsg 'output * dpms off'" resume "swaymsg 'output * dpms on'" \
-        before-sleep $lock
-      
+        timeout 300 '$lock' \
+        # timeout 310 'systemctl suspend' \
+        timeout 280 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+        before-sleep '$lock'
+
       # Cursor
       seat seat0 xcursor_theme Quintom_Ink 32
-
-      # GTK Theme
-      set $gnome-schema org.gnome.desktop.interface
-
-      exec_always {
-        gsettings set $gnome-schema gtk-theme "WhiteSur-dark"
-        gsettings set $gnome-schema icon-theme "WhiteSur-dark"
-        gsettings set $gnome-schema cursor-theme "Quintom_Ink"
-        gsettings set $gnome-schema font-name "Ubuntu Nerd Font 16"
-      }
     '';
   };
 } 
