@@ -33,7 +33,7 @@
     localVariables = {
       TERMINAL = "kitty";
       EDITOR = "nvim";
-      BROWSER = "brave";
+      BROWSER = "firefox";
       FILEBROWSER = "pcmanfm";
     };
 
