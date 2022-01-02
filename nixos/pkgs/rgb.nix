@@ -8,6 +8,8 @@
 
   hardware.i2c.enable = true;
 
+  boot.kernelModules = [ "i2c-piix4" ];
+
   services.udev.packages = with pkgs; [
     openrgb
   ];
