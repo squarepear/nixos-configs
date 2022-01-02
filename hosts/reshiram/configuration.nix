@@ -36,6 +36,8 @@
   networking.networkmanager.enable = true;
   networking.firewall.trustedInterfaces = [ "eno1" "wlp5s0" ];
 
+  services.fstrim.enable = true;
+
   # Enable Bluetooth
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
