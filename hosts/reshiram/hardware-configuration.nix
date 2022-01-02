@@ -18,34 +18,27 @@
     {
       device = "/dev/disk/by-uuid/333b1c2c-db0d-4d01-bb48-06d70d3b69a9";
       fsType = "btrfs";
-      options = [ "subvol=@" ];
+      options = [ "subvol=@" "noatime" "autodefrag" ];
     };
 
   fileSystems."/games" =
     {
       device = "/dev/disk/by-uuid/333b1c2c-db0d-4d01-bb48-06d70d3b69a9";
       fsType = "btrfs";
-      options = [ "subvol=@games" ];
+      options = [ "subvol=@games" "noatime" "autodefrag" ];
     };
 
   fileSystems."/home" =
     {
       device = "/dev/disk/by-uuid/333b1c2c-db0d-4d01-bb48-06d70d3b69a9";
       fsType = "btrfs";
-      options = [ "subvol=@home" ];
+      options = [ "subvol=@home" "noatime" "autodefrag" ];
     };
 
   fileSystems."/boot" =
     {
       device = "/dev/disk/by-uuid/E61A-6632";
       fsType = "vfat";
-    };
-
-  fileSystems."/storage/games" =
-    {
-      device = "/dev/disk/by-uuid/1c2d6f58-f00f-4a6e-a52b-d765b222f1f5";
-      fsType = "btrfs";
-      options = [ "subvol=@games" ];
     };
 
   swapDevices =
