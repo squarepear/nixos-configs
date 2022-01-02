@@ -2,7 +2,6 @@
 
 {
   home.packages = with pkgs; [
-    apple-music-electron
     discord-canary
     feh
     libreoffice
