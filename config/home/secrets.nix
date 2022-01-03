@@ -16,9 +16,6 @@
     pinentryFlavor = if config.system.gui.enable then "gtk2" else "curses";
   };
 
-  # Enable gnome-keyring
-  services.gnome-keyring.enable = true;
-
   # Enable password-store
   programs.password-store = {
     enable = true;

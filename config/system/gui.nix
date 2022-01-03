@@ -15,9 +15,21 @@
     enable = config.system.gui.enable;
     package = pkgs.greetd.tuigreet;
 
-    settings.default_session = {
-      command = "${pkgs.greetd.tuigreet}/bin/tuigreet -tr --asterisks --greeting \"This legendary Pokémon can scorch the world with fire. It helps those who want to build a world of truth.\" --cmd sway";
-      user = "jeffrey";
+    settings.default_session.command = "${pkgs.greetd.tuigreet}/bin/tuigreet -tr --asterisks --greeting \"This legendary Pokémon can scorch the world with fire. It helps those who want to build a world of truth.\" --cmd sway";
+  };
+
+  systemd.services.greetd = lib.mkIf config.system.gui.enable {
+    unitConfig = {
+      After = lib.mkOverride 0 [ "multi-user.target" ];
     };
+    serviceConfig = {
+      Type = "idle";
+    };
+  };
+
+  # Greeter group
+  users = lib.mkIf config.system.gui.enable {
+    users.greeter.group = "greeter";
+    groups.greeter = { };
   };
 }

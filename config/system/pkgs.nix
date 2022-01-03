@@ -8,6 +8,7 @@
     htop # Process monitor
     jq
     killall
+    kubectl
     lm_sensors
     neofetch
     neovim
@@ -19,11 +20,5 @@
     unzip
     usbutils
     wget
-    exfatprogs
-
-    # Fun
-    cmatrix
-    sl
-    cowsay
   ];
 }

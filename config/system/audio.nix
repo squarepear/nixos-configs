@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, ... }:
 
 {
   security.rtkit.enable = true;
@@ -6,21 +6,11 @@
   services.pipewire = {
     enable = true;
 
-    wireplumber.enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
     pulse.enable = true;
-    media-session.enable = false;
-
-    config.pipewire-pulse = {
-      stream.properties = {
-        channelmix.upmix = true;
-        channelmix.upmix-method = "psd";
-      };
-    };
+    jack.enable = true;
   };
 
-  environment.systemPackages = with pkgs; lib.mkIf config.system.gui.enable [
-    pavucontrol # Audio control panel
-    helvum # audio channel manager
-    pulseaudio # For pactl
-  ];
+  sound.mediaKeys.enable = config.system.gui.enable;
 }

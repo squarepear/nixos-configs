@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 {
   programs.waybar = {
@@ -57,7 +57,7 @@
         };
         "custom/power" = {
           format = "⏻";
-          on-click = "${pkgs.rofi}/bin/rofi -show power-menu -modi power-menu:rofi-power-menu";
+          on-click = "notify-send 'Powering off...'"; # TODO: Power state management
           tooltip = false;
         };
       };
