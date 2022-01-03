@@ -1,9 +1,18 @@
 { ... }:
 
 {
-  programs.home-manager.enable = true;
+  imports = [
+    <home-manager/nixos>
+  ];
 
-  imports = [ ./pkgs.nix ];
+  home-manager.useUserPackages = true;
+  home-manager.useGlobalPkgs = true;
 
-  home.stateVersion = "21.11";
+  home-manager.users.jeffrey = { ... }: {
+    programs.home-manager.enable = true;
+
+    imports = [ ./pkgs.nix ];
+
+    home.stateVersion = "21.11";
+  };
 }

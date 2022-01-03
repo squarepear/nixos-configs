@@ -2,26 +2,24 @@
 
 let
   terminal = "${pkgs.kitty}/bin/kitty";
-  menu = "${pkgs.rofi}/bin/rofi -show";
-  notifs = "mako";
-  idle = "${pkgs.swayidle}/bin/swayidle";
-  lock = "${pkgs.swaylock}/bin/swaylock";
+  menu = "${pkgs.wofi}/bin/wofi --show drun";
+  bar = "${pkgs.waybar}/bin/waybar";
+
   grimshot = "${pkgs.sway-contrib.grimshot}/bin/grimshot";
-  xrandr = "${pkgs.xorg.xrandr}/bin/xrandr";
+
   date = "${pkgs.coreutils}/bin/date";
 
   ssdir = "$HOME/Pictures/Screenshots";
 in
 {
   imports = [
-    ./eww.nix
     ./mako.nix
     ./waybar.nix
-    ./rofi.nix
-    ./swaylock.nix
+    # ./wofi.nix # (Currently Broken)
   ];
 
   home.packages = with pkgs; lib.mkIf config.system.gui.enable [
+    swaylock-effects # Lock screen
     glfw-wayland
     libnotify
     mako # Notification daemon
@@ -30,16 +28,11 @@ in
     sway-contrib.grimshot # Screenshot utility
     swaybg # Sway background
     swayidle
-    swaylock # Lock screen
     whitesur-gtk-theme
     whitesur-icon-theme
-    playerctl
     wl-clipboard # Wayland clipboard manager
-    xarchiver
-    xdg-utils
     xdg-desktop-portal-wlr # Wayland screen sharing
     xorg.xlsclients
-    xorg.xrandr
   ];
 
   wayland.windowManager.sway = {
@@ -63,7 +56,7 @@ in
         in
         {
           "${mod}+Return" = "exec ${terminal}";
-          "${mod}+Space" = "exec ${menu} drun";
+          "${mod}+Space" = "exec ${menu}";
           "${mod}+q" = "kill";
 
           "${mod}+s" = ''
@@ -119,28 +112,14 @@ in
           "${mod}+Alt+Down" = "resize shrink height";
           "${mod}+Alt+Up" = "resize grow height";
 
-          "${mod}+Shift+Space" = "floating toggle";
-
-          "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
-          "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
-          "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
-          "XF86AudioMicMute" = "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
-          "XF86MonBrightnessDown" = "exec brightnessctl set 5%-";
-          "XF86MonBrightnessUp" = "exec brightnessctl set 5%+";
-          "XF86AudioPlay" = "exec playerctl play-pause";
-          "XF86AudioNext" = "exec playerctl next";
-          "XF86AudioPrev" = "exec playerctl previous";
-          "XF86Search" = "exec ${menu} drun";
-
           "${mod}+Shift+c" = "reload";
         };
 
-      bars = [ ];
+      bars = [{ command = bar; }];
 
       floating.criteria = [
         { title = "^Steam - News*$"; }
         { title = "^UnityEditor.*$"; }
-        { instance = "^Godot_Engine$"; } # transient_for = "^.*$"; }
       ];
 
 
@@ -155,98 +134,46 @@ in
 
       output = {
         "*" = {
-          bg = "#000000 solid_color";
+          bg = "~/Pictures/Wallpapers/wallpaper.jpg fill";
         };
 
-        #  
-        #  Monitor Layout
-        #  
-        #  ┌─────╥──────────────────┐
-        #  │      ║                      │
-        #  │      ║                      │
-        #  │  28" ║          48"         │
-        #  │      ║                      │
-        #  │      ║                      │
-        #  └─────╨──────────────────┘
+        DP-1 = {
+          res = "3840x2160";
+          pos = "0 0";
+          adaptive_sync = "on";
+          # scale = "2";
+        };
 
         HDMI-A-1 = {
-          res = "3840x2160@120Hz";
-          # scale = "2";
-          pos = "1080 0";
-          adaptive_sync = "on";
-          render_bit_depth = "10";
-        };
-
-        DP-3 = {
-          res = "3840x2160@60Hz";
-          scale = "2";
-          pos = "0 98";
-          transform = "270";
-          adaptive_sync = "on";
-          render_bit_depth = "10";
+          res = "1920x1080";
+          pos = "3840 540";
         };
       };
     };
 
+    extraSessionCommands = ''
+      export XDG_SESSION_TYPE=wayland
+      export XDG_CURRENT_DESKTOP=sway
+        
+      export MOZ_ENABLE_WAYLAND="1"
+
+      # export SDL_VIDEODRIVER=wayland
+        
+      export QT_QPA_PLATFORM=wayland
+      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+    '';
+
     extraConfig = ''
-      # Set correct primary monitor for xwayland
-      exec ${xrandr} --output XWAYLAND1 --primary
-
-      # Don't idle if application is in fullscreen
       for_window [shell=".*"] inhibit_idle fullscreen
-
-      # Auto lock
-      exec ${idle} -w \
-        timeout 120 '${lock} -f' \
-        timeout 180 'swaymsg "output * dpms off"' \
-             resume 'swaymsg "output * dpms on"' \
-        before-sleep '${lock} -f'
-
+      # Auto lock (this does not configure sleeping)
+      set $lock 'swaylock --indicator --indicator-radius 120 --indicator-thickness 8 --clock --timestr "%I:%M %p" --screenshots --effect-scale 0.5 --effect-blur 8x3 --effect-scale 2 --fade-in 0.2'
+      exec ${pkgs.swayidle}/bin/swayidle -w \
+        timeout 300 '$lock' \
+        # timeout 310 'systemctl suspend' \
+        timeout 280 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+        before-sleep '$lock'
       # Cursor
       seat seat0 xcursor_theme Quintom_Ink 32
-
-      # Enable notification daemon
-      exec ${notifs}
     '';
-  };
-
-  home.sessionVariables = {
-    XDG_SESSION_TYPE="wayland";
-    XDG_CURRENT_DESKTOP="sway";
-    MOZ_ENABLE_WAYLAND = "1";
-    SDL_VIDEODRIVER = "x11";
-    QT_QPA_PLATFORM = "xcb";
-    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-    _JAVA_AWT_WM_NONREPARENTING = "1";
-    NIXOS_OZONE_WL = "1";
-
-    TERMINAL = "${terminal}";
-    EDITOR = "${pkgs.neovim}/bin/nvim";
-    BROWSER = "${pkgs.firefox}/bin/firefox";
-    FILEBROWSER = "${pkgs.pcmanfm}/bin/pcmanfm";
-  };
-
-  gtk = {
-    enable = true;
-    iconTheme = {
-      package = pkgs.arc-icon-theme;
-      name = "Arc";
-    };
-
-    theme = {
-      package = pkgs.arc-theme;
-      name = "Arc-Dark";
-    };
-
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-      gtk-toolbar-style = "GTK_TOOLBAR_ICONS";
-      gtk-toolbar-icon-size = "GTK_ICON_SIZE_LARGE_TOOLBAR";
-    };
-  };
-
-  qt = {
-    enable = true;
-    platformTheme = "gtk";
   };
 }

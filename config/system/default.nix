@@ -15,7 +15,7 @@
   };
 
   # Remove duplicate files in nix store
-  nix.settings.auto-optimise-store = true;
+  nix.autoOptimiseStore = true;
 
   # Add default fonts
   fonts.enableDefaultFonts = true;
@@ -30,9 +30,6 @@
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
-
-  # Used for auto completion
-  environment.pathsToLink = [ "/share/zsh" ];
 
   system.stateVersion = "22.05";
 }

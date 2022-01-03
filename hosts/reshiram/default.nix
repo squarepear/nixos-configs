@@ -2,8 +2,6 @@
 
 {
   imports = [
-    ./hardware-configuration.nix
-
     ../../config/system
     ../../config/system/k3s/manager.nix
     ../../config/system/audio.nix
@@ -11,10 +9,8 @@
     ../../config/system/bluetooth.nix
     ../../config/system/bootloader.nix
     ../../config/system/docker.nix
-    ../../config/system/gaming.nix
     ../../config/system/gui.nix
     ../../config/system/networking.nix
-    ../../config/system/nfs.nix
     ../../config/system/printing.nix
     ../../config/system/rgb.nix
     ../../config/system/ssd.nix
@@ -25,28 +21,39 @@
     ../../config/system/zenpower.nix
 
     ../../config/users/jeffrey.nix
+
+    ../../config/home
   ];
 
+  home-manager.users.jeffrey = { ... }: {
+    imports = [
+      ../../config/home/sway
+      ../../config/home/bat.nix
+      ../../config/home/direnv.nix
+      ../../config/home/firefox.nix
+      ../../config/home/fonts.nix
+      ../../config/home/git.nix
+      ../../config/home/kitty.nix
+      ../../config/home/neovim.nix
+      ../../config/home/obs.nix
+      ../../config/home/secrets.nix
+      ../../config/home/vscode.nix
+      ../../config/home/zsh.nix
+    ];
+  };
+
   # System hostname
-  networking.hostName = "reshiram";
+  system.name = "reshiram";
 
   # Use GUI (sway)
   system.gui.enable = true;
 
   # Linux Kernel Version
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  boot.kernelPackages = pkgs.linuxPackages_xanmod;
 
   # GPU setup
   boot.initrd.kernelModules = [ "amdgpu" ];
 
   # Networking
   networking.firewall.trustedInterfaces = [ "eno1" "wlp5s0" ];
-
-  # Windows dualboot settings
-  time.hardwareClockInLocalTime = true;
-
-  # Enable building for aarch64 (Raspberry Pi)
-  boot.binfmt.emulatedSystems = [
-    "aarch64-linux"
-  ];
 }

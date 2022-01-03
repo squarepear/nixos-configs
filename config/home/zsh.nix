@@ -1,10 +1,14 @@
 { config, pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    pure-prompt
+  ];
+
   programs.zsh = {
     enable = true;
 
-    # enableAutosuggestions = true;
+    enableAutosuggestions = true;
     enableCompletion = true;
     enableSyntaxHighlighting = true;
     autocd = true;
@@ -20,12 +24,16 @@
 
     initExtra = ''
       pfetch
-
+      fpath+=${pkgs.pure-prompt}/share/zsh/site-functions
+      autoload -Uz promptinit; promptinit; prompt pure
       # PATH=$PATH:$(go env GOPATH)/bin
     '';
 
     localVariables = {
+      TERMINAL = "kitty";
       EDITOR = "nvim";
+      BROWSER = "firefox";
+      FILEBROWSER = "pcmanfm";
     };
 
     shellAliases = {
@@ -35,15 +43,6 @@
 
     shellGlobalAliases = {
       UUID = "$(uuidgen | tr -d \\n)";
-    };
-  };
-
-  programs.starship = {
-    enable = true;
-    enableZshIntegration = true;
-
-    settings = {
-      # Starship Config
     };
   };
 }
