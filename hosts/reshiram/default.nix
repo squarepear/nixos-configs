@@ -2,75 +2,58 @@
 
 {
   imports = [
-    ./hardware-configuration.nix
+    ../../config/system
+    ../../config/system/k3s/manager.nix
+    ../../config/system/audio.nix
+    ../../config/system/backup.nix
+    ../../config/system/bluetooth.nix
+    ../../config/system/bootloader.nix
+    ../../config/system/docker.nix
+    ../../config/system/gui.nix
+    ../../config/system/networking.nix
+    ../../config/system/printing.nix
+    ../../config/system/rgb.nix
+    ../../config/system/ssd.nix
+    ../../config/system/ssh.nix
+    ../../config/system/tailscale.nix
+    ../../config/system/usb.nix
+    ../../config/system/virtualization.nix
+    ../../config/system/zenpower.nix
 
-    ../../config
-    ../../config/ai.nix
-    ../../config/audio.nix
-    ../../config/backup.nix
-    ../../config/bat.nix
-    ../../config/bluetooth.nix
-    ../../config/cad.nix
-    ../../config/containers.nix
-    ../../config/direnv.nix
-    ../../config/firefox.nix
-    ../../config/fonts.nix
-    ../../config/gamedev.nix
-    ../../config/gaming.nix
-    ../../config/git.nix
-    ../../config/keyboard.nix
-    ../../config/hyprland
-    ../../config/k3s/manager.nix
-    ../../config/kitty.nix
-    ../../config/music.nix
-    ../../config/neovim
-    ../../config/networking.nix
-    ../../config/nfs.nix
-    ../../config/obs.nix
-    ../../config/printing.nix
-    ../../config/rgb.nix
-    ../../config/secrets.nix
-    ../../config/ssh.nix
-    ../../config/tailscale.nix
-    ../../config/usb.nix
-    ../../config/virtualization.nix
-    ../../config/vscode.nix
-    # ../../config/waydroid.nix
-    ../../config/zenpower.nix
-    ../../config/zsh.nix
+    ../../config/users/jeffrey.nix
 
-    ../../users/jeffrey.nix
+    ../../config/home
   ];
 
+  home-manager.users.jeffrey = { ... }: {
+    imports = [
+      ../../config/home/sway
+      ../../config/home/bat.nix
+      ../../config/home/direnv.nix
+      ../../config/home/firefox.nix
+      ../../config/home/fonts.nix
+      ../../config/home/git.nix
+      ../../config/home/kitty.nix
+      ../../config/home/neovim.nix
+      ../../config/home/obs.nix
+      ../../config/home/secrets.nix
+      ../../config/home/vscode.nix
+      ../../config/home/zsh.nix
+    ];
+  };
+
   # System hostname
-  networking.hostName = "reshiram";
+  system.name = "reshiram";
 
-  # Boot Settings
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.systemd-boot.memtest86.enable = true;
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
-
-  # Use GUI (hyprland)
+  # Use GUI (sway)
   system.gui.enable = true;
 
-  # Packages
-  environment.systemPackages = with pkgs; [ liquidctl ];
+  # Linux Kernel Version
+  boot.kernelPackages = pkgs.linuxPackages_xanmod;
 
   # GPU setup
   boot.initrd.kernelModules = [ "amdgpu" ];
 
   # Networking
-  networking.firewall.trustedInterfaces = [
-    # "enp14s0"
-    # "wlan0"
-  ];
-
-  # Automatically trim unused space from the filesystem
-  services.fstrim.enable = true;
-
-  # Enable building for aarch64 (Raspberry Pi)
-  boot.binfmt.emulatedSystems = [
-    "aarch64-linux"
-  ];
+  networking.firewall.trustedInterfaces = [ "eno1" "wlp5s0" ];
 }

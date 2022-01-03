@@ -2,35 +2,77 @@
 
 {
   imports = [
-    ./hardware-configuration.nix
+    "${fetchTarball "https://github.com/NixOS/nixos-hardware/archive/2a7063461c3751d83869a2a0a8ebc59e34bec5b2.tar.gz" }/raspberry-pi/4"
 
-    ../../config
-    # ../../config/k3s/server.nix
-    ../../config/backup.nix
-    ../../config/containers.nix
-    ../../config/distributed-building.nix
-    ../../config/networking.nix
-    ../../config/nfs.nix
-    ../../config/ssh.nix
-    ../../config/tailscale.nix
-    ../../config/bat.nix
-    ../../config/direnv.nix
-    ../../config/git.nix
-    ../../config/neovim
-    ../../config/secrets.nix
-    ../../config/vscode.nix
-    ../../config/zsh.nix
+    ../../config/system
+    ../../config/system/k3s/server.nix
+    ../../config/system/backup.nix
+    ../../config/system/docker.nix
+    ../../config/system/networking.nix
+    ../../config/system/ssh.nix
+    ../../config/system/tailscale.nix
+    ../../config/system/usb.nix
 
-    ../../users/jeffrey.nix
+    ../../config/users/jeffrey.nix
+
+    ../../config/home
   ];
 
+  home-manager.users.jeffrey = { ... }: {
+    imports = [
+      ../../config/home/bat.nix
+      ../../config/home/direnv.nix
+      ../../config/home/git.nix
+      ../../config/home/neovim.nix
+      ../../config/home/secrets.nix
+      ../../config/home/zsh.nix
+    ];
+  };
+
   # System hostname
-  networking.hostName = "tepig";
+  system.name = "tepig";
 
   # Don't use GUI
   system.gui.enable = false;
 
+  # Linux Kernel Version
+  boot.kernelPackages = pkgs.linuxPackages_xanmod;
+
+
+  # Enable Minecraft Server
+  environment.systemPackages = with pkgs; [
+    jdk17
+  ];
+
+  systemd.services.minecraft-server = {
+    description = "Run the HFGS Minecraft server";
+
+    wants = [ "network.target" ];
+    after = [ "network.target" ];
+
+    unitConfig = {
+      Type = "simple";
+      RequiresMountsFor = "/cluster-nfs";
+    };
+
+    serviceConfig = {
+      WorkingDirectory="/cluster-nfs/minecraft/survival-hfgs/";
+      ExecStart = "${pkgs.jdk17}/bin/java -Xmx4G --add-modules jdk.incubator.vector -jar fabric-server-mc.1.18.1-loader.0.12.12-launcher.0.10.2.jar nogui";
+    };
+
+    wantedBy = [ "multi-user.target" ];
+  };
+
+  # Enable NFS Server
+  services.nfs.server = {
+    enable = true;
+
+    exports = ''
+      /cluster-nfs 100.0.0.0/8(rw,sync,no_root_squash,insecure)
+    '';
+  };
+  networking.firewall.allowedTCPPorts = [ 2049 ];
+
   # Networking
-  networking.firewall.trustedInterfaces = [ "end0" ];
-  networking.enableIPv6 = false;
+  networking.firewall.trustedInterfaces = [ "eth0" "wlan0" ];
 }
