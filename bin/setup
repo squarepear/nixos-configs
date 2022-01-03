@@ -1,0 +1,50 @@
+#!/run/current-system/sw/bin/bash
+
+HOST=${1:-""}
+ROOT=$(realpath ${2:-"/"})
+USER=${3:-"jeffrey"}
+
+HOME="$ROOT/home/$USER"
+CONFIG="$HOME/nixos-configs"
+HOST_CONFIG="$CONFIG/hosts/$HOST"
+
+if [[ $HOST == "" ]]; then
+	echo "Hostname not given"
+	exit
+fi
+
+if [[ ! -d $HOME ]]
+then
+    echo "Creating $HOME"
+	mkdir -p $HOME
+fi
+
+if [[ ! -d $CONFIG ]]
+then
+    echo "Cloning config"
+	git clone https://github.com/SquarePear/nixos-configs.git $CONFIG
+else
+	echo "Config already cloned"
+fi
+
+if [[ ! -d "$HOST_CONFIG/nixos" ]]
+then
+    echo "Create a host config for $HOST in $HOST_CONFIG"
+	mkdir -p "$HOST_CONFIG/nixos"
+	exit
+else
+	echo "Using host config in $HOST_CONFIG"
+fi
+
+mkdir -p "$ROOT/etc"
+
+if [[ ! -d "$ROOT/etc/nixos" ]]
+then
+	echo "Linking config"
+	sudo ln -s "$HOST_CONFIG/nixos" "$ROOT/etc"
+else
+    echo "Config already linked"
+fi
+
+sudo nixos-generate-config --root $ROOT
+
