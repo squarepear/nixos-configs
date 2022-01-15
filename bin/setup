@@ -27,24 +27,22 @@ else
 	echo "Config already cloned"
 fi
 
-if [[ ! -d "$HOST_CONFIG/nixos" ]]
+if [[ ! -d "$HOST_CONFIG" ]]
 then
     echo "Create a host config for $HOST in $HOST_CONFIG"
-	mkdir -p "$HOST_CONFIG/nixos"
-	exit
+	mkdir -p "$HOST_CONFIG"
+	touch "$HOST_CONFIG/default.nix"
 else
 	echo "Using host config in $HOST_CONFIG"
 fi
 
+echo "Linking config"
 mkdir -p "$ROOT/etc"
 
-if [[ ! -d "$ROOT/etc/nixos" ]]
-then
-	echo "Linking config"
-	sudo ln -s "$HOST_CONFIG/nixos" "$ROOT/etc"
-else
-    echo "Config already linked"
-fi
+[[ -f "$ROOT/etc/nixos" ]] && sudo rm "$ROOT/etc/nixos"
+[[ -d "$ROOT/etc/nixos" ]] && sudo rm -r "$ROOT/etc/nixos"
 
-sudo nixos-generate-config --root $ROOT
+sudo ln -s "$CONFIG" "$ROOT/etc/nixos"
+
+sudo nixos-generate-config --root $ROOT --show-hardware-config > "$HOST_CONFIG/hardware-configuration.nix"
 
