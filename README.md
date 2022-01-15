@@ -1,12 +1,10 @@
-# `nixos-configs`
+# [`nixos-configs`](https://github.com/SquarePear/nixos-configs)
+
+<!--
+Still working on the setup script
 
 ## Usage
-
-```sh
-cd
-git clone https://github.com/SquarePear/nixos-configs.git
-ln -s ~/nixos-configs/hosts/hostname/nixos /etc/nixos
-```
+-->
 
 ## [`hosts/`](./hosts/)
 
