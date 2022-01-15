@@ -9,6 +9,7 @@
     ../../config/system/bluetooth.nix
     ../../config/system/bootloader.nix
     ../../config/system/docker.nix
+    ../../config/system/gaming.nix
     ../../config/system/gui.nix
     ../../config/system/networking.nix
     ../../config/system/printing.nix
