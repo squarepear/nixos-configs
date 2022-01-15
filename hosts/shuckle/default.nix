@@ -2,6 +2,8 @@
 
 {
   imports = [
+    ./hardware-configuration.nix
+
     ../../config/system
     ../../config/system/bootloader.nix
     ../../config/system/docker.nix
@@ -12,20 +14,7 @@
     ../../config/system/virtualization.nix
 
     ../../config/users/jeffrey.nix
-
-    ../../config/home
   ];
-
-  home-manager.users.jeffrey = { ... }: {
-    imports = [
-      ../../config/home/bat.nix
-      ../../config/home/direnv.nix
-      ../../config/home/git.nix
-      ../../config/home/neovim.nix
-      ../../config/home/secrets.nix
-      ../../config/home/zsh.nix
-    ];
-  };
 
   # System hostname
   system.name = "shuckle";
