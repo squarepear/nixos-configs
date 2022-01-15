@@ -18,7 +18,7 @@
     {
       device = "/dev/disk/by-uuid/333b1c2c-db0d-4d01-bb48-06d70d3b69a9";
       fsType = "btrfs";
-      options = [ "subvol=@" "autodefrag" "noatime" ];
+      options = [ "subvol=@nixos" "autodefrag" "noatime" ];
     };
 
   fileSystems."/games" =
@@ -42,7 +42,7 @@
     };
 
   swapDevices =
-    [{ device = "/dev/disk/by-uuid/2adf0dd9-0942-4b49-9a18-b4d5f273926b"; }];
+    [{ device = "/dev/disk/by-uuid/79744317-a269-4ad8-b201-889e7e146b6e"; }];
 
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
