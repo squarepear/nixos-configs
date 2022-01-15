@@ -31,5 +31,8 @@
     experimental-features = nix-command flakes
   '';
 
+  # Used for auto completion
+  environment.pathsToLink = [ "/share/zsh" ];
+
   system.stateVersion = "22.05";
 }
