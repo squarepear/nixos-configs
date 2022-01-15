@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./hardware-configuration.nix
     "${fetchTarball "https://github.com/NixOS/nixos-hardware/archive/2a7063461c3751d83869a2a0a8ebc59e34bec5b2.tar.gz" }/raspberry-pi/4"
 
     ../../config/system
@@ -14,20 +15,7 @@
     ../../config/system/usb.nix
 
     ../../config/users/jeffrey.nix
-
-    ../../config/home
   ];
-
-  home-manager.users.jeffrey = { ... }: {
-    imports = [
-      ../../config/home/bat.nix
-      ../../config/home/direnv.nix
-      ../../config/home/git.nix
-      ../../config/home/neovim.nix
-      ../../config/home/secrets.nix
-      ../../config/home/zsh.nix
-    ];
-  };
 
   # System hostname
   system.name = "tepig";

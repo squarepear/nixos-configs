@@ -2,6 +2,8 @@
 
 {
   imports = [
+    ./hardware-configuration.nix
+
     ../../config/system
     ../../config/system/k3s/manager.nix
     ../../config/system/audio.nix
@@ -22,26 +24,7 @@
     ../../config/system/zenpower.nix
 
     ../../config/users/jeffrey.nix
-
-    ../../config/home
   ];
-
-  home-manager.users.jeffrey = { ... }: {
-    imports = [
-      ../../config/home/sway
-      ../../config/home/bat.nix
-      ../../config/home/direnv.nix
-      ../../config/home/firefox.nix
-      ../../config/home/fonts.nix
-      ../../config/home/git.nix
-      ../../config/home/kitty.nix
-      ../../config/home/neovim.nix
-      ../../config/home/obs.nix
-      ../../config/home/secrets.nix
-      ../../config/home/vscode.nix
-      ../../config/home/zsh.nix
-    ];
-  };
 
   # System hostname
   system.name = "reshiram";
