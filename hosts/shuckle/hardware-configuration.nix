@@ -9,28 +9,28 @@
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "ahci" "ohci_pci" "ehci_pci" "usb_storage" "usbhid" "sd_mod" "sr_mod" ];
+  boot.initrd.availableKernelModules = [ "ahci" "ohci_pci" "ehci_pci" "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
     {
-      device = "/dev/sda3";
+      device = "/dev/disk/by-uuid/09ace2fc-ec40-4ca6-a923-2ef9deb24cb0";
       fsType = "btrfs";
       options = [ "subvol=@" ];
     };
 
   fileSystems."/home" =
     {
-      device = "/dev/sda3";
+      device = "/dev/disk/by-uuid/09ace2fc-ec40-4ca6-a923-2ef9deb24cb0";
       fsType = "btrfs";
       options = [ "subvol=@home" ];
     };
 
   fileSystems."/backup" =
     {
-      device = "/dev/sda3";
+      device = "/dev/disk/by-uuid/09ace2fc-ec40-4ca6-a923-2ef9deb24cb0";
       fsType = "btrfs";
       options = [ "subvol=@backup" ];
     };
