@@ -23,10 +23,6 @@
   # Don't use GUI
   system.gui.enable = false;
 
-  # Linux Kernel Version
-  boot.kernelPackages = pkgs.linuxPackages_xanmod;
-
-
   # Enable Minecraft Server
   environment.systemPackages = with pkgs; [
     jdk17
