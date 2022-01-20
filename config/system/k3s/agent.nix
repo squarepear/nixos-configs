@@ -6,7 +6,7 @@
   ];
 
   services.k3s = {
-    role = "client";
+    role = "agent";
     serverAddr = "https://100.114.164.19:6443";
   };
 }
