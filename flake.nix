@@ -50,6 +50,20 @@
           }
         ];
       };
+
+      torchic = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        modules = [
+          ./hosts/torchic
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.jeffrey = import ./hosts/torchic/home.nix;
+          }
+        ];
+      };
     };
   };
 }
