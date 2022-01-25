@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   security.rtkit.enable = true;
@@ -6,11 +6,13 @@
   services.pipewire = {
     enable = true;
 
-    alsa.enable = true;
-    alsa.support32Bit = true;
+    # alsa.enable = true;
+    # alsa.support32Bit = true;
     pulse.enable = true;
-    jack.enable = true;
+    # jack.enable = true;
   };
 
-  sound.mediaKeys.enable = config.system.gui.enable;
+  environment.systemPackages = with pkgs; lib.mkIf config.system.gui.enable [
+    pavucontrol # Audio control panel
+  ];
 }
