@@ -9,6 +9,7 @@
     ../../config/system/k3s/server.nix
     ../../config/system/backup.nix
     ../../config/system/docker.nix
+    ../../config/system/glusterfs.nix
     ../../config/system/networking.nix
     ../../config/system/ssh.nix
     ../../config/system/tailscale.nix
