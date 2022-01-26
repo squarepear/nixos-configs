@@ -8,6 +8,7 @@
     ../../config/system/k3s/agent.nix
     ../../config/system/bootloader.nix
     ../../config/system/docker.nix
+    ../../config/system/glusterfs.nix
     ../../config/system/networking.nix
     ../../config/system/ssh.nix
     ../../config/system/tailscale.nix
