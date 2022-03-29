@@ -11,7 +11,7 @@
     uid = 1000;
   };
 
-  nix.trustedUsers = [
+  nix.settings.trusted-users = [
     "jeffrey"
   ];
 }

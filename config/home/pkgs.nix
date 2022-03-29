@@ -9,7 +9,7 @@
     mpv
     pcmanfm
     psensor
-    shared_mime_info
+    shared-mime-info
     slack
     zoom-us
   ];
