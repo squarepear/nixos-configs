@@ -9,6 +9,7 @@
     ../../config/home/direnv.nix
     ../../config/home/firefox.nix
     ../../config/home/fonts.nix
+    ../../config/home/gamedev.nix
     ../../config/home/git.nix
     ../../config/home/kitty.nix
     ../../config/home/neovim.nix
