@@ -3,6 +3,7 @@
 let
   terminal = "${pkgs.kitty}/bin/kitty";
   menu = "${pkgs.rofi}/bin/rofi -show";
+  notifs = "mako";
 
   grimshot = "${pkgs.sway-contrib.grimshot}/bin/grimshot";
 
@@ -12,6 +13,7 @@ let
 in
 {
   imports = [
+    ./eww.nix
     ./mako.nix
     ./waybar.nix
     ./rofi.nix
@@ -164,6 +166,8 @@ in
         
       export QT_QPA_PLATFORM=wayland
       export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+
+      export _JAVA_AWT_WM_NONREPARENTING=1
     '';
 
     extraConfig = ''
@@ -177,6 +181,39 @@ in
         before-sleep '$lock'
       # Cursor
       seat seat0 xcursor_theme Quintom_Ink 32
+
+      exec ${notifs}
     '';
+  };
+
+  home.sessionVariables = {
+    TERMINAL = "${terminal}";
+    EDITOR = "${pkgs.neovim}/bin/nvim";
+    BROWSER = "${pkgs.firefox}/bin/firefox";
+    FILEBROWSER = "${pkgs.pcmanfm}/bin/pcmanfm";
+  };
+
+  gtk = {
+    enable = true;
+    iconTheme = {
+      package = pkgs.arc-icon-theme;
+      name = "Arc";
+    };
+
+    theme = {
+      package = pkgs.arc-theme;
+      name = "Arc-Dark";
+    };
+
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+      gtk-toolbar-style = "GTK_TOOLBAR_ICONS";
+      gtk-toolbar-icon-size = "GTK_ICON_SIZE_LARGE_TOOLBAR";
+    };
+  };
+
+  qt = {
+    enable = true;
+    platformTheme = "gtk";
   };
 }

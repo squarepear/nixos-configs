@@ -1,0 +1,45 @@
+(include "./vars.yuck")
+
+(defwindow menu
+    :monitor 0
+    ; :exclusive true
+    ; :focusable true
+    :geometry (geometry
+            :x "0px"
+            :y "0px"
+            :width "40%"
+            :height "40%"
+            :anchor "top right"
+    )
+
+    (box :class "buttons"
+         :orientation "horizontal"
+         :spacing 20
+        (box :class "first"
+            (button :onclick "notify-send 'First!'")
+        )
+        (power)))
+
+(defwidget power []
+    (box :class "power"
+        (box :orientation "vertical"
+             (button
+                :onclick "notify-send 'Hello' 'Hello, there!' Greet"
+                :height 64 :width 64
+                "1")
+             (button
+                :onclick "notify-send 'Hello' 'Hello, there!' Greet"
+                :height 64 :width 64
+                "2")
+             (button
+                :onclick "notify-send 'Hello' 'Hello, there!' Greet"
+                :height 64 :width 64
+                "3")))
+)
+
+(defwidget greeter [?text name]
+    (box :orientation "horizontal"
+         :halign "center"
+      text
+      (button :onclick "notify-send 'Hello' 'Hello, ${name}'"
+        "Greet")))
