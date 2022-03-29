@@ -2,7 +2,7 @@
 
 let
   terminal = "${pkgs.kitty}/bin/kitty";
-  menu = "${pkgs.wofi}/bin/wofi --show drun";
+  menu = "${pkgs.rofi}/bin/rofi -show";
   bar = "${pkgs.waybar}/bin/waybar";
 
   grimshot = "${pkgs.sway-contrib.grimshot}/bin/grimshot";
@@ -15,7 +15,7 @@ in
   imports = [
     ./mako.nix
     ./waybar.nix
-    # ./wofi.nix # (Currently Broken)
+    ./rofi.nix
   ];
 
   home.packages = with pkgs; lib.mkIf config.system.gui.enable [
@@ -56,7 +56,7 @@ in
         in
         {
           "${mod}+Return" = "exec ${terminal}";
-          "${mod}+Space" = "exec ${menu}";
+          "${mod}+Space" = "exec ${menu} drun";
           "${mod}+q" = "kill";
 
           "${mod}+s" = ''
