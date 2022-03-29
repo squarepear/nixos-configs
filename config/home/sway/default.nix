@@ -3,7 +3,6 @@
 let
   terminal = "${pkgs.kitty}/bin/kitty";
   menu = "${pkgs.rofi}/bin/rofi -show";
-  bar = "${pkgs.waybar}/bin/waybar";
 
   grimshot = "${pkgs.sway-contrib.grimshot}/bin/grimshot";
 
@@ -112,10 +111,12 @@ in
           "${mod}+Alt+Down" = "resize shrink height";
           "${mod}+Alt+Up" = "resize grow height";
 
+          "${mod}+Shift+Space" = "floating toggle";
+
           "${mod}+Shift+c" = "reload";
         };
 
-      bars = [{ command = bar; }];
+      bars = [ ];
 
       floating.criteria = [
         { title = "^Steam - News*$"; }
@@ -134,20 +135,22 @@ in
 
       output = {
         "*" = {
-          bg = "~/Pictures/Wallpapers/wallpaper.jpg fill";
+          bg = "#000000 solid_color";
         };
 
         DP-1 = {
-          res = "3840x2160";
+          res = "2560x1440"; # Current GPU doesn't support 4k@120hz, so using 1440p@120hz for now
           pos = "0 0";
           adaptive_sync = "on";
           # scale = "2";
         };
 
-        HDMI-A-1 = {
-          res = "1920x1080";
-          pos = "3840 540";
-        };
+        # Waiting for monitor arm for secondary vertical monitor (Old primary monitor)
+        # HDMI-A-1 = {
+        #   res = "3840x2160";
+        #   pos = ""; # TODO: find values
+        #   transform = "90 clockwise";
+        # };
       };
     };
 
