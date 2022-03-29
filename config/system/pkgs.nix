@@ -8,7 +8,6 @@
     htop # Process monitor
     jq
     killall
-    kubectl
     lm_sensors
     neofetch
     neovim
