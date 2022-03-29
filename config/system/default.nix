@@ -15,7 +15,7 @@
   };
 
   # Remove duplicate files in nix store
-  nix.autoOptimiseStore = true;
+  nix.settings.auto-optimise-store = true;
 
   # Add default fonts
   fonts.enableDefaultFonts = true;
