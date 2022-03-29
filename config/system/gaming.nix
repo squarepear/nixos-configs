@@ -1,19 +1,16 @@
 { config, lib, pkgs, ... }:
-let
-  # Include java8 and java17 in multimc
-  multimc = pkgs.multimc.overrideAttrs (oldAttrs: rec {
-    buildInputs = oldAttrs.buildInputs ++ [ pkgs.jdk8 pkgs.jdk17 ];
-  });
-in
+
 {
   config = lib.mkIf config.system.gui.enable {
     environment.systemPackages = with pkgs; [
-      multimc # Minecraft launcher
+      polymc # Minecraft launcher
       lutris # General games
 
       retroarchFull # General emulator
       citra # 3DS emulator
-      dolphin-emu-beta # Wii/GameCube emulator 
+      dolphin-emu-beta # Wii/GameCube emulator
+
+      steam-run-native
 
       # Proton tools
       protonup
@@ -31,7 +28,11 @@ in
     hardware.steam-hardware.enable = true;
 
     # Fixes some broken games
-    hardware.opengl.driSupport32Bit = true;
+    hardware.opengl = {
+      enable = true;
+      driSupport32Bit = true;
+      extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
+    };
 
     # Add GameCube controller support
     services.udev.packages = [ pkgs.dolphinEmu ];

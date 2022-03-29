@@ -21,7 +21,7 @@
       options = [ "subvol=@nixos" "autodefrag" "noatime" ];
     };
 
-  fileSystems."/games" =
+  fileSystems."/mnt/games" =
     {
       device = "/dev/disk/by-uuid/333b1c2c-db0d-4d01-bb48-06d70d3b69a9";
       fsType = "btrfs";
