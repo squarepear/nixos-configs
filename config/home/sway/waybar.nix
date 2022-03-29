@@ -2,7 +2,7 @@
 
 {
   programs.waybar = {
-    enable = config.wayland.windowManager.sway.enable;
+    enable = false; # config.wayland.windowManager.sway.enable;
 
     settings = [{
       name = "main";
