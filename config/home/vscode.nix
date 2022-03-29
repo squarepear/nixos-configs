@@ -14,7 +14,6 @@
         "insertSpaces" = false;
       };
 
-      "window.zoomLevel" = 2;
       "workbench.iconTheme" = "vscode-icons";
 
       "files.exclude" = {
@@ -22,6 +21,8 @@
       };
 
       "omnisharp.useGlobalMono" = "always";
+
+      "window.zoomLevel" = 1;
     };
 
     extensions = with pkgs.vscode-extensions; [
