@@ -1,21 +1,13 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-  environment.systemPackages = with pkgs; [
-    openrgb
-    i2c-tools
-  ];
+  environment.systemPackages = [ pkgs.openrgb ];
+  services.udev.packages = [ pkgs.openrgb ];
 
-  hardware.i2c.enable = true;
-
-  services.udev.packages = with pkgs; [
-    openrgb
-  ];
+  boot.kernelModules = [ "i2c-dev" "i2c-piix" ];
 
   systemd.services.openrgb = {
-    description = "OpenRGB server";
-
-    after = [ "network.target" ];
+    description = "OpenRGB server daemon";
     wantedBy = [ "multi-user.target" ];
 
     serviceConfig = {

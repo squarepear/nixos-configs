@@ -25,10 +25,7 @@
     '';
 
     localVariables = {
-      TERMINAL = "kitty";
       EDITOR = "nvim";
-      BROWSER = "firefox";
-      FILEBROWSER = "pcmanfm";
     };
 
     shellAliases = {
