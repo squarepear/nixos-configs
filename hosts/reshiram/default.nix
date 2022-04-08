@@ -13,7 +13,6 @@
     ../../config/system/docker.nix
     ../../config/system/gaming.nix
     ../../config/system/gui.nix
-    ../../config/system/kodi.nix
     ../../config/system/networking.nix
     ../../config/system/printing.nix
     ../../config/system/rgb.nix
