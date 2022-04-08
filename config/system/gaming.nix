@@ -15,6 +15,9 @@
       # Proton tools
       protonup
       proton-caller
+
+      # Hardware monitor
+      mangohud
     ];
 
     # Enable Steam
