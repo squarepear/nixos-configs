@@ -8,7 +8,6 @@
     lxmenu-data
     mpv
     pcmanfm
-    psensor
     shared-mime-info
     slack
     zoom-us
