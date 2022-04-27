@@ -45,7 +45,7 @@
       "terminal.integrated.enableShellIntegration" = true;
       "telemetry.telemetryLevel" = "off";
       "git.enableCommitSigning" = true;
-      "window.zoomLevel" = 1;
+      "window.zoomLevel" = 2;
     };
 
     extensions = with pkgs.vscode-extensions; [
