@@ -32,6 +32,8 @@ in
     whitesur-gtk-theme
     whitesur-icon-theme
     wl-clipboard # Wayland clipboard manager
+    xarchiver
+    xdg-utils
     xdg-desktop-portal-wlr # Wayland screen sharing
     xorg.xlsclients
   ];
@@ -115,6 +117,17 @@ in
 
           "${mod}+Shift+Space" = "floating toggle";
 
+          "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
+          "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
+          "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
+          "XF86AudioMicMute" = "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+          "XF86MonBrightnessDown" = "exec brightnessctl set 5%-";
+          "XF86MonBrightnessUp" = "exec brightnessctl set 5%+";
+          "XF86AudioPlay" = "exec playerctl play-pause";
+          "XF86AudioNext" = "exec playerctl next";
+          "XF86AudioPrev" = "exec playerctl previous";
+          "XF86Search" = "exec ${menu} drun";
+
           "${mod}+Shift+c" = "reload";
         };
 
@@ -140,19 +153,33 @@ in
           bg = "#000000 solid_color";
         };
 
+        #  
+        #  Monitor Layout
+        #  
+        #  ┌─────╥──────────────────┐
+        #  │      ║                      │
+        #  │      ║                      │
+        #  │  28" ║          48"         │
+        #  │      ║                      │
+        #  │      ║                      │
+        #  └─────╨──────────────────┘
+
         DP-1 = {
-          res = "2560x1440"; # Current GPU doesn't support 4k@120hz, so using 1440p@120hz for now
-          pos = "0 0";
+          res = "2560x1440@120Hz"; # Current GPU doesn't support 4k@120hz, so using 1440p@120hz for now
+          # res = "3840x2160@120Hz";
+          # scale = 2;
+          pos = "1440 560";
           adaptive_sync = "on";
-          # scale = "2";
         };
 
-        # Waiting for monitor arm for secondary vertical monitor (Old primary monitor)
-        # HDMI-A-1 = {
-        #   res = "3840x2160";
-        #   pos = ""; # TODO: find values
-        #   transform = "90 clockwise";
-        # };
+        HDMI-A-1 = {
+          res = "2560x1440@60Hz"; # Current GPU doesn't support 4k@60hz over HDMI, so using 1440p@60hz for now
+          # res = "3840x2160@60Hz";
+          # scale = 2;
+          pos = "0 0";
+          transform = "270";
+          adaptive_sync = "on";
+        };
       };
     };
 
