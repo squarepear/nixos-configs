@@ -6,6 +6,7 @@
 
     ../../config/home/sway
     ../../config/home/bat.nix
+    ../../config/home/cad.nix
     ../../config/home/direnv.nix
     ../../config/home/firefox.nix
     ../../config/home/fonts.nix
