@@ -6,9 +6,10 @@
       polymc # Minecraft launcher
       lutris # General games
 
-      retroarchFull # General emulator
+      melonDS # DS emulator
       citra # 3DS emulator
       dolphin-emu-beta # Wii/GameCube emulator
+      yuzu-ea # Switch emulator
 
       steam-run-native
 
@@ -16,7 +17,7 @@
       protonup
       proton-caller
 
-      # Hardware monitor
+      # In-game hardware monitor
       mangohud
     ];
 
@@ -37,7 +38,10 @@
       extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
     };
 
+    # Enable bluetooth xbox controller support
+    hardware.xpadneo.enable = true;
+
     # Add GameCube controller support
-    services.udev.packages = [ pkgs.dolphinEmu ];
+    services.udev.packages = [ pkgs.dolphin-emu-beta ];
   };
 }
