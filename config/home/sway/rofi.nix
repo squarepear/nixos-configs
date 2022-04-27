@@ -7,7 +7,7 @@
 
   programs.rofi = {
     enable = config.wayland.windowManager.sway.enable;
-    package = pkgs.rofi.override { plugins = with pkgs; [ rofi-calc rofi-emoji ]; };
+    package = pkgs.rofi-wayland;
 
     font = "Ubuntu Mono Nerd Font 20";
     terminal = "${pkgs.kitty}/bin/kitty";
