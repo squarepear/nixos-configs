@@ -40,9 +40,11 @@
       device = "/dev/disk/by-uuid/E61A-6632";
       fsType = "vfat";
     };
-
+    
   swapDevices =
     [{ device = "/dev/disk/by-uuid/79744317-a269-4ad8-b201-889e7e146b6e"; }];
 
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  # high-resolution display
+  hardware.video.hidpi.enable = lib.mkDefault true;
 }

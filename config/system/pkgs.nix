@@ -19,5 +19,11 @@
     unzip
     usbutils
     wget
+    exfatprogs
+
+    # Fun
+    cmatrix
+    sl
+    cowsay
   ];
 }

@@ -6,6 +6,7 @@
   networking.firewall = {
     trustedInterfaces = [ "tailscale0" ];
     allowedUDPPorts = [ config.services.tailscale.port ];
+    checkReversePath = "loose";
   };
 
   boot.kernel.sysctl = {
