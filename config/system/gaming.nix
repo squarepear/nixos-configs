@@ -11,7 +11,7 @@
       dolphin-emu-beta # Wii/GameCube emulator
       yuzu-ea # Switch emulator
 
-      steam-run-native
+      steam-run
 
       # Proton tools
       protonup
@@ -28,15 +28,15 @@
       remotePlay.openFirewall = true;
     };
 
-    # Enable Steam hardware
-    hardware.steam-hardware.enable = true;
-
     # Fixes some broken games
     hardware.opengl = {
       enable = true;
       driSupport32Bit = true;
       extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
     };
+
+    # Hardware management
+    programs.corectrl.enable = true;
 
     # Enable bluetooth xbox controller support
     hardware.xpadneo.enable = true;
