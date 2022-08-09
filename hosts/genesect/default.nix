@@ -7,6 +7,7 @@
     ../../config/system
     ../../config/system/bootloader.nix
     ../../config/system/docker.nix
+    ../../config/system/nfs.nix
     ../../config/system/ssh.nix
     ../../config/system/tailscale.nix
 

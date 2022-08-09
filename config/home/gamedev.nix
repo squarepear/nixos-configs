@@ -1,11 +1,20 @@
 { pkgs, ... }:
 
 {
+  # nixpkgs.overlays = [
+  #   (final: prev: {
+  #     godot = prev.godot.overrideAttrs (_: {
+  #       version = 
+  #       src = final.fetchFromGitHub
+  #         {
+            
+  #         };
+  #     });
+  #   })
+  # ];
+
   home.packages = with pkgs; [
-    unityhub
+    godot
     aseprite-unfree
-    jetbrains.rider
-    dotnet-sdk
-    mono
   ];
 }

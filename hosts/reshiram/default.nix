@@ -14,6 +14,7 @@
     ../../config/system/gaming.nix
     ../../config/system/gui.nix
     ../../config/system/networking.nix
+    ../../config/system/nfs.nix
     ../../config/system/printing.nix
     ../../config/system/rgb.nix
     ../../config/system/ssd.nix
