@@ -33,6 +33,7 @@ in
     swaylock # Lock screen
     whitesur-gtk-theme
     whitesur-icon-theme
+    playerctl
     wl-clipboard # Wayland clipboard manager
     xarchiver
     xdg-utils
@@ -139,6 +140,7 @@ in
       floating.criteria = [
         { title = "^Steam - News*$"; }
         { title = "^UnityEditor.*$"; }
+        { instance = "^Godot_Engine$"; } # transient_for = "^.*$"; }
       ];
 
 
