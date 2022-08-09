@@ -2,5 +2,10 @@
 
 {
   # Enable OpenSSH
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+
+    # Disable password authentication
+    passwordAuthentication = false;
+  };
 }
