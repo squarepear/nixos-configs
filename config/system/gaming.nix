@@ -11,7 +11,9 @@
       dolphin-emu-beta # Wii/GameCube emulator
       yuzu-ea # Switch emulator
 
+      # Steam tools
       steam-run
+      steam-rom-manager
 
       # Proton tools
       protonup
@@ -19,6 +21,8 @@
 
       # In-game hardware monitor
       mangohud
+
+      vulkan-headers
     ];
 
     # Enable Steam
