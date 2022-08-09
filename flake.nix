@@ -9,6 +9,20 @@
 
   outputs = { self, home-manager, nixpkgs }: {
     nixosConfigurations = {
+      genesect = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/genesect
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.jeffrey = import ./hosts/genesect/home.nix;
+          }
+        ];
+      };
+
       reshiram = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
