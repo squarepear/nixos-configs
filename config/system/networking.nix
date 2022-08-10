@@ -1,9 +1,6 @@
 { config, ... }:
 
 {
-  # Set hostname
-  networking.hostName = config.system.name;
-
   # Enable Connman
   services.connman = {
     enable = true;

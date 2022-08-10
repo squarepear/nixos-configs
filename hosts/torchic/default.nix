@@ -19,7 +19,7 @@
   ];
 
   # System hostname
-  system.name = "torchic";
+  networking.hostName = "torchic";
 
   # Don't use GUI
   system.gui.enable = false;

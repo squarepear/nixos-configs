@@ -20,7 +20,7 @@
   ];
 
   # System hostname
-  system.name = "tepig";
+  networking.hostName = "tepig";
 
   # Don't use GUI
   system.gui.enable = false;

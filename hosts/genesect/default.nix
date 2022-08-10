@@ -15,8 +15,7 @@
   ];
 
   # System hostname
-  system.name = "genesect";
-  networking.hostName = config.system.name;
+  networking.hostName = "genesect";
 
   # Don't GUI (sway)
   system.gui.enable = false;
