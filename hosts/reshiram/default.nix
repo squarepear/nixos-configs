@@ -28,7 +28,7 @@
   ];
 
   # System hostname
-  system.name = "reshiram";
+  networking.hostName = "reshiram";
 
   # Use GUI (sway)
   system.gui.enable = true;
