@@ -41,4 +41,7 @@
 
   # Networking
   networking.firewall.trustedInterfaces = [ "eno1" "wlp5s0" ];
+
+  # Windows dualboot settings
+  time.hardwareClockInLocalTime = true;
 }
