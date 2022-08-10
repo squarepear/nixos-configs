@@ -3,7 +3,10 @@
 {
   imports = [
     ./hardware-configuration.nix
-    "${fetchTarball "https://github.com/NixOS/nixos-hardware/archive/2a7063461c3751d83869a2a0a8ebc59e34bec5b2.tar.gz" }/raspberry-pi/4"
+    "${fetchTarball {
+      url = "https://github.com/NixOS/nixos-hardware/archive/3975d5158f00accda15a11180b2c08654cfb2807.tar.gz";
+      sha256 = "0z9gpv54ixd5hq3g5hcsyy39d8xzff4lj6p5wsy09g7s4jcm7r99";
+    }}/raspberry-pi/4"
 
     ../../config/system
     ../../config/system/k3s/server.nix
