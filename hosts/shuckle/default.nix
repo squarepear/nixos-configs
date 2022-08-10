@@ -20,7 +20,7 @@
   ];
 
   # System hostname
-  system.name = "shuckle";
+  networking.hostName = "shuckle";
 
   # Don't use GUI
   system.gui.enable = false;
