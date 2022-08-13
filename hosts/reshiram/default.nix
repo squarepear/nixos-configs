@@ -34,7 +34,7 @@
   system.gui.enable = true;
 
   # Linux Kernel Version
-  boot.kernelPackages = pkgs.linuxPackages_xanmod;
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
   # GPU setup
   boot.initrd.kernelModules = [ "amdgpu" ];
