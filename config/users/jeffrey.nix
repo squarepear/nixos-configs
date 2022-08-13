@@ -16,6 +16,16 @@
     ];
   };
 
+  security.pam.services.jeffrey = {
+    enableGnomeKeyring = true;
+    
+    gnupg = {
+      enable = true;
+
+      noAutostart = true;
+    };
+  };
+
   nix.settings.trusted-users = [
     "jeffrey"
   ];
