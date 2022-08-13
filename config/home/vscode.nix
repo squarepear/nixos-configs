@@ -46,6 +46,7 @@
       "telemetry.telemetryLevel" = "off";
       "git.enableCommitSigning" = true;
       "window.zoomLevel" = 2;
+      "editor.inlineSuggest.enabled" = true;
     };
 
     extensions = with pkgs.vscode-extensions; [
