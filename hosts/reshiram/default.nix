@@ -10,7 +10,6 @@
     ../../config/system/backup.nix
     ../../config/system/bluetooth.nix
     ../../config/system/bootloader.nix
-    ../../config/system/distributed-building.nix
     ../../config/system/docker.nix
     ../../config/system/gaming.nix
     ../../config/system/gui.nix
@@ -45,4 +44,9 @@
 
   # Windows dualboot settings
   time.hardwareClockInLocalTime = true;
+
+  # Enable building for aarch64 (Raspberry Pi)
+  boot.binfmt.emulatedSystems = [
+    "aarch64-linux"
+  ];
 }

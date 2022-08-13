@@ -6,6 +6,7 @@
 
     ../../config/system
     ../../config/system/bootloader.nix
+    ../../config/system/distributed-building.nix
     ../../config/system/docker.nix
     ../../config/system/nfs.nix
     ../../config/system/ssh.nix

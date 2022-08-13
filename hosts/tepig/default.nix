@@ -11,6 +11,7 @@
     ../../config/system
     ../../config/system/k3s/server.nix
     ../../config/system/backup.nix
+    ../../config/system/distributed-building.nix
     ../../config/system/networking.nix
     ../../config/system/nfs.nix
     ../../config/system/ssh.nix

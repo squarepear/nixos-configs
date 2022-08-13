@@ -12,4 +12,14 @@
   boot.kernel.sysctl = {
     "net.ipv6.conf.all.forwarding" = 1;
   };
+
+  networking.extraHosts = ''
+    100.116.153.120 reshiram
+    100.114.164.19  tepig
+    100.83.253.122  torchic
+    100.109.35.9    darkrai
+    100.68.216.104  genesect
+    100.102.1.102   keldeo
+    100.84.247.95   kyurem
+  '';
 }
