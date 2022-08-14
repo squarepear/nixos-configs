@@ -8,16 +8,23 @@
       sha256 = "0z9gpv54ixd5hq3g5hcsyy39d8xzff4lj6p5wsy09g7s4jcm7r99";
     }}/raspberry-pi/4"
 
-    ../../config/system
-    ../../config/system/k3s/server.nix
-    ../../config/system/backup.nix
-    ../../config/system/distributed-building.nix
-    ../../config/system/networking.nix
-    ../../config/system/nfs.nix
-    ../../config/system/ssh.nix
-    ../../config/system/tailscale.nix
+    ../../config
+    ../../config/k3s/server.nix
+    ../../config/backup.nix
+    ../../config/distributed-building.nix
+    ../../config/networking.nix
+    ../../config/nfs.nix
+    ../../config/ssh.nix
+    ../../config/tailscale.nix
+    ../../config/bat.nix
+    ../../config/direnv.nix
+    ../../config/git.nix
+    ../../config/neovim.nix
+    ../../config/secrets.nix
+    ../../config/vscode.nix
+    ../../config/zsh.nix
 
-    ../../config/users/jeffrey.nix
+    ../../users/jeffrey.nix
   ];
 
   # System hostname

@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/profiles/qemu-guest.nix")
+    [
+      (modulesPath + "/profiles/qemu-guest.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "virtio_pci" "ahci" "sr_mod" "virtio_blk" ];
@@ -14,35 +15,30 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/b8cdd996-432b-4565-91b3-81a1fd49818f";
+    {
+      device = "/dev/disk/by-uuid/b8cdd996-432b-4565-91b3-81a1fd49818f";
       fsType = "btrfs";
       options = [ "subvol=@" ];
     };
 
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/b8cdd996-432b-4565-91b3-81a1fd49818f";
+    {
+      device = "/dev/disk/by-uuid/b8cdd996-432b-4565-91b3-81a1fd49818f";
       fsType = "btrfs";
       options = [ "subvol=@nix" ];
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/b8cdd996-432b-4565-91b3-81a1fd49818f";
+    {
+      device = "/dev/disk/by-uuid/b8cdd996-432b-4565-91b3-81a1fd49818f";
       fsType = "btrfs";
       options = [ "subvol=@home" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/73CE-5E32";
+    {
+      device = "/dev/disk/by-uuid/73CE-5E32";
       fsType = "vfat";
-    };
-
-  fileSystems."/home/jeffrey/Developer" =
-    { device = "jeffrey@kyurem:/Users/jeffrey/Developer";
-      fsType = "fuse.sshfs";
-      options = let
-        # this line prevents hanging on network split
-        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
-        in [ "${automount_opts},comment=sshfs,_netdev,allow_other,uid=1000,gid=100,idmap=user,IdentityFile=/home/jeffrey/.ssh/id_ed25519" ];
     };
 
   swapDevices = [ ];

@@ -4,37 +4,53 @@
   imports = [
     ./hardware-configuration.nix
 
-    ../../config/system
-    ../../config/system/k3s/manager.nix
-    ../../config/system/audio.nix
-    ../../config/system/backup.nix
-    ../../config/system/bluetooth.nix
-    ../../config/system/bootloader.nix
-    ../../config/system/docker.nix
-    ../../config/system/gaming.nix
-    ../../config/system/gui.nix
-    ../../config/system/networking.nix
-    ../../config/system/nfs.nix
-    ../../config/system/printing.nix
-    ../../config/system/rgb.nix
-    ../../config/system/ssd.nix
-    ../../config/system/ssh.nix
-    ../../config/system/tailscale.nix
-    ../../config/system/usb.nix
-    ../../config/system/virtualization.nix
-    ../../config/system/zenpower.nix
+    ../../config
+    ../../config/k3s/manager.nix
+    ../../config/audio.nix
+    ../../config/backup.nix
+    ../../config/bluetooth.nix
+    ../../config/docker.nix
+    ../../config/gaming.nix
+    ../../config/networking.nix
+    ../../config/nfs.nix
+    ../../config/printing.nix
+    ../../config/rgb.nix
+    ../../config/ssh.nix
+    ../../config/tailscale.nix
+    ../../config/usb.nix
+    ../../config/virtualization.nix
+    ../../config/zenpower.nix
+    ../../config/sway
+    ../../config/bat.nix
+    ../../config/cad.nix
+    ../../config/direnv.nix
+    ../../config/firefox.nix
+    ../../config/fonts.nix
+    ../../config/gamedev.nix
+    ../../config/git.nix
+    ../../config/kitty.nix
+    ../../config/neovim.nix
+    ../../config/obs.nix
+    ../../config/secrets.nix
+    ../../config/vscode.nix
+    ../../config/zsh.nix
 
-    ../../config/users/jeffrey.nix
+    ../../users/jeffrey.nix
   ];
 
   # System hostname
   networking.hostName = "reshiram";
 
+  # Boot Settings
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+
   # Use GUI (sway)
   system.gui.enable = true;
 
-  # Linux Kernel Version
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  # Packages
+  environment.systemPackages = with pkgs; [ liquidctl ];
 
   # GPU setup
   boot.initrd.kernelModules = [ "amdgpu" ];
@@ -44,6 +60,9 @@
 
   # Windows dualboot settings
   time.hardwareClockInLocalTime = true;
+
+  # Automatically trim unused space from the filesystem
+  services.fstrim.enable = true;
 
   # Enable building for aarch64 (Raspberry Pi)
   boot.binfmt.emulatedSystems = [
