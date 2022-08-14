@@ -4,19 +4,24 @@
   imports = [
     ./hardware-configuration.nix
 
-    ../../config/system
-    ../../config/system/k3s/agent.nix
-    ../../config/system/backup.nix
-    ../../config/system/distributed-building.nix
-    ../../config/system/docker.nix
-    ../../config/system/glusterfs.nix
-    ../../config/system/networking.nix
-    ../../config/system/nfs.nix
-    ../../config/system/ssh.nix
-    ../../config/system/tailscale.nix
-    ../../config/system/usb.nix
+    ../../config
+    ../../config/k3s/agent.nix
+    ../../config/backup.nix
+    ../../config/distributed-building.nix
+    ../../config/docker.nix
+    ../../config/networking.nix
+    ../../config/nfs.nix
+    ../../config/ssh.nix
+    ../../config/tailscale.nix
+    ../../config/usb.nix
+    ../../config/bat.nix
+    ../../config/direnv.nix
+    ../../config/git.nix
+    ../../config/neovim.nix
+    ../../config/secrets.nix
+    ../../config/zsh.nix
 
-    ../../config/users/jeffrey.nix
+    ../../users/jeffrey.nix
   ];
 
   # System hostname
