@@ -44,6 +44,8 @@
     sshfs
   ];
 
+ programs.fuse.userAllowOther = true;
+
   fileSystems."/home/${config.user.name}/Developer" =
     {
       device = "jeffrey@kyurem:/Users/jeffrey/Developer";
