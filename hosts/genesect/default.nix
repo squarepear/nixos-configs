@@ -38,23 +38,9 @@
   # Networking
   networking.firewall.trustedInterfaces = [ "enp0s3" ];
 
-  # Filesystems
-  environment.systemPackages = with pkgs; [
-    fuse
-    sshfs
-  ];
-
- programs.fuse.userAllowOther = true;
-
-  fileSystems."/home/${config.user.name}/Developer" =
-    {
-      device = "jeffrey@kyurem:/Users/jeffrey/Developer";
-      fsType = "fuse.sshfs";
-      options =
-        let
-          # this line prevents hanging on network split
-          automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
-        in
-        [ "${automount_opts},comment=sshfs,_netdev,allow_other,uid=1000,gid=100,idmap=user,IdentityFile=/home/jeffrey/.ssh/id_ed25519" ];
-    };
+  # ssh to host machine
+  programs.ssh.extraConfig = ''
+    Host kyurem
+      HostName 10.0.2.2
+  '';
 }
