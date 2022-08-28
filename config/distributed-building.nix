@@ -2,7 +2,7 @@
 
 {
   nix = {
-    distributedBuilds = true;
+    distributedBuilds = false;
 
     buildMachines = [
       {
