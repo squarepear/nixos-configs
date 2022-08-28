@@ -3,7 +3,7 @@
 {
   my.programs.direnv = {
     enable = true;
-    enableZshIntegration = config.programs.zsh.enable;
+    enableZshIntegration = config.my.programs.zsh.enable;
 
     nix-direnv.enable = true;
   };
