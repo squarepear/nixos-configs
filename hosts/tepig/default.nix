@@ -9,7 +9,7 @@
     }}/raspberry-pi/4"
 
     ../../config
-    ../../config/k3s/server.nix
+    # ../../config/k3s/server.nix
     ../../config/backup.nix
     ../../config/distributed-building.nix
     ../../config/networking.nix
