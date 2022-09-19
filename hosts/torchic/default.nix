@@ -5,7 +5,7 @@
     ./hardware-configuration.nix
 
     ../../config
-    ../../config/k3s/agent.nix
+    # ../../config/k3s/agent.nix
     ../../config/backup.nix
     ../../config/distributed-building.nix
     ../../config/docker.nix
