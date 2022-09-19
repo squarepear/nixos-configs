@@ -14,6 +14,7 @@
         modules = [
           ./hosts/genesect
           home-manager.nixosModules.home-manager
+          ({...}: { nix.registry.nixpkgs.flake = nixpkgs; })
         ];
       };
 
@@ -22,6 +23,7 @@
         modules = [
           ./hosts/reshiram
           home-manager.nixosModules.home-manager
+          ({...}: { nix.registry.nixpkgs.flake = nixpkgs; })
         ];
       };
 
@@ -30,6 +32,7 @@
         modules = [
           ./hosts/shuckle
           home-manager.nixosModules.home-manager
+          ({...}: { nix.registry.nixpkgs.flake = nixpkgs; })
         ];
       };
 
@@ -38,6 +41,7 @@
         modules = [
           ./hosts/tepig
           home-manager.nixosModules.home-manager
+          ({...}: { nix.registry.nixpkgs.flake = nixpkgs; })
         ];
       };
 
@@ -46,6 +50,7 @@
         modules = [
           ./hosts/torchic
           home-manager.nixosModules.home-manager
+          ({...}: { nix.registry.nixpkgs.flake = nixpkgs; })
         ];
       };
     };
