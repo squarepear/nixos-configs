@@ -8,10 +8,4 @@
   users.users."${config.user.name}" = {
     extraGroups = [ "docker" ];
   };
-
-  # Portainer agent port
-  networking.firewall = {
-    allowedTCPPorts = [ 9001 ];
-    allowedUDPPorts = [ 9001 ];
-  };
 }
