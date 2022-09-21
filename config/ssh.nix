@@ -5,6 +5,7 @@
   services.openssh = {
     enable = true;
 
+    forwardX11 = true;
     # Disable password authentication
     passwordAuthentication = false;
   };
