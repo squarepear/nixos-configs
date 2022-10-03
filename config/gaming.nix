@@ -14,6 +14,7 @@
       # Steam tools
       steam-run
       steam-rom-manager
+      gamescope
 
       # Proton tools
       protonup
