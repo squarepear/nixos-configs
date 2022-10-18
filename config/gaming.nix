@@ -3,7 +3,7 @@
 {
   config = lib.mkIf config.system.gui.enable {
     environment.systemPackages = with pkgs; [
-      polymc # Minecraft launcher
+      # polymc # Minecraft launcher
       lutris # General games
 
       melonDS # DS emulator
