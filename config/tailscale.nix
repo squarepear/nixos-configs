@@ -16,7 +16,7 @@
   networking.extraHosts = ''
     100.116.153.120 reshiram
     100.114.164.19  tepig
-    100.83.253.122  torchic
+    100.64.28.74    torchic
     100.109.35.9    darkrai
     100.68.216.104  genesect
     100.102.1.102   keldeo
