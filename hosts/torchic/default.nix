@@ -40,5 +40,5 @@
   hardware.enableRedistributableFirmware = true;
 
   # Networking
-  networking.firewall.trustedInterfaces = [ "eth0" "wlan0" ];
+  # networking.firewall.trustedInterfaces = [ "eth0" "wlan0" ];
 }
