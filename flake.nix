@@ -5,53 +5,45 @@
     nixpkgs.url = "github:nixos/nixpkgs/master";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nix-gaming.url = github:fufexan/nix-gaming;
+    nixos-vscode-server.url = github:msteen/nixos-vscode-server;
   };
 
-  outputs = { self, home-manager, nixpkgs }: {
+  outputs = inputs: {
     nixosConfigurations = {
-      genesect = nixpkgs.lib.nixosSystem {
+      genesect = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules = [
-          ./hosts/genesect
-          home-manager.nixosModules.home-manager
-          ({...}: { nix.registry.nixpkgs.flake = nixpkgs; })
-        ];
+        modules = [ ./hosts/genesect ];
+
+        specialArgs = { inherit inputs; };
       };
 
-      reshiram = nixpkgs.lib.nixosSystem {
+      reshiram = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules = [
-          ./hosts/reshiram
-          home-manager.nixosModules.home-manager
-          ({...}: { nix.registry.nixpkgs.flake = nixpkgs; })
-        ];
+        modules = [ ./hosts/reshiram ];
+
+        specialArgs = { inherit inputs; };
       };
 
-      shuckle = nixpkgs.lib.nixosSystem {
+      shuckle = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules = [
-          ./hosts/shuckle
-          home-manager.nixosModules.home-manager
-          ({...}: { nix.registry.nixpkgs.flake = nixpkgs; })
-        ];
+        modules = [ ./hosts/shuckle ];
+
+        specialArgs = { inherit inputs; };
       };
 
-      tepig = nixpkgs.lib.nixosSystem {
+      tepig = inputs.nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
-        modules = [
-          ./hosts/tepig
-          home-manager.nixosModules.home-manager
-          ({...}: { nix.registry.nixpkgs.flake = nixpkgs; })
-        ];
+        modules = [ ./hosts/tepig ];
+
+        specialArgs = { inherit inputs; };
       };
 
-      torchic = nixpkgs.lib.nixosSystem {
+      torchic = inputs.nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
-        modules = [
-          ./hosts/torchic
-          home-manager.nixosModules.home-manager
-          ({...}: { nix.registry.nixpkgs.flake = nixpkgs; })
-        ];
+        modules = [ ./hosts/torchic ];
+
+        specialArgs = { inherit inputs; };
       };
     };
   };

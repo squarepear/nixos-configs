@@ -1,8 +1,14 @@
-{ ... }:
+{ inputs, ... }:
 
 {
   # Import config options and system packages
-  imports = [ ../options ./pkgs.nix ];
+  imports = [
+    inputs.home-manager.nixosModules.home-manager
+    ({ ... }: { nix.registry.nixpkgs.flake = inputs.nixpkgs; })
+
+    ../options
+    ./pkgs.nix
+  ];
 
   # Enable home manager
   my.programs.home-manager.enable = true;

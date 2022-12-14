@@ -53,7 +53,7 @@ in
       swayidle
       swaylock # Lock screen
       whitesur-gtk-theme
-      whitesur-icon-theme
+      numix-icon-theme-circle
       playerctl
       wl-clipboard # Wayland clipboard manager
       xarchiver
@@ -159,24 +159,24 @@ in
         bars = [ ];
 
         floating.criteria = [
-          { title = "^Steam - News*$"; }
-          { title = "^UnityEditor.*$"; }
-          { instance = "^Godot_Engine$"; } # transient_for = "^.*$"; }
+          # { app_id = ".*"; }F
+          # { title = "^Steam - News*$"; }
+          # { title = "^UnityEditor.*$"; }
+          # { instance = "^Godot_Engine$"; } # transient_for = "^.*$"; }
         ];
 
 
         window.border = 0;
 
         gaps = {
-          inner = 0;
+          inner = 12;
 
-          smartBorders = "on";
           smartGaps = true;
         };
 
         output = {
           "*" = {
-            bg = "#000000 solid_color";
+            bg = "#110022 solid_color";
           };
 
           #  
@@ -192,18 +192,8 @@ in
 
           HDMI-A-1 = {
             res = "3840x2160@120Hz";
-            # scale = "2";
-            pos = "1080 0";
-            adaptive_sync = "on";
-            render_bit_depth = "10";
-          };
-
-          DP-3 = {
-            res = "3840x2160@60Hz";
-            scale = "2";
-            pos = "0 98";
-            transform = "270";
-            adaptive_sync = "on";
+            scale = "1";
+            pos = "0 0";
             render_bit_depth = "10";
           };
         };
@@ -224,7 +214,10 @@ in
           before-sleep '${lock} -f'
 
         # Cursor
-        seat seat0 xcursor_theme Quintom_Ink 32
+        # seat seat0 xcursor_theme Quintom_Ink 32
+        seat seat0 xcursor_theme "Quintom_Ink"
+        exec_always gsettings set org.gnome.desktop.interface cursor-theme "Quintom_Ink"
+
 
         # Enable notification daemon
         exec ${notifs}
@@ -250,13 +243,13 @@ in
     gtk = {
       enable = true;
       iconTheme = {
-        package = pkgs.arc-icon-theme;
-        name = "Arc";
+        package = pkgs.numix-icon-theme-circle;
+        name = "Numix-Circle";
       };
 
       theme = {
-        package = pkgs.arc-theme;
-        name = "Arc-Dark";
+        package = pkgs.whitesur-gtk-theme;
+        name = "WhiteSur-Dark";
       };
 
       gtk3.extraConfig = {
