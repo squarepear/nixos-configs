@@ -6,7 +6,7 @@
 
     font = {
       name = "CaskaydiaCove Nerd Font Mono";
-      size = 16;
+      size = 20;
     };
 
     settings = {
