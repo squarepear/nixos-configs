@@ -2,7 +2,7 @@
 
 {
   nix = {
-    distributedBuilds = false;
+    distributedBuilds = true;
 
     buildMachines = [
       {
@@ -11,21 +11,19 @@
         sshUser = "jeffrey";
         sshKey = "/home/${config.user.name}/.ssh/id_ed25519";
         systems = [
-          "aarch64-linux"
           "x86_64-linux"
         ];
       }
 
-      # {
-      #   hostName = "genesect";
-      #   speedFactor = 6;
-      #   sshUser = "jeffrey";
-      #   sshKey = "/home/jeffrey/.ssh/id_ed25519";
-      #   systems = [
-      #     "aarch64-linux"
-      #     "x86_64-linux"
-      #   ];
-      # }
+      {
+        hostName = "altaria";
+        speedFactor = 4;
+        sshUser = "jeffrey";
+        sshKey = "/home/${config.user.name}/.ssh/id_ed25519";
+        systems = [
+          "aarch64-linux"
+        ];
+      }
     ];
   };
 }
