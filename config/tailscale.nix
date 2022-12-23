@@ -14,6 +14,7 @@
   };
 
   networking.extraHosts = ''
+    100.109.69.13   altaria
     100.116.153.120 reshiram
     100.114.164.19  tepig
     100.64.28.74    torchic
