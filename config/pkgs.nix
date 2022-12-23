@@ -19,6 +19,7 @@
     unzip
     usbutils
     wget
+    tmux
 
     # Fun
     cmatrix

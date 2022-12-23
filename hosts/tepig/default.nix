@@ -4,11 +4,12 @@
   imports = [
     ./hardware-configuration.nix
     "${fetchTarball {
-      url = "https://github.com/NixOS/nixos-hardware/archive/3975d5158f00accda15a11180b2c08654cfb2807.tar.gz";
-      sha256 = "0z9gpv54ixd5hq3g5hcsyy39d8xzff4lj6p5wsy09g7s4jcm7r99";
+      url = "https://github.com/NixOS/nixos-hardware/archive/c9c1a5294e4ec378882351af1a3462862c61cb96.tar.gz";
+      sha256 = "166dqx7xgrn0906y5yz5a5l66q52wql1nh6086y4pli7s69wvf1s";
     }}/raspberry-pi/4"
 
     ../../config
+    # ../../config/k3s/server.nix
     ../../config/backup.nix
     ../../config/distributed-building.nix
     ../../config/docker.nix
@@ -24,6 +25,8 @@
     ../../config/vscode.nix
     ../../config/zsh.nix
 
+    ./minecraft-server.nix
+
     ../../users/jeffrey.nix
   ];
 
@@ -34,5 +37,6 @@
   system.gui.enable = false;
 
   # Networking
-  # networking.firewall.trustedInterfaces = [ "eth0" "wlan0" ];
+  networking.firewall.trustedInterfaces = [ "end0" ];
+  networking.enableIPv6 = false;
 }
