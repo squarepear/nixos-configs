@@ -14,5 +14,8 @@ Desktop. Has an AMD Ryzen 5600x CPU and an AMD Radeon RX 6800 XT along with 2x8g
 ### [genesect](./hosts/genesect)
 Virtual Machine. Runs on my Intel MacBook and is used for development. Has 8gb of memory allocated.
 
+### [altaria](./hosts/altaria)
+Virtual Machine. An Oracle Cloud Ampere ARM instance with 4vCPU and 24gb of memory. Storage is a 50gb block storage volume.
+
 ### [tepig](./hosts/tepig)
 Raspberry Pi 4b. BCM2835 CPU with 8gb of memory. Storage is a 64gb Samsung microsd card.

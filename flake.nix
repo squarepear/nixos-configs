@@ -11,6 +11,13 @@
 
   outputs = inputs: {
     nixosConfigurations = {
+      altaria = inputs.nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        modules = [ ./hosts/altaria ];
+
+        specialArgs = { inherit inputs; };
+      };
+
       genesect = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [ ./hosts/genesect ];
