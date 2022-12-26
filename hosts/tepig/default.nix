@@ -11,8 +11,8 @@
     ../../config
     # ../../config/k3s/server.nix
     ../../config/backup.nix
+    ../../config/containers.nix
     ../../config/distributed-building.nix
-    ../../config/docker.nix
     ../../config/networking.nix
     ../../config/nfs.nix
     ../../config/ssh.nix

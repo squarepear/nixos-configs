@@ -6,9 +6,8 @@
 
     ../../config
     ../../config/backup.nix
+    ../../config/containers.nix
     ../../config/distributed-building.nix
-    ../../config/docker.nix
-    ../../config/docker.nix
     ../../config/networking.nix
     ../../config/nfs.nix
     ../../config/ssh.nix
