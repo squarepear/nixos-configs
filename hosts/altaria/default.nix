@@ -5,8 +5,8 @@
     ./hardware-configuration.nix
 
     ../../config
+    ../../config/containers.nix
     ../../config/distributed-building.nix
-    ../../config/docker.nix
     ../../config/nfs.nix
     ../../config/ssh.nix
     ../../config/tailscale.nix

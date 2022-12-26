@@ -9,7 +9,7 @@
     ../../config/audio.nix
     ../../config/backup.nix
     ../../config/bluetooth.nix
-    ../../config/docker.nix
+    ../../config/containers.nix
     ../../config/gaming.nix
     ../../config/networking.nix
     ../../config/nfs.nix
