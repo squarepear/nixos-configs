@@ -18,6 +18,8 @@
     ../../config/vscode.nix
     ../../config/zsh.nix
 
+    ./minecraft-server.nix
+
     ../../users/jeffrey.nix
   ];
 
