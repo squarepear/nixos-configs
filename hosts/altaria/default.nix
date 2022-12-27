@@ -5,6 +5,7 @@
     ./hardware-configuration.nix
 
     ../../config
+    ../../config/backup.nix
     ../../config/containers.nix
     ../../config/distributed-building.nix
     ../../config/nfs.nix
