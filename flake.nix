@@ -7,6 +7,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nix-gaming.url = github:fufexan/nix-gaming;
     nixos-vscode-server.url = github:msteen/nixos-vscode-server;
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
   outputs = inputs: {
@@ -41,7 +42,11 @@
 
       tepig = inputs.nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
-        modules = [ ./hosts/tepig ];
+        modules = [
+          ./hosts/tepig
+
+          inputs.nixos-hardware.nixosModules.raspberry-pi-4
+        ];
 
         specialArgs = { inherit inputs; };
       };
