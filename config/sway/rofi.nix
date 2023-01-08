@@ -11,7 +11,7 @@
 
     font = "Ubuntu Mono Nerd Font 20";
     terminal = "${pkgs.kitty}/bin/kitty";
-    theme = "docu";
+    theme = "Arc-Dark";
     pass.enable = true;
 
     extraConfig = {

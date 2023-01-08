@@ -176,7 +176,7 @@ in
 
         output = {
           "*" = {
-            bg = "#110022 solid_color";
+            bg = "#000000 solid_color";
           };
 
           #  

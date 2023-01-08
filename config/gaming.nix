@@ -55,7 +55,14 @@
     };
 
     # Hardware management
-    programs.corectrl.enable = true;
+    programs.corectrl = {
+      enable = true;
+
+      gpuOverclock = {
+        enable = true;
+        ppfeaturemask = "0xffffffff";
+      };
+    };
 
     # Enable gamemode
     programs.gamemode = {
@@ -80,7 +87,7 @@
     };
 
     # Enable bluetooth xbox controller support
-    hardware.xpadneo.enable = true;
+    # hardware.xpadneo.enable = true;
 
     # Add GameCube controller support
     services.udev.packages = [ pkgs.dolphin-emu-beta ];

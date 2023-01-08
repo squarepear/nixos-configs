@@ -1,11 +1,10 @@
-{ ... }:
+{ config, ... }:
 
 {
   # Enable OpenSSH
   services.openssh = {
     enable = true;
 
-    forwardX11 = true;
     # Disable password authentication
     passwordAuthentication = false;
   };
@@ -14,4 +13,8 @@
     Host *
       ConnectTimeout 3
   '';
+
+  users.users.root.openssh.authorizedKeys.keys = [
+    config.user.publickey
+  ];
 }

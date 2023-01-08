@@ -8,11 +8,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1670970889,
-        "narHash": "sha256-TWJo3/X3Q3r+HeX16QN4FE6ddBpGtAboymSEF+4Nnc0=",
+        "lastModified": 1673089714,
+        "narHash": "sha256-D58SGNOVe+s7r2iewnCA8q68gyrfQcOnD1TdJo1wFLY=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "e412025fffdcd6219ddd21c65d9a1b90005ce508",
+        "rev": "9e565f0d9d41c19a94f55af205c328ec5177fc0a",
         "type": "github"
       },
       "original": {
@@ -26,16 +26,32 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1670592559,
-        "narHash": "sha256-DSBRgAOsafwRwd6XcsLSFswVQutI2nVSDsSKAmUcspQ=",
+        "lastModified": 1672665710,
+        "narHash": "sha256-kK9DB+J7zDSs5H0X0AxEn85VKROLKYnUbPijtZEPrYY=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "465d2c65aafce2ea2bcd0576a55054374435ed28",
+        "rev": "66c8cbbde08af5a7e87cd3aa4fb4725f20966db2",
         "type": "github"
       },
       "original": {
         "owner": "fufexan",
         "repo": "nix-gaming",
+        "type": "github"
+      }
+    },
+    "nixos-hardware": {
+      "locked": {
+        "lastModified": 1672644464,
+        "narHash": "sha256-RYlvRMcQNT7FDoDkViijQBHg9g+blsB+U6AvL/gAsPI=",
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "rev": "ca29e25c39b8e117d4d76a81f1e229824a9b3a26",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "master",
+        "repo": "nixos-hardware",
         "type": "github"
       }
     },
@@ -89,11 +105,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1670972493,
-        "narHash": "sha256-JkemsKpVniAPBY+WWkSoBiYr42jzoKnDAqvgp2LslRI=",
+        "lastModified": 1673206001,
+        "narHash": "sha256-0kjbzOxWkbMUrDu0H895IlGzaB5JtXoNDzk94k5YkC0=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "aae24b673a8ba29f0c63b8ab59e91f7591567516",
+        "rev": "03e0baa2148016d6f9cb1c0cfb48855ae9d47171",
         "type": "github"
       },
       "original": {
@@ -107,6 +123,7 @@
       "inputs": {
         "home-manager": "home-manager",
         "nix-gaming": "nix-gaming",
+        "nixos-hardware": "nixos-hardware",
         "nixos-vscode-server": "nixos-vscode-server",
         "nixpkgs": "nixpkgs_3"
       }
