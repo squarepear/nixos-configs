@@ -1,24 +1,24 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   user.name = "jeffrey";
 
-  users.users.jeffrey = {
+  users.users."${config.user.name}" = {
     isNormalUser = true;
     description = "Jeffrey Harmon";
     group = "users";
     extraGroups = [ "wheel" ];
-    home = "/home/jeffrey";
+    home = "/home/${config.user.name}";
     shell = pkgs.zsh;
     uid = 1000;
 
     # Authorized keys
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC6R0tD850LaMbSjrriau10t+onORK6r/SeGwawHEjUO 16364318+SquarePear@users.noreply.github.com"
+      config.user.publickey
     ];
   };
 
   nix.settings.trusted-users = [
-    "jeffrey"
+    config.user.name
   ];
 }

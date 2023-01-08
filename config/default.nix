@@ -45,6 +45,11 @@
   # Used for auto completion
   environment.pathsToLink = [ "/share/zsh" ];
 
+  # Temporary fix for python 2 EOL
+  nixpkgs.config.permittedInsecurePackages = [
+    "python-2.7.18.6"
+  ];
+
   my.home.stateVersion = "22.05";
   system.stateVersion = "22.05";
 }

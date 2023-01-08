@@ -18,13 +18,13 @@
     {
       device = "/dev/disk/by-uuid/44444444-4444-4444-8888-888888888888";
       fsType = "ext4";
+      options = [ "autodefrag" "noatime" ];
     };
 
-  fileSystems."/home/jeffrey/harmon_family_game_servers" =
+  fileSystems."/boot" =
     {
-      device = "/dev/disk/by-uuid/d5b98bf1-66c2-47c4-87d1-a91dca223706";
-      fsType = "btrfs";
-      options = [ "subvol=harmon_family_game_servers" ];
+      device = "/dev/disk/by-uuid/2178-694E";
+      fsType = "vfat";
     };
 
   swapDevices = [ ];
