@@ -43,8 +43,8 @@
 
     gnupg = {
       enable = true;
-
-      noAutostart = true;
     };
   };
+
+  services.gnome.gnome-keyring.enable = true;
 }

@@ -6,7 +6,9 @@
     enable = true;
 
     # Disable password authentication
-    passwordAuthentication = false;
+    settings = {
+      PasswordAuthentication = false;
+    };
   };
 
   programs.ssh.extraConfig = ''

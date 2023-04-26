@@ -30,12 +30,11 @@
   my.home.packages = with pkgs; lib.mkIf config.system.gui.enable [
     discord-canary
     feh
-    libreoffice
+    # libreoffice
     lxmenu-data
+    xarchiver
     mpv
-    pcmanfm
     shared-mime-info
     slack
-    zoom-us
   ];
 }

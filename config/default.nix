@@ -8,6 +8,12 @@
 
     ../options
     ./pkgs.nix
+    ./colors.nix
+  ];
+
+  # Add custom overlay
+  nixpkgs.overlays = [
+    (import ../overlays)
   ];
 
   # Enable home manager
@@ -45,7 +51,7 @@
   # Used for auto completion
   environment.pathsToLink = [ "/share/zsh" ];
 
-  # Temporary fix for python 2 EOL
+  # Temporary fix for Python 2 EOL
   nixpkgs.config.permittedInsecurePackages = [
     "python-2.7.18.6"
   ];

@@ -27,6 +27,12 @@ with lib;
         type = types.bool;
         default = false;
       };
+
+      wm = mkOption
+        {
+          type = types.enum [ "hyprland" "sway" ];
+          default = "hyprland";
+        };
     };
   };
 }
