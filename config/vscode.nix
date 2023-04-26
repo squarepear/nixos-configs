@@ -24,10 +24,13 @@
         "files.exclude" = {
           "**/*.meta" = true; # Unity meta files
           "**/.direnv" = true; # direnv files
+          "**/.devenv" = true; # devenv files
+          "**/node_modules" = true; # node modules
         };
 
         "search.exclude" = {
           "**/.direnv" = true;
+          "**/.devenv" = true;
         };
 
         "omnisharp.useGlobalMono" = "always";
@@ -43,7 +46,7 @@
         "terminal.integrated.enableShellIntegration" = true;
         "telemetry.telemetryLevel" = "off";
         "git.enableCommitSigning" = true;
-        "window.zoomLevel" = 3;
+        "window.zoomLevel" = 2;
         "editor.inlineSuggest.enabled" = true;
       };
 

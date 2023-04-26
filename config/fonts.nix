@@ -5,5 +5,6 @@
 
   my.home.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "CascadiaCode" "Ubuntu" "UbuntuMono" ]; })
+    apple-color-emoji
   ];
 }
