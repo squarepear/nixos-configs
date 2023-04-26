@@ -16,7 +16,7 @@
     ../../config/bat.nix
     ../../config/direnv.nix
     ../../config/git.nix
-    ../../config/neovim.nix
+    ../../config/neovim
     ../../config/secrets.nix
     ../../config/zsh.nix
 

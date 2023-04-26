@@ -5,34 +5,36 @@
     ./hardware-configuration.nix
 
     ../../config
-    ../../config/k3s/manager.nix
     ../../config/audio.nix
     ../../config/backup.nix
-    ../../config/bluetooth.nix
-    ../../config/containers.nix
-    ../../config/gaming.nix
-    ../../config/networking.nix
-    ../../config/nfs.nix
-    ../../config/printing.nix
-    ../../config/rgb.nix
-    ../../config/ssh.nix
-    ../../config/tailscale.nix
-    ../../config/usb.nix
-    ../../config/virtualization.nix
-    ../../config/zenpower.nix
-    ../../config/sway
     ../../config/bat.nix
+    ../../config/bluetooth.nix
     ../../config/cad.nix
+    ../../config/containers.nix
     ../../config/direnv.nix
     ../../config/firefox.nix
     ../../config/fonts.nix
     ../../config/gamedev.nix
+    ../../config/gaming.nix
     ../../config/git.nix
+    ../../config/hyprland
+    ../../config/k3s/manager.nix
     ../../config/kitty.nix
-    ../../config/neovim.nix
+    ../../config/music.nix
+    ../../config/neovim
+    ../../config/networking.nix
+    ../../config/nfs.nix
     ../../config/obs.nix
+    ../../config/printing.nix
+    ../../config/rgb.nix
     ../../config/secrets.nix
+    ../../config/ssh.nix
+    ../../config/tailscale.nix
+    ../../config/usb.nix
+    ../../config/virtualization.nix
     ../../config/vscode.nix
+    ../../config/waydroid.nix
+    ../../config/zenpower.nix
     ../../config/zsh.nix
 
     ../../users/jeffrey.nix
