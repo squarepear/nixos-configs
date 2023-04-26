@@ -1,9 +1,10 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
   # Enable Connman
   services.connman = {
     enable = true;
+    package = pkgs.connmanFull;
 
     wifi.backend = "iwd";
   };
@@ -20,4 +21,8 @@
   services.avahi.publish.workstation = true;
 
   programs.mtr.enable = true;
+
+  my.home.packages = with pkgs; lib.mkIf config.system.gui.enable [
+    cmst
+  ];
 }

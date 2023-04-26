@@ -23,7 +23,7 @@
       melonDS # DS emulator
       citra # 3DS emulator
       dolphin-emu-beta # Wii/GameCube emulator
-      yuzu-ea # Switch emulator
+      yuzu-mainline # Switch emulator
 
       # Steam tools
       steam-run
@@ -43,13 +43,35 @@
     # Enable Steam
     programs.steam = {
       enable = true;
+      package = pkgs.steam.override {
+        extraPkgs = pkgs:
+          with pkgs; [
+            keyutils
+            libkrb5
+            libpng
+            libpulseaudio
+            libvorbis
+            stdenv.cc.cc.lib
+            xorg.libXcursor
+            xorg.libXi
+            xorg.libXinerama
+            xorg.libXScrnSaver
+          ];
+      };
 
       remotePlay.openFirewall = true;
+    };
+
+    environment.sessionVariables = {
+      STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
+      SDL_JOYSTICK_HIDAPI = "0"; # Fixes incorrect controller mappings
     };
 
     # Fixes some broken games
     hardware.opengl = {
       enable = true;
+      driSupport = true;
+      extraPackages = with pkgs; [ libva ];
       driSupport32Bit = true;
       extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
     };
@@ -64,13 +86,18 @@
       };
     };
 
+    users.users."${config.user.name}" = {
+      extraGroups = [ "corectrl" ];
+    };
+
     # Enable gamemode
     programs.gamemode = {
       enable = true;
 
       settings = {
         general = {
-          renice = 10;
+          softrealtime = "auto";
+          renice = 15;
         };
 
         gpu = {
@@ -87,7 +114,11 @@
     };
 
     # Enable bluetooth xbox controller support
-    # hardware.xpadneo.enable = true;
+    hardware.xpadneo.enable = true;
+
+    # Enable joint joycon support
+    hardware.uinput.enable = true;
+    services.joycond.enable = true;
 
     # Add GameCube controller support
     services.udev.packages = [ pkgs.dolphin-emu-beta ];

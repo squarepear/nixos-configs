@@ -1,4 +1,4 @@
-#!/run/current-system/sw/bin/bash
+#!/usr/bin/env bash
 
 HOST=${1:-""}
 ROOT=$(realpath ${2:-"/"})
