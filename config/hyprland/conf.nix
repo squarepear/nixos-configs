@@ -192,7 +192,7 @@ in
         windowrulev2 = forceinput,class:^(steam_app_.*)$
 
         # Force Godot to be tiled
-        windowrulev2 = tile,title:^(Godot)$
+        # windowrulev2 = tile,title:^(Godot)$
 
         # Firefox Picture-in-Picture floating and sticky
         windowrulev2 = float, title:^(Picture-in-Picture)$

@@ -8,7 +8,7 @@
 
     programs.vscode = {
       enable = config.system.gui.enable;
-      package = pkgs.vscode-fhs;
+      # package = pkgs.vscode;
 
       userSettings = {
         "update.mode" = "none";
@@ -19,6 +19,7 @@
           "insertSpaces" = true;
         };
 
+        "workbench.colorTheme" = "Dainty – Panda Theme";
         "workbench.iconTheme" = "vscode-icons";
 
         "files.exclude" = {
@@ -42,8 +43,10 @@
         "files.simpleDialog.enable" = true;
         "workbench.editor.limit.enabled" = true;
         "terminal.external.linuxExec" = "kitty";
+        "terminal.integrated.shell.linux" = "zsh";
         "terminal.integrated.cursorBlinking" = true;
-        "terminal.integrated.enableShellIntegration" = true;
+        "terminal.integrated.enableShellIntegration" = false;
+        "terminal.integrated.inheritEnv" = false;
         "telemetry.telemetryLevel" = "off";
         "git.enableCommitSigning" = true;
         "window.zoomLevel" = 2;
