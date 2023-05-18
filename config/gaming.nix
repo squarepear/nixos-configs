@@ -23,7 +23,7 @@
       melonDS # DS emulator
       citra # 3DS emulator
       dolphin-emu-beta # Wii/GameCube emulator
-      yuzu-mainline # Switch emulator
+      yuzu-ea # Switch emulator
 
       # Steam tools
       steam-run
