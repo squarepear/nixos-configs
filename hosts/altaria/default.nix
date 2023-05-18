@@ -33,6 +33,7 @@
       efiSupport = true;
       efiInstallAsRemovable = true;
       device = "nodev";
+      configurationLimit = 1;
     };
 
     kernelPackages = pkgs.linuxPackages_latest;
