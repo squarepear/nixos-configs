@@ -9,7 +9,7 @@
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "usb_storage" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "usbhid" "usb_storage" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
@@ -21,12 +21,6 @@
       options = [ "autodefrag" "noatime" ];
     };
 
-  fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-uuid/2178-694E";
-      fsType = "vfat";
-    };
-
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -34,21 +28,7 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.cni0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.docker0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.docker_gwbridge.useDHCP = lib.mkDefault true;
   # networking.interfaces.end0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.flannel.1.useDHCP = lib.mkDefault true;
-  # networking.interfaces.tailscale0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.veth008292c3.useDHCP = lib.mkDefault true;
-  # networking.interfaces.veth1589e001.useDHCP = lib.mkDefault true;
-  # networking.interfaces.veth45bedcd6.useDHCP = lib.mkDefault true;
-  # networking.interfaces.veth485dfb92.useDHCP = lib.mkDefault true;
-  # networking.interfaces.veth65c8be31.useDHCP = lib.mkDefault true;
-  # networking.interfaces.veth91057314.useDHCP = lib.mkDefault true;
-  # networking.interfaces.vethbd34d4bc.useDHCP = lib.mkDefault true;
-  # networking.interfaces.vethe20ecf6d.useDHCP = lib.mkDefault true;
-  # networking.interfaces.vetheb18132f.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlan0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
