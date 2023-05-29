@@ -22,7 +22,7 @@
     100.109.35.9    darkrai
     100.68.216.104  genesect
     100.102.1.102   keldeo
-    100.96.91.24    kyurem
+    100.66.3.126    kyurem
   '';
 
   my.programs.zsh = {
