@@ -20,10 +20,15 @@
       prismlauncher # Minecraft launcher
       lutris # General games
 
-      melonDS # DS emulator
-      citra # 3DS emulator
-      dolphin-emu-beta # Wii/GameCube emulator
-      yuzu-ea # Switch emulator
+      # Emulators
+      melonDS # DS
+      citra # 3DS
+      dolphin-emu-beta # Wii/GameCube
+      yuzu-ea # Switch
+
+      # Remote play
+      sunshine # Host
+      moonlight-qt # Client
 
       # Steam tools
       steam-run

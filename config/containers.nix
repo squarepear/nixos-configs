@@ -11,7 +11,7 @@
 
   # Add extra packages
   environment.systemPackages = with pkgs; [
-    distrobox
+    distrobox # FIXME: CAUSES FREEZES?
     podman-compose
     fuse-overlayfs
   ];

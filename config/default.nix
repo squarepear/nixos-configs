@@ -35,7 +35,7 @@
   nix.settings.auto-optimise-store = true;
 
   # Add default fonts
-  fonts.enableDefaultFonts = true;
+  fonts.enableDefaultPackages = true;
 
   # Allow unfree packages (vscode, steam, ...)
   nixpkgs.config.allowUnfree = true;
@@ -51,9 +51,10 @@
   # Used for auto completion
   environment.pathsToLink = [ "/share/zsh" ];
 
-  # Temporary fix for Python 2 EOL
+  # Temporary fix for Python 2 and openssl 1.1 EOL
   nixpkgs.config.permittedInsecurePackages = [
     "python-2.7.18.6"
+    "openssl-1.1.1v"
   ];
 
   my.home.stateVersion = "22.05";
