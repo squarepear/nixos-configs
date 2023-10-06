@@ -10,7 +10,7 @@ in
     ./conf.nix
     ./pkgs.nix
     ./mako.nix
-    ./hyprpaper.nix
+    # ./hyprpaper.nix
     ./eww
   ];
 
@@ -20,7 +20,10 @@ in
     ];
 
     # Enable wayland screen sharing
-    xdg.portal.wlr.enable = true;
+    xdg.portal = {
+      enable = true;
+      extraPortals = [ pkgs.xdg-desktop-portal-hyprland pkgs.xdg-desktop-portal-gtk ];
+    };
 
     services.greetd = {
       enable = true;
@@ -30,10 +33,13 @@ in
         command = ''
           ${pkgs.greetd.tuigreet}/bin/tuigreet -tr --asterisks --greeting "$(${pokedex})" --cmd Hyprland
         '';
-        user = config.user.name;
       };
     };
 
-    my.wayland.windowManager.hyprland.enable = true;
+    my.wayland.windowManager.hyprland = {
+      enable = true;
+
+      recommendedEnvironment = true;
+    };
   };
 }

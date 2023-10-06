@@ -21,9 +21,12 @@
       lutris # General games
 
       # Emulators
+      sameboy # GB/GBC
+      mgba # GBA
       melonDS # DS
       citra # 3DS
       dolphin-emu-beta # Wii/GameCube
+      cemu # Wii U
       yuzu-ea # Switch
 
       # Remote play
@@ -33,7 +36,6 @@
       # Steam tools
       steam-run
       steam-rom-manager
-      gamescope
 
       # Proton tools
       protonup
@@ -65,6 +67,39 @@
       };
 
       remotePlay.openFirewall = true;
+
+      gamescopeSession = {
+        enable = true;
+        env = {
+          # Show VRR controls in Steam
+          STEAM_GAMESCOPE_VRR_SUPPORTED = "1";
+
+          # Some environment variables by default (taken from Deck session)
+          SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS = "0";
+
+          # STEAM_MULTIPLE_XWAYLANDS = "1";
+
+          # Enable Mangoapp
+          STEAM_MANGOAPP_PRESETS_SUPPORTED = "1";
+          STEAM_USE_MANGOAPP = "1";
+          MANGOHUD_CONFIGFILE = "$(mktemp /tmp/mangohud.XXXXXXXX)";
+        };
+        args = [
+          "-f"
+          "-F fsr"
+          "-w 3840"
+          "-h 2160"
+          "-r 120"
+          "--rt"
+          "--xwayland-count 2"
+          "--hdr-enabled"
+        ];
+      };
+    };
+
+    programs.gamescope = {
+      enable = true;
+      capSysNice = true;
     };
 
     environment.sessionVariables = {

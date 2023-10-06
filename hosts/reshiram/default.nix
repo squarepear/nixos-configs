@@ -17,6 +17,7 @@
     ../../config/gamedev.nix
     ../../config/gaming.nix
     ../../config/git.nix
+    ../../config/keyboard.nix
     ../../config/hyprland
     ../../config/k3s/manager.nix
     ../../config/kitty.nix
