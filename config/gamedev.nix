@@ -6,6 +6,6 @@
     aseprite-unfree
     blender-hip
     notion-app-enhanced
-    appflowy
+    logseq
   ];
 }

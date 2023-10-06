@@ -18,21 +18,21 @@
     {
       device = "/dev/disk/by-uuid/333b1c2c-db0d-4d01-bb48-06d70d3b69a9";
       fsType = "btrfs";
-      options = [ "subvol=@nixos" "autodefrag" "noatime" ];
+      options = [ "subvol=@nixos" "autodefrag" "noatime" "compress=zstd" ];
     };
 
   fileSystems."/mnt/games" =
     {
       device = "/dev/disk/by-uuid/333b1c2c-db0d-4d01-bb48-06d70d3b69a9";
       fsType = "btrfs";
-      options = [ "subvol=@games" "autodefrag" "noatime" ];
+      options = [ "subvol=@games" "autodefrag" "noatime" "compress=zstd" ];
     };
 
   fileSystems."/home" =
     {
       device = "/dev/disk/by-uuid/333b1c2c-db0d-4d01-bb48-06d70d3b69a9";
       fsType = "btrfs";
-      options = [ "subvol=@home" "autodefrag" "noatime" ];
+      options = [ "subvol=@home" "autodefrag" "noatime" "compress=zstd" ];
     };
 
   fileSystems."/boot" =
