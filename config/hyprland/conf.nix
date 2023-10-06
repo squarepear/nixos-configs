@@ -53,7 +53,7 @@ in
             # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
             gaps_in = 5
-            gaps_out = 20
+            gaps_out = 0
             border_size = 2
             col.active_border=0xff${colors.base0C}
             col.inactive_border=0xff${colors.base02}
@@ -113,10 +113,12 @@ in
 
         misc {
             disable_hyprland_logo = true
+            background_color = 0xff000000
             no_direct_scanout = false
+            vfr = true
         }
 
-        setcursor Numix-Cursor 32
+        setcursor macOS-BigSur 32
 
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
         bind = ${PRIMARY}, return, exec, kitty
@@ -199,6 +201,10 @@ in
         # Firefox Picture-in-Picture floating and sticky
         windowrulev2 = float, title:^(Picture-in-Picture)$
         windowrulev2 = pin, title:^(Picture-in-Picture)$
+
+        env = NIXOS_OZONE_WL=1
+        env = QT_QPA_PLATFORM=wayland-egl
+        env = MOZ_ENABLE_WAYLAND=1
       '';
 
       gtk = {
@@ -215,9 +221,9 @@ in
         };
 
         cursorTheme = {
-          package = pkgs.numix-cursor-theme;
-          name = "Numix-Cursor";
-          size = 32;
+          package = pkgs.apple-cursor;
+          name = "macOS-BigSur";
+          size = 24;
         };
 
         gtk2.extraConfig = ''
@@ -242,6 +248,10 @@ in
       qt = {
         enable = true;
         platformTheme = "gtk";
+      };
+
+      xdg.mimeApps.defaultApplications = {
+        "inode/directory" = "nemo.desktop;code.desktop;";
       };
     };
   };

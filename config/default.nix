@@ -57,6 +57,6 @@
     "openssl-1.1.1v"
   ];
 
-  my.home.stateVersion = "22.05";
-  system.stateVersion = "22.05";
+  my.home.stateVersion = "23.05";
+  system.stateVersion = "23.05";
 }
