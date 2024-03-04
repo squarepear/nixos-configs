@@ -2,7 +2,7 @@
 
 {
   my = {
-    home.packages = if config.system.gui.enable then [ pkgs.pinentry-gtk2 ] else [ pkgs.pinentry-curses ];
+    home.packages = if config.system.gui.enable then [ pkgs.pinentry-qt ] else [ pkgs.pinentry-curses ];
 
     # Enable GPG
     programs.gpg = {
@@ -14,7 +14,7 @@
       enable = true;
       enableSshSupport = true;
 
-      pinentryFlavor = if config.system.gui.enable then "gtk2" else "curses";
+      pinentryFlavor = if config.system.gui.enable then "qt" else "curses";
     };
 
     # Enable gnome-keyring
@@ -31,10 +31,15 @@
     # Enable pass-secret (gnome-keyring alternative)
     # services.pass-secret-service.enable = true;
 
-    services.password-store-sync = {
+    services.git-sync = {
       enable = true;
 
-      frequency = "*:0/5";
+      repositories = {
+        password-store = {
+          path = "/home/${config.user.name}/.password-store";
+          uri = "https://github.com/squarepear/password-store.git";
+        };
+      };
     };
   };
 

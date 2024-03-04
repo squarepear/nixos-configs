@@ -5,6 +5,7 @@
     ./hardware-configuration.nix
 
     ../../config
+    ../../config/ai.nix
     ../../config/audio.nix
     ../../config/backup.nix
     ../../config/bat.nix
@@ -34,7 +35,7 @@
     ../../config/usb.nix
     ../../config/virtualization.nix
     ../../config/vscode.nix
-    ../../config/waydroid.nix
+    # ../../config/waydroid.nix
     ../../config/zenpower.nix
     ../../config/zsh.nix
 
@@ -47,9 +48,10 @@
   # Boot Settings
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.memtest86.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
-  # Use GUI (sway)
+  # Use GUI (hyprland)
   system.gui.enable = true;
 
   # Packages
@@ -60,12 +62,9 @@
 
   # Networking
   networking.firewall.trustedInterfaces = [
-    "eno1"
-    # "wlp5s0"
+    # "enp14s0"
+    # "wlan0"
   ];
-
-  # Windows dualboot settings
-  time.hardwareClockInLocalTime = true;
 
   # Automatically trim unused space from the filesystem
   services.fstrim.enable = true;
