@@ -3,14 +3,16 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/master";
-    home-manager.url = "github:nix-community/home-manager";
+
+    agenix.url = "github:ryantm/agenix";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    hyprland.url = "github:hyprwm/Hyprland";
+    home-manager.url = "github:nix-community/home-manager";
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
+    hyprland.url = "github:hyprwm/Hyprland";
     nix-colors.url = "github:misterio77/nix-colors";
     nix-gaming.url = github:fufexan/nix-gaming;
-    nixos-vscode-server.url = github:msteen/nixos-vscode-server;
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixos-vscode-server.url = github:msteen/nixos-vscode-server;
   };
 
   outputs = inputs: {
