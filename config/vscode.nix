@@ -1,6 +1,16 @@
 { config, inputs, pkgs, ... }:
 
 {
+  environment.systemPackages = [
+    pkgs.platformio-core
+    pkgs.avrdude
+  ];
+
+  services.udev.packages = [
+    pkgs.platformio
+    pkgs.openocd
+  ];
+
   my = {
     imports = [
       inputs.nixos-vscode-server.nixosModules.home
@@ -8,7 +18,6 @@
 
     programs.vscode = {
       enable = config.system.gui.enable;
-      # package = pkgs.vscode;
 
       userSettings = {
         "update.mode" = "none";
@@ -49,8 +58,9 @@
         "terminal.integrated.inheritEnv" = false;
         "telemetry.telemetryLevel" = "off";
         "git.enableCommitSigning" = true;
-        "window.zoomLevel" = 2;
+        "window.zoomLevel" = 4;
         "editor.inlineSuggest.enabled" = true;
+        "platformio-ide.useBuiltinPIOCore" = false;
       };
 
       extensions = with pkgs.vscode-extensions; [
