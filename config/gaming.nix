@@ -153,12 +153,13 @@
       };
     };
 
+    programs.alvr = {
+      enable = true;
+      openFirewall = true;
+    };
+
     # Enable bluetooth xbox controller support
     hardware.xpadneo.enable = true;
-
-    # Enable joint joycon support
-    hardware.uinput.enable = true;
-    services.joycond.enable = true;
 
     # Add GameCube controller support
     services.udev.packages = [ pkgs.dolphin-emu-beta ];
