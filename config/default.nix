@@ -7,6 +7,7 @@
     ({ ... }: { nix.registry.nixpkgs.flake = inputs.nixpkgs; })
 
     ../options
+    ./age.nix
     ./pkgs.nix
     ./colors.nix
   ];
