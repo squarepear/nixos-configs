@@ -2,8 +2,9 @@
 
 {
   my.home.packages = with pkgs; lib.mkIf config.system.gui.enable [
-    kicad-unstable # Electronics
+    kicad # Electronics
     freecad # 3D Design
-    # prusa-slicer # 3D Printer Slicer
+    openscad # 3D Design
+    orca-slicer # 3D Printing
   ];
 }

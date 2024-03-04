@@ -19,12 +19,6 @@ in
       inputs.hyprland.homeManagerModules.default
     ];
 
-    # Enable wayland screen sharing
-    xdg.portal = {
-      enable = true;
-      extraPortals = [ pkgs.xdg-desktop-portal-hyprland pkgs.xdg-desktop-portal-gtk ];
-    };
-
     services.greetd = {
       enable = true;
       package = pkgs.greetd.tuigreet;
@@ -36,10 +30,11 @@ in
       };
     };
 
-    my.wayland.windowManager.hyprland = {
+    programs.hyprland = {
       enable = true;
-
-      recommendedEnvironment = true;
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     };
+
+    my.wayland.windowManager.hyprland.enable = true;
   };
 }

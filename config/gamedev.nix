@@ -2,10 +2,30 @@
 
 {
   my.home.packages = with pkgs; [
+    # Game Engines
     godot_4
-    aseprite-unfree
+
+    # Art
     blender-hip
-    notion-app-enhanced
-    logseq
+    aseprite-unfree
+    krita
+    inkscape
+    gimp
+
+    # Audio
+    lmms
+    audacity
+
+    # Other
+    logseq # Note taking and planning
+  ];
+
+  # ROCm/HIP
+  systemd.tmpfiles.rules = [
+    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+  ];
+
+  hardware.opengl.extraPackages = with pkgs; [
+    rocmPackages.clr.icd
   ];
 }

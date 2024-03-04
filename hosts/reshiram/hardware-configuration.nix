@@ -9,7 +9,7 @@
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "nvme" "ahci" "xhci_pci" "usbhid" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
@@ -21,18 +21,18 @@
       options = [ "subvol=@nixos" "autodefrag" "noatime" "compress=zstd" ];
     };
 
-  fileSystems."/mnt/games" =
-    {
-      device = "/dev/disk/by-uuid/333b1c2c-db0d-4d01-bb48-06d70d3b69a9";
-      fsType = "btrfs";
-      options = [ "subvol=@games" "autodefrag" "noatime" "compress=zstd" ];
-    };
-
   fileSystems."/home" =
     {
       device = "/dev/disk/by-uuid/333b1c2c-db0d-4d01-bb48-06d70d3b69a9";
       fsType = "btrfs";
       options = [ "subvol=@home" "autodefrag" "noatime" "compress=zstd" ];
+    };
+
+  fileSystems."/mnt/games" =
+    {
+      device = "/dev/disk/by-uuid/333b1c2c-db0d-4d01-bb48-06d70d3b69a9";
+      fsType = "btrfs";
+      options = [ "subvol=@games" "autodefrag" "noatime" "compress=zstd" ];
     };
 
   fileSystems."/boot" =
@@ -44,5 +44,16 @@
   swapDevices =
     [{ device = "/dev/disk/by-uuid/79744317-a269-4ad8-b201-889e7e146b6e"; }];
 
+  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
+  # (the default) this is the recommended approach. When using systemd-networkd it's
+  # still possible to use this option, but it's recommended to use it in conjunction
+  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
+  networking.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp14s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.tailscale0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.virbr0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlan0.useDHCP = lib.mkDefault true;
+
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

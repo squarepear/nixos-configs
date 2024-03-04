@@ -23,7 +23,7 @@ in
     my = {
       wayland.windowManager.hyprland.extraConfig = ''
         # See https://wiki.hyprland.org/Configuring/Monitors/
-        monitor=DP-3,3840x2160@120,0x0,1,bitdepth,10
+        monitor=DP-3,3840x2160@60,0x0,1,bitdepth,10
         monitor=,highrr,auto,1
 
 
@@ -44,6 +44,7 @@ in
             }
 
             sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
+            # force_no_accel = true
         }
 
         exec-once = ${wallpaper}
@@ -57,10 +58,13 @@ in
             border_size = 2
             col.active_border=0xff${colors.base0C}
             col.inactive_border=0xff${colors.base02}
-            col.group_border_active=0xff${colors.base0B}
-            col.group_border=0xff${colors.base04}
 
             layout = dwindle
+        }
+
+        group {
+          col.border_active=0xff${colors.base0B}
+          col.border_inactive=0xff${colors.base04}
         }
 
         decoration {
@@ -117,8 +121,6 @@ in
             no_direct_scanout = false
             vfr = true
         }
-
-        setcursor macOS-BigSur 32
 
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
         bind = ${PRIMARY}, return, exec, kitty
@@ -191,7 +193,7 @@ in
         bindm = ${PRIMARY}, mouse:272, movewindow
         bindm = ${PRIMARY}, mouse:273, resizewindow
 
-        ## Window rules
+        # Window rules
         # Force input for Steam games (fixes some games not getting input)
         windowrulev2 = forceinput,class:^(steam_app_.*)$
 
@@ -205,6 +207,7 @@ in
         env = NIXOS_OZONE_WL=1
         env = QT_QPA_PLATFORM=wayland-egl
         env = MOZ_ENABLE_WAYLAND=1
+        env = XCURSOR_SIZE=32
       '';
 
       gtk = {
@@ -221,9 +224,9 @@ in
         };
 
         cursorTheme = {
-          package = pkgs.apple-cursor;
-          name = "macOS-BigSur";
-          size = 24;
+          package = pkgs.numix-cursor-theme;
+          name = "Numix-Cursor";
+          size = 32;
         };
 
         gtk2.extraConfig = ''

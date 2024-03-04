@@ -5,13 +5,13 @@
     enable = true;
 
     userName = "Jeffrey Harmon";
-    userEmail = "16364318+SquarePear@users.noreply.github.com";
+    userEmail = "contact@jeffreyharmon.dev";
 
     lfs.enable = true;
 
     signing = {
       signByDefault = true;
-      key = "1A5CF61AC92D97AA";
+      key = "EC6381EC5C7904E8";
     };
 
     extraConfig = {

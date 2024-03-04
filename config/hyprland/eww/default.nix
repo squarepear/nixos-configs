@@ -8,7 +8,7 @@ in
 {
   config = lib.mkIf (config.system.gui.wm == "hyprland") {
     my = {
-      home.packages = [ pkgs.eww-wayland ];
+      home.packages = [ pkgs.eww ];
 
       xdg.configFile."eww/eww.yuck".text = ''
         (defwindow dashboard
