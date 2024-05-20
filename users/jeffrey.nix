@@ -2,6 +2,7 @@
 
 {
   user.name = "jeffrey";
+  user.publickey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPyZWg5m3pXHOqNfdrO6ecghFfQowb/Y7Df7otocETHq";
 
   users.users."${config.user.name}" = {
     isNormalUser = true;

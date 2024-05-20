@@ -17,7 +17,7 @@ with lib;
 
       publickey = mkOption {
         type = types.str;
-        default = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC6R0tD850LaMbSjrriau10t+onORK6r/SeGwawHEjUO 16364318+SquarePear@users.noreply.github.com";
+        default = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPyZWg5m3pXHOqNfdrO6ecghFfQowb/Y7Df7otocETHq";
         description = "The public key used for ssh.";
       };
     };
