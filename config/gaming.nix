@@ -24,10 +24,10 @@
       sameboy # GB/GBC
       mgba # GBA
       melonDS # DS
-      citra # 3DS
+      # citra # 3DS
       dolphin-emu-beta # Wii/GameCube
       cemu # Wii U
-      yuzu-ea # Switch
+      # ryujinx # Switch
 
       # Remote play
       sunshine # Host
@@ -65,6 +65,8 @@
             xorg.libXScrnSaver
           ];
       };
+
+      extest.enable = true;
 
       remotePlay.openFirewall = true;
 

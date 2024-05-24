@@ -2,8 +2,6 @@
 
 {
   my = {
-    home.packages = if config.system.gui.enable then [ pkgs.pinentry-qt ] else [ pkgs.pinentry-curses ];
-
     # Enable GPG
     programs.gpg = {
       enable = true;
@@ -14,7 +12,7 @@
       enable = true;
       enableSshSupport = true;
 
-      pinentryFlavor = if config.system.gui.enable then "qt" else "curses";
+      pinentryPackage = if config.system.gui.enable then pkgs.pinentry-qt else pkgs.pinentry-curses;
     };
 
     # Enable gnome-keyring

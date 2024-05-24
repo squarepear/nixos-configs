@@ -36,5 +36,6 @@
     mpv
     shared-mime-info
     slack
+    betterbird
   ];
 }

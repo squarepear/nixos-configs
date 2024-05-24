@@ -10,6 +10,8 @@
     pulse.enable = true;
   };
 
+  programs.noisetorch.enable = true;
+
   environment.systemPackages = with pkgs; lib.mkIf config.system.gui.enable [
     pavucontrol # Audio control panel
     helvum # audio channel manager

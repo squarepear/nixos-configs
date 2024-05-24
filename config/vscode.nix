@@ -62,7 +62,7 @@
         "editor.inlineSuggest.enabled" = true;
         "platformio-ide.useBuiltinPIOCore" = false;
 
-	      "godotTools.editorPath.godot4" = "/etc/profiles/per-user/${config.user.name}/bin/godot4";
+        "godotTools.editorPath.godot4" = "/etc/profiles/per-user/${config.user.name}/bin/godot4";
       };
 
       extensions = with pkgs.vscode-extensions; [
