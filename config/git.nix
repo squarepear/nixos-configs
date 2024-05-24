@@ -17,6 +17,7 @@
     extraConfig = {
       init.defaultBranch = "main";
       credential.helper = "store";
+      http.postBuffer = "524288000";
     };
   };
 }
