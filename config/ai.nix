@@ -2,9 +2,10 @@
 { pkgs, ... }:
 
 {
-  services.ollama.enable = true;
+  services.ollama = {
+    enable = true;
 
-  systemd.services.ollama.environment = {
-    LD_LIBRARY_PATH = "${pkgs.rocmPackages.rocm-smi}/lib";
+    listenAddress = "0.0.0.0:11434";
+    # acceleration = "rocm";
   };
 }
