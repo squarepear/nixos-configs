@@ -5,7 +5,8 @@
   services.ollama = {
     enable = true;
 
-    listenAddress = "0.0.0.0:11434";
-    # acceleration = "rocm";
+    host = "0.0.0.0";
+    port = 11434;
+    acceleration = "rocm";
   };
 }
