@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" ];
@@ -14,43 +15,50 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/44444444-4444-4444-8888-888888888889";
+    {
+      device = "/dev/disk/by-uuid/44444444-4444-4444-8888-888888888889";
       fsType = "btrfs";
       options = [ "subvol=@" ];
     };
 
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/44444444-4444-4444-8888-888888888889";
+    {
+      device = "/dev/disk/by-uuid/44444444-4444-4444-8888-888888888889";
       fsType = "btrfs";
       options = [ "subvol=@nix" ];
     };
 
   fileSystems."/var" =
-    { device = "/dev/disk/by-uuid/44444444-4444-4444-8888-888888888889";
+    {
+      device = "/dev/disk/by-uuid/44444444-4444-4444-8888-888888888889";
       fsType = "btrfs";
       options = [ "subvol=@var" ];
     };
 
   fileSystems."/.snapshots" =
-    { device = "/dev/disk/by-uuid/44444444-4444-4444-8888-888888888889";
+    {
+      device = "/dev/disk/by-uuid/44444444-4444-4444-8888-888888888889";
       fsType = "btrfs";
       options = [ "subvol=@snapshots" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/44444444-4444-4444-8888-888888888889";
+    {
+      device = "/dev/disk/by-uuid/44444444-4444-4444-8888-888888888889";
       fsType = "btrfs";
       options = [ "subvol=@boot" ];
     };
 
   fileSystems."/gnu" =
-    { device = "/dev/disk/by-uuid/44444444-4444-4444-8888-888888888889";
+    {
+      device = "/dev/disk/by-uuid/44444444-4444-4444-8888-888888888889";
       fsType = "btrfs";
       options = [ "subvol=@gnu" ];
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/44444444-4444-4444-8888-888888888889";
+    {
+      device = "/dev/disk/by-uuid/44444444-4444-4444-8888-888888888889";
       fsType = "btrfs";
       options = [ "subvol=@home" ];
     };

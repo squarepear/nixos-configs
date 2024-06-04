@@ -25,9 +25,7 @@
     100.66.3.126    kyurem
   '';
 
-  my.programs.zsh = {
-    shellAliases = {
-      "ts" = "tailscale";
-    };
+  environment.shellAliases = {
+    "ts" = "tailscale";
   };
 }

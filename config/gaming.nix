@@ -26,7 +26,7 @@
       melonDS # DS
       # citra # 3DS
       dolphin-emu-beta # Wii/GameCube
-      cemu # Wii U
+      # cemu # Wii U
       # ryujinx # Switch
 
       # Remote play
