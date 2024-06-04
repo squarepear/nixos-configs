@@ -8,6 +8,7 @@
 
     wireplumber.enable = true;
     pulse.enable = true;
+    alsa.enable = true;
   };
 
   programs.noisetorch.enable = true;
