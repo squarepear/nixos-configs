@@ -10,6 +10,7 @@ in
     ./conf.nix
     ./pkgs.nix
     ./mako.nix
+    ./hyprlock.nix
     # ./hyprpaper.nix
     ./eww
   ];
