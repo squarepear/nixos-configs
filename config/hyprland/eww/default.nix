@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 let
-  inherit (config.my.colorScheme) colors;
+  inherit (config.my.colorScheme) palette;
 
   font-size = 20;
 in
@@ -52,12 +52,12 @@ in
         * { all: unset; }
 
         .dashboard-box {
-          color: #${colors.base05};
+          color: #${palette.base05};
           font-size: ${ toString font-size }px;
           
           .widget-box {
-            background-color: #${colors.base00};
-            border: 2px solid #${colors.base02};
+            background-color: #${palette.base00};
+            border: 2px solid #${palette.base02};
             border-radius: 10px;
             padding: 16px;
             margin: 5px;
