@@ -56,9 +56,9 @@ in
           requires = [ "packwiz.service" ];
 
           serviceConfig = {
-            ExecStartPre = lib.mkForce "${pkgs.temurin-bin-17}/bin/java -jar packwiz-installer-bootstrap.jar -g -s server http://[::1]:23333/pack.toml";
+            ExecStartPre = lib.mkForce "${lib.getExe pkgs.temurin-bin-17} -jar packwiz-installer-bootstrap.jar -g -s server http://[::1]:23333/pack.toml";
             ExecStart = lib.mkForce ''
-              ${pkgs.temurin-bin-17}/bin/java -Xms10G -Xmx10G \
+              ${lib.getExe pkgs.temurin-bin-17} -Xms10G -Xmx10G \
                 --add-modules=jdk.incubator.vector -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true \
                 -jar quilt-server-launch.jar nogui
             '';
@@ -77,7 +77,7 @@ in
 
           serviceConfig = {
             Type = "simple";
-            ExecStart = "${pkgs.packwiz}/bin/packwiz serve --port 23333";
+            ExecStart = "${lib.getExe pkgs.packwiz} serve --port 23333";
             WorkingDirectory = "/data/modpack";
             User = "minecraft";
           };

@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 let
-  inherit (config.my.colorScheme) colors;
+  inherit (config.my.colorScheme) palette;
 
   PRIMARY = "SUPER";
   SECONDARY = "SHIFT";
@@ -56,8 +56,8 @@ in
             gaps_in = 5
             gaps_out = 0
             border_size = 2
-            col.active_border=0xff${colors.base0C}
-            col.inactive_border=0xff${colors.base02}
+            col.active_border=0xff${palette.base0C}
+            col.inactive_border=0xff${palette.base02}
 
             layout = dwindle
         }
