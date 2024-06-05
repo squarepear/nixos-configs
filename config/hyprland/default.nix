@@ -26,7 +26,7 @@ in
 
       settings.default_session = {
         command = ''
-          ${pkgs.greetd.tuigreet}/bin/tuigreet -tr --asterisks --greeting "$(${pokedex})" --cmd Hyprland
+          ${lib.getExe pkgs.greetd.tuigreet} -tr --asterisks --greeting "$(${pokedex})" --cmd Hyprland
         '';
       };
     };
