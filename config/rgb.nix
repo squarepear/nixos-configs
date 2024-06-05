@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   services.hardware.openrgb = {
@@ -13,8 +13,8 @@
     enable = true;
 
     systemCronJobs = [
-      "0 21 * * *      ${config.user.name}    ${pkgs.openrgb}/bin/openrgb -p off"
-      "0 8 * * *      ${config.user.name}    ${pkgs.openrgb}/bin/openrgb -p on"
+      "0 21 * * *      ${config.user.name}    ${lib.getExe pkgs.openrgb} -p off"
+      "0 8 * * *      ${config.user.name}    ${lib.getExe pkgs.openrgb} -p on"
     ];
   };
 

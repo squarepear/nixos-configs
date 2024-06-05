@@ -7,14 +7,12 @@ let
   SECONDARY = "SHIFT";
   TERTIARY = "ALT";
 
-  terminal = "${pkgs.kitty}/bin/kitty";
-  menu = "${pkgs.rofi}/bin/wofi";
-  notifs = "mako";
-  idle = "${pkgs.swayidle}/bin/swayidle";
-  lock = "${pkgs.swaylock}/bin/swaylock";
-  screenshot = "${pkgs.sway-contrib.grimshot}/bin/grimshot";
+  terminal = lib.getExe pkgs.kitty;
+  editor = lib.getExe pkgs.vscode;
+  menu = lib.getExe pkgs.wofi;
+  notifs = lib.getExe pkgs.mako;
+  screenshot = lib.getExe pkgs.sway-contrib.grimshot;
   date = "${pkgs.coreutils}/bin/date";
-  wallpaper = "${pkgs.hyprpaper}/bin/hyprpaper";
 
   ssdir = "$HOME/Pictures/Screenshots";
 in
@@ -47,7 +45,6 @@ in
             # force_no_accel = true
         }
 
-        exec-once = ${wallpaper}
         exec-once = hyprctl setcursor Numix-Cursor 32
 
         general {
@@ -63,8 +60,8 @@ in
         }
 
         group {
-          col.border_active=0xff${colors.base0B}
-          col.border_inactive=0xff${colors.base04}
+          col.border_active=0xff${palette.base0B}
+          col.border_inactive=0xff${palette.base04}
         }
 
         decoration {
@@ -123,11 +120,12 @@ in
         }
 
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-        bind = ${PRIMARY}, return, exec, kitty
+        bind = ${PRIMARY}, return, exec, ${terminal}
         bind = ${PRIMARY}, Q, killactive,
         bind = ${PRIMARY}, F, fullscreen,
         bind = ${PRIMARY} ${SECONDARY}, F, exec, nemo
-        bind = ${PRIMARY}, space, exec, pkill wofi || wofi --show drun
+        bind = ${PRIMARY}, C, exec, ${editor} --enable-features=UseOzonePlatform --ozone-platform=wayland
+        bind = ${PRIMARY}, space, exec, pkill wofi || ${menu} --show drun
         bind = ${PRIMARY} ${SECONDARY}, space, togglefloating,
         bind = ${PRIMARY}, P, pseudo, # dwindle
         bind = ${PRIMARY}, J, togglesplit, # dwindle
@@ -135,10 +133,11 @@ in
         bind = ${PRIMARY}, TAB, exec, eww open dashboard --toggle
         bind = ${PRIMARY}, M, exit,
 
-        # Screenshots
+        # Screenshots, Screen Recording, and Color Picker
         bind = ${PRIMARY}, s, exec, ${screenshot} save screen "${ssdir}/$(${date} +"%Y-%m-%d %H:%M:%S").png"
         bind = ${PRIMARY} ${SECONDARY}, s, exec, ${screenshot} save active "${ssdir}/$(${date} +"%Y-%m-%d %H:%M:%S").png"
         bind = ${PRIMARY} ${TERTIARY}, s, exec, ${screenshot} save area "${ssdir}/$(${date} +"%Y-%m-%d %H:%M:%S").png"
+        bind = ${PRIMARY} ${SECONDARY}, C, exec, ${lib.getExe pkgs.hyprpicker} -a
 
         # Special
         binde =, XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
@@ -223,12 +222,6 @@ in
           name = "kora";
         };
 
-        cursorTheme = {
-          package = pkgs.numix-cursor-theme;
-          name = "Numix-Cursor";
-          size = 32;
-        };
-
         gtk2.extraConfig = ''
           gtk-application-prefer-dark-theme = 1
           gtk-toolbar-style = "GTK_TOOLBAR_ICONS"
@@ -248,9 +241,16 @@ in
         };
       };
 
+      home.pointerCursor = {
+        gtk.enable = true;
+        package = pkgs.numix-cursor-theme;
+        name = "Numix-Cursor";
+        size = 32;
+      };
+
       qt = {
         enable = true;
-        platformTheme = "gtk";
+        platformTheme.name = "gtk";
       };
 
       xdg.mimeApps.defaultApplications = {

@@ -13,9 +13,6 @@
       # runner
       wofi
 
-      # wallpaper
-      swaybg
-
       # screenshots
       sway-contrib.grimshot
       grim
