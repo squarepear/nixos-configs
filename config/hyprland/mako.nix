@@ -1,7 +1,7 @@
 { config, lib, ... }:
 
 let
-  inherit (config.my.colorScheme) colors;
+  inherit (config.my.colorScheme) palette;
 in
 {
   config = lib.mkIf (config.system.gui.wm == "hyprland") {
@@ -9,11 +9,11 @@ in
       mako = {
         enable = true;
 
-        backgroundColor = "#${colors.base00}";
-        borderColor = "#${colors.base02}";
-        textColor = "#${colors.base05}";
-        font = "CaskaydiaCove Nerd Font 12";
-        defaultTimeout = 15000;
+        backgroundColor = "#${palette.base00}";
+        borderColor = "#${palette.base02}";
+        textColor = "#${palette.base05}";
+        font = "CaskaydiaCove Nerd Font 20";
+        defaultTimeout = 10000;
       };
     };
   };
