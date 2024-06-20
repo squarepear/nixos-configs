@@ -8,7 +8,7 @@
     isNormalUser = true;
     description = "Jeffrey Harmon";
     group = "users";
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "input" "audio" "video" "cdrom" "tty" ];
     home = "/home/${config.user.name}";
     shell = pkgs.zsh;
     uid = 1000;
