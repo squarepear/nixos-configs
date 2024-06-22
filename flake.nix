@@ -31,6 +31,7 @@
         reshiram = (host "x86_64-linux" [ ./hosts/reshiram ]);
         tepig = (host "aarch64-linux" [ ./hosts/tepig inputs.nixos-hardware.nixosModules.raspberry-pi-4 ]);
         torchic = (host "aarch64-linux" [ ./hosts/torchic ]);
+        uxie = (host "x86_64-linux" [ ./hosts/uxie ]);
       };
   };
 }
