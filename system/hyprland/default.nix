@@ -3,14 +3,20 @@
 {
   imports = [
     ./conf.nix
-    ./pkgs.nix
-    ./mako.nix
+    ./eww
     ./hyprlock.nix
     # ./hyprpaper.nix
-    ./eww
+    ./mako.nix
+    ./pkgs.nix
+    ./plugins.nix
   ];
 
   config = lib.mkIf (config.pear.desktop.wm == "hyprland") {
+    nix.settings = {
+      substituters = [ "https://hyprland.cachix.org" ];
+      trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+    };
+
     my.imports = [
       inputs.hyprland.homeManagerModules.default
     ];
