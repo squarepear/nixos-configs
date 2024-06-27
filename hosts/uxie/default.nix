@@ -4,20 +4,20 @@
   imports = [
     ./hardware-configuration.nix
 
-    ../../config
-    ../../config/bat.nix
-    ../../config/containers.nix
-    ../../config/direnv.nix
-    ../../config/git.nix
-    ../../config/neovim
-    ../../config/networking.nix
-    ../../config/secrets.nix
-    ../../config/ssh.nix
-    ../../config/tailscale.nix
-    ../../config/virtualization.nix
-    ../../config/vscode.nix
-    ../../config/zenpower.nix
-    ../../config/zsh.nix
+    ../../system
+    ../../system/bat.nix
+    ../../system/containers.nix
+    ../../system/direnv.nix
+    ../../system/git.nix
+    ../../system/neovim
+    ../../system/networking.nix
+    ../../system/secrets.nix
+    ../../system/ssh.nix
+    ../../system/tailscale.nix
+    ../../system/virtualization.nix
+    ../../system/vscode.nix
+    ../../system/zenpower.nix
+    ../../system/zsh.nix
 
     ../../users/jeffrey.nix
   ];
@@ -31,10 +31,6 @@
   boot.loader.systemd-boot.memtest86.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
-  # Use GUI (hyprland)
-  system.gui.enable = false;
-
-
   # GPU setup
   boot.initrd.kernelModules = [ "amdgpu" ];
 
@@ -45,4 +41,13 @@
   boot.binfmt.emulatedSystems = [
     "aarch64-linux"
   ];
+
+  pear = {
+    desktop.enable = false;
+
+    vendor = {
+      cpu = "amd";
+      gpu = "amd";
+    };
+  };
 }
