@@ -19,6 +19,8 @@
     ../../system/zenpower.nix
     ../../system/zsh.nix
 
+    ./jellyfin.nix
+
     ../../users/jeffrey.nix
   ];
 
