@@ -31,7 +31,6 @@
   ];
 
   my.home.packages = with pkgs; lib.mkIf config.pear.desktop.enable [
-    discord-canary
     feh
     # libreoffice
     lxmenu-data
@@ -41,4 +40,14 @@
     slack
     betterbird
   ];
+
+  my.xdg.desktopEntries = lib.mkIf config.pear.desktop.enable {
+    firefox = {
+      name = "Discord";
+      genericName = "Discord";
+      exec = "${lib.getExe pkgs.vesktop}";
+      terminal = false;
+      categories = [ "Application" "Chat" ];
+    };
+  };
 }
