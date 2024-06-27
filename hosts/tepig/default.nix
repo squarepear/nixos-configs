@@ -1,25 +1,27 @@
-{ pkgs, ... }:
+{ inputs, ... }:
 
 {
   imports = [
+    inputs.nixos-hardware.nixosModules.raspberry-pi-4
+
     ./hardware-configuration.nix
 
-    ../../config
-    # ../../config/k3s/server.nix
-    ../../config/backup.nix
-    ../../config/containers.nix
-    ../../config/distributed-building.nix
-    ../../config/networking.nix
-    ../../config/nfs.nix
-    ../../config/ssh.nix
-    ../../config/tailscale.nix
-    ../../config/bat.nix
-    ../../config/direnv.nix
-    ../../config/git.nix
-    ../../config/neovim
-    ../../config/secrets.nix
-    ../../config/vscode.nix
-    ../../config/zsh.nix
+    ../../system
+    # ../../system/k3s/server.nix
+    ../../system/backup.nix
+    ../../system/containers.nix
+    ../../system/distributed-building.nix
+    ../../system/networking.nix
+    ../../system/nfs.nix
+    ../../system/ssh.nix
+    ../../system/tailscale.nix
+    ../../system/bat.nix
+    ../../system/direnv.nix
+    ../../system/git.nix
+    ../../system/neovim
+    ../../system/secrets.nix
+    ../../system/vscode.nix
+    ../../system/zsh.nix
 
     ../../users/jeffrey.nix
   ];
@@ -27,10 +29,16 @@
   # System hostname
   networking.hostName = "tepig";
 
-  # Don't use GUI
-  system.gui.enable = false;
-
   # Networking
   networking.firewall.trustedInterfaces = [ "end0" ];
   networking.enableIPv6 = false;
+
+  pear = {
+    desktop.enable = false;
+
+    vendor = {
+      cpu = "other";
+      gpu = "other";
+    };
+  };
 }

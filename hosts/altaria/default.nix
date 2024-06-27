@@ -4,20 +4,20 @@
   imports = [
     ./hardware-configuration.nix
 
-    ../../config
-    ../../config/backup.nix
-    ../../config/containers.nix
-    ../../config/distributed-building.nix
-    ../../config/nfs.nix
-    ../../config/ssh.nix
-    ../../config/tailscale.nix
-    ../../config/bat.nix
-    ../../config/direnv.nix
-    ../../config/git.nix
-    ../../config/neovim
-    ../../config/secrets.nix
-    ../../config/vscode.nix
-    ../../config/zsh.nix
+    ../../system
+    ../../system/backup.nix
+    ../../system/containers.nix
+    ../../system/distributed-building.nix
+    ../../system/nfs.nix
+    ../../system/ssh.nix
+    ../../system/tailscale.nix
+    ../../system/bat.nix
+    ../../system/direnv.nix
+    ../../system/git.nix
+    ../../system/neovim
+    ../../system/secrets.nix
+    ../../system/vscode.nix
+    ../../system/zsh.nix
 
     ./minecraft-server.nix
 
@@ -39,13 +39,15 @@
     kernelPackages = pkgs.linuxPackages_latest;
   };
 
-  # Don't GUI (sway)
-  system.gui.enable = false;
-
   # Qemu guest settings
   services.qemuGuest.enable = true;
 
-  # extra settings
-  boot.tmp.cleanOnBoot = true;
-  zramSwap.enable = true;
+  pear = {
+    desktop.enable = false;
+
+    vendor = {
+      cpu = "other";
+      gpu = "other";
+    };
+  };
 }
