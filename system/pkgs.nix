@@ -27,6 +27,7 @@
     cmatrix
     sl
     cowsay
+    pokedex
   ];
 
   my.home.packages = with pkgs; lib.mkIf config.pear.desktop.enable [
