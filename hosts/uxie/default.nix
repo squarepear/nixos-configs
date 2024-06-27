@@ -50,4 +50,30 @@
       gpu = "amd";
     };
   };
+
+  # SMB
+  services.samba = {
+    enable = true;
+
+    shares = {
+      media = {
+        path = "/mnt/main-pool/media";
+        "valid users" = "jeffrey";
+        public = false;
+        writable = true;
+      };
+
+      time-machine = {
+        path = "/mnt/main-pool/backups/macOS";
+        "valid users" = "jeffrey";
+        public = false;
+        writeable = true;
+        "force user" = "jeffrey";
+        "fruit:aapl" = true;
+        "fruit:time machine" = true;
+        "vfs objects" = "catia fruit streams_xattr";
+      };
+    };
+  };
 }
+
