@@ -59,6 +59,7 @@
         "telemetry.telemetryLevel" = "off";
         "git.enableCommitSigning" = true;
         "window.zoomLevel" = 4;
+        "window.menuBarVisibility" = "toggle";
         "editor.inlineSuggest.enabled" = true;
         "platformio-ide.useBuiltinPIOCore" = false;
 
