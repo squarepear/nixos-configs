@@ -5,6 +5,7 @@
     inputs.nixos-hardware.nixosModules.raspberry-pi-4
 
     ./hardware-configuration.nix
+    ./home-assistant.nix
 
     ../../system
     # ../../system/k3s/server.nix
