@@ -7,10 +7,11 @@
     buildMachines = [
       {
         hostName = "reshiram";
-        speedFactor = 12;
+        speedFactor = 16;
         sshKey = "/home/${config.pear.user.name}/.ssh/id_ed25519";
         systems = [
           "x86_64-linux"
+          "aarch64-linux"
         ];
       }
 
