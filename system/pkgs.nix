@@ -42,9 +42,9 @@
   ];
 
   my.xdg.desktopEntries = lib.mkIf config.pear.desktop.enable {
-    firefox = {
+    discord = {
       name = "Discord";
-      genericName = "Discord";
+      genericName = "discord";
       exec = "${lib.getExe pkgs.vesktop}";
       terminal = false;
       categories = [ "Application" "Chat" ];
