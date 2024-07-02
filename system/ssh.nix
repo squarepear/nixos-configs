@@ -8,6 +8,7 @@
     # Disable password authentication
     settings = {
       PasswordAuthentication = false;
+      LoginGraceTime = 0;
     };
   };
 
