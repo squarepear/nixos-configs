@@ -5,7 +5,6 @@
     inputs.nixos-hardware.nixosModules.raspberry-pi-4
 
     ./hardware-configuration.nix
-    ./home-assistant.nix
 
     ../../system
     # ../../system/k3s/server.nix
@@ -23,6 +22,9 @@
     ../../system/secrets.nix
     ../../system/vscode.nix
     ../../system/zsh.nix
+
+    ./home-assistant.nix
+    ./reverse-proxy.nix
 
     ../../users/jeffrey.nix
   ];
