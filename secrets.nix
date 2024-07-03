@@ -15,4 +15,7 @@ in
 
   # User Specific
   "secrets/jeffrey/passwordfile.age".publicKeys = [ jeffrey ] ++ hosts;
+
+  # Host Specific
+  "secrets/tepig/cloudflare-creds.age".publicKeys = [ jeffrey tepig ];
 }
