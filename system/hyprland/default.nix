@@ -8,7 +8,7 @@
     # ./hyprpaper.nix
     ./mako.nix
     ./pkgs.nix
-    ./plugins.nix
+    # ./plugins.nix
   ];
 
   config = lib.mkIf (config.pear.desktop.wm == "hyprland") {
