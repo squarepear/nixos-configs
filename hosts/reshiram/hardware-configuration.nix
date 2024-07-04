@@ -9,7 +9,7 @@
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "ahci" "xhci_pci" "usbhid" ];
+  boot.initrd.availableKernelModules = [ "nvme" "ahci" "xhci_pci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
@@ -39,6 +39,20 @@
     {
       device = "/dev/disk/by-uuid/E61A-6632";
       fsType = "vfat";
+    };
+
+  fileSystems."/mnt/extra/games" =
+    {
+      device = "/dev/disk/by-uuid/6e625a88-27a8-490d-8179-486ca0fccae3";
+      fsType = "btrfs";
+      options = [ "subvol=games" "autodefrag" "noatime" "compress=zstd" ];
+    };
+
+  fileSystems."/mnt/extra/media" =
+    {
+      device = "/dev/disk/by-uuid/6e625a88-27a8-490d-8179-486ca0fccae3";
+      fsType = "btrfs";
+      options = [ "subvol=media" "autodefrag" "noatime" "compress=zstd" ];
     };
 
   swapDevices =
