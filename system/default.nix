@@ -55,6 +55,9 @@
     flake = "github:squarepear/nixos-configs";
   };
 
+  # Disable mutable users
+  users.mutableUsers = false;
+
   my.home.stateVersion = "23.05";
   system.stateVersion = "23.05";
 }
