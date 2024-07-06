@@ -13,34 +13,60 @@
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
+    nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nix-colors.url = "github:misterio77/nix-colors";
     nix-gaming.url = "github:fufexan/nix-gaming";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixos-vscode-server.url = "github:msteen/nixos-vscode-server";
   };
 
-  outputs = inputs: {
-    nixosConfigurations =
-      let
-        mkSystem = name: inputs.nixpkgs.lib.nixosSystem {
-          modules = [
-            ./hosts/${name}
-            ./lib
-            ./modules
-            ./pkgs
-          ];
-
-          specialArgs = { inherit inputs; };
-        };
-
-        # Creates a set of systems with the given names
-        mkSystems = systems: builtins.foldl' (acc: system: acc // { ${system} = mkSystem system; }) { } systems;
-      in
-      mkSystems [
+  outputs = inputs:
+    let
+      nixos-hosts = [
         "altaria"
         "reshiram"
         "tepig"
         "uxie"
       ];
-  };
+
+      darwin-hosts = [
+        "kyurem"
+      ];
+    in
+    {
+      nixosConfigurations =
+        let
+          mkSystem = name: inputs.nixpkgs.lib.nixosSystem {
+            modules = [
+              ./hosts/${name}
+              ./lib
+              ./modules
+              ./pkgs
+            ];
+
+            specialArgs = { inherit inputs; };
+          };
+
+          # Creates a set of systems with the given names
+          mkSystems = systems: builtins.foldl' (acc: system: acc // { ${system} = mkSystem system; }) { } systems;
+        in
+        mkSystems nixos-hosts;
+
+      darwinConfigurations =
+        let
+          mkSystem = name: inputs.nix-darwin.lib.darwinSystem {
+            modules = [
+              ./hosts/${name}
+              ./darwin
+            ];
+
+            specialArgs = { inherit inputs; };
+          };
+
+          # Creates a set of systems with the given names
+          mkSystems = systems: builtins.foldl' (acc: system: acc // { ${system} = mkSystem system; }) { } systems;
+        in
+        mkSystems darwin-hosts;
+    };
 }
