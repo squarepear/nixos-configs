@@ -14,7 +14,7 @@
     neovim
     nixpkgs-fmt
     pciutils
-    pfetch
+    pfetch-rs
     rsync # Backup utility
     tree
     unzip

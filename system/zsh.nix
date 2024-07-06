@@ -24,7 +24,7 @@
     '';
 
     initExtra = ''
-      pfetch
+      ${pkgs.pfetch-rs}
     '';
 
     localVariables = {
