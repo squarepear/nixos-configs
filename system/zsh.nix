@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   programs.zsh.enable = true;
@@ -24,7 +24,7 @@
     '';
 
     initExtra = ''
-      ${pkgs.pfetch-rs}
+      ${lib.getExe pkgs.fastfetch}
     '';
 
     localVariables = {
@@ -41,12 +41,55 @@
     };
   };
 
-  my.programs.starship = {
-    enable = true;
-    enableZshIntegration = true;
+  my.programs = {
+    fastfetch = {
+      enable = true;
 
-    settings = {
-      # Starship Config
+      settings = {
+        logo.source = "nixos_old_small";
+
+        display = {
+          separator = "";
+          keyWidth = 8;
+        };
+
+        modules = [
+          "title"
+          {
+            type = "os";
+            key = "os";
+          }
+          {
+            type = "host";
+            key = "host";
+          }
+          {
+            type = "kernel";
+            key = "kernel";
+          }
+          {
+            type = "uptime";
+            key = "uptime";
+          }
+          {
+            type = "packages";
+            key = "pkgs";
+          }
+          {
+            type = "memory";
+            key = "memory";
+          }
+        ];
+      };
+    };
+
+    starship = {
+      enable = true;
+      enableZshIntegration = true;
+
+      settings = {
+        # Starship Config
+      };
     };
   };
 }
