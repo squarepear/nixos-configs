@@ -24,6 +24,7 @@
     ../../system/zsh.nix
 
     ./home-assistant.nix
+    ./ntfy.nix
     ./reverse-proxy.nix
 
     ../../users/jeffrey.nix

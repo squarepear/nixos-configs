@@ -54,6 +54,12 @@ in
           ip = uxie;
           port = 8096;
         }
+
+        {
+          name = "ntfy";
+          ip = tepig;
+          port = 8585;
+        }
       ];
   };
 }
