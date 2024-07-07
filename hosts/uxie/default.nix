@@ -75,7 +75,16 @@
         "fruit:time machine" = true;
         "vfs objects" = "catia fruit streams_xattr";
       };
+
+      homes = {
+        path = "/mnt/main-pool/users-share/%S";
+        "valid users" = "%S";
+        "create mask" = "0700";
+        "directory mask" = "0700";
+        browseable = false;
+        public = false;
+        writeable = true;
+      };
     };
   };
 }
-
