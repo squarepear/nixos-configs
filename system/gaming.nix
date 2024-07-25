@@ -3,6 +3,7 @@
 {
   imports = [
     inputs.nix-gaming.nixosModules.pipewireLowLatency
+    inputs.nix-gaming.nixosModules.platformOptimizations
   ];
 
   config = lib.mkIf config.pear.desktop.enable {
@@ -64,49 +65,18 @@
             xorg.libXinerama
             xorg.libXScrnSaver
           ];
-      };
 
-      extest.enable = true;
+      };
 
       remotePlay.openFirewall = true;
-
-      gamescopeSession = {
-        enable = true;
-        env = {
-          # Show VRR controls in Steam
-          STEAM_GAMESCOPE_VRR_SUPPORTED = "1";
-
-          # Some environment variables by default (taken from Deck session)
-          SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS = "0";
-
-          # STEAM_MULTIPLE_XWAYLANDS = "1";
-
-          # Enable Mangoapp
-          STEAM_MANGOAPP_PRESETS_SUPPORTED = "1";
-          STEAM_USE_MANGOAPP = "1";
-          MANGOHUD_CONFIGFILE = "$(mktemp /tmp/mangohud.XXXXXXXX)";
-        };
-        args = [
-          "-f"
-          "-F fsr"
-          "-w 3840"
-          "-h 2160"
-          "-r 120"
-          "--rt"
-          "--xwayland-count 2"
-          "--hdr-enabled"
-        ];
-      };
+      extest.enable = true;
+      platformOptimizations.enable = true;
+      gamescopeSession.enable = true;
     };
 
     programs.gamescope = {
       enable = true;
       capSysNice = true;
-    };
-
-    environment.sessionVariables = {
-      STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
-      SDL_JOYSTICK_HIDAPI = "0"; # Fixes incorrect controller mappings
     };
 
     # Fixes some broken games
