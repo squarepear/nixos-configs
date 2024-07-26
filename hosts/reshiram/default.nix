@@ -51,6 +51,24 @@
   boot.loader.systemd-boot.memtest86.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
+  # Quiet boot
+  boot = {
+    consoleLogLevel = 3;
+    kernelParams = [
+      "quiet"
+      "systemd.show_status=auto"
+      "rd.udev.log_level=3"
+    ];
+    plymouth = {
+      enable = true;
+      theme = "breeze";
+      logo = pkgs.fetchurl {
+        url = "https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nixos-white.png";
+        hash = "sha256-2bY//ppmTwtovkdaRIj20tKcxOQPrP2Z2zbjQ+9FWtI=";
+      };
+    };
+  };
+
   # Packages
   environment.systemPackages = with pkgs; [ liquidctl ];
 
