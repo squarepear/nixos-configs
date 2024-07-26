@@ -14,6 +14,10 @@ let
   screenshot = lib.getExe pkgs.sway-contrib.grimshot;
   date = "${pkgs.coreutils}/bin/date";
 
+  cursor = "HyprBibataModernClassicSVG";
+  cursorPackage = pkgs.bibata-hyprcursor;
+  cursorSize = 24;
+
   ssdir = "$HOME/Pictures/Screenshots";
 in
 {
@@ -44,8 +48,6 @@ in
             sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
             # force_no_accel = true
         }
-
-        exec-once = hyprctl setcursor Numix-Cursor 32
 
         general {
             # See https://wiki.hyprland.org/Configuring/Variables/ for more
@@ -192,10 +194,6 @@ in
         bindm = ${PRIMARY}, mouse:272, movewindow
         bindm = ${PRIMARY}, mouse:273, resizewindow
 
-        # Window rules
-        # Force input for Steam games (fixes some games not getting input)
-        windowrulev2 = forceinput,class:^(steam_app_.*)$
-
         # Force Godot to be tiled
         # windowrulev2 = tile,title:^(Godot)$
 
@@ -203,10 +201,14 @@ in
         windowrulev2 = float, title:^(Picture-in-Picture)$
         windowrulev2 = pin, title:^(Picture-in-Picture)$
 
+        # Cursor
+        exec-once = hyprctl setcursor ${cursor} ${toString cursorSize}
+        env = HYPRCURSOR_THEME=${cursor}
+        env = HYPRCURSOR_SIZE=${toString cursorSize}
+
         env = NIXOS_OZONE_WL=1
         env = QT_QPA_PLATFORM=wayland-egl
         env = MOZ_ENABLE_WAYLAND=1
-        env = XCURSOR_SIZE=32
       '';
 
       gtk = {
@@ -242,11 +244,16 @@ in
       };
 
       home.pointerCursor = {
+        package = pkgs.bibata-cursors;
+        name = "Bibata-Modern-Classic";
+        size = cursorSize;
         gtk.enable = true;
-        package = pkgs.numix-cursor-theme;
-        name = "Numix-Cursor";
-        size = 32;
+        x11.enable = true;
       };
+
+      home.file.".icons/${cursor}".source = "${cursorPackage}/share/icons/${cursor}";
+      xdg.dataFile."icons/${cursor}".source = "${cursorPackage}/share/icons/${cursor}";
+
 
       qt = {
         enable = true;
