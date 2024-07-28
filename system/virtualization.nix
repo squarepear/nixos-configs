@@ -15,8 +15,11 @@
     onShutdown = "shutdown";
 
     qemu = {
-      ovmf.enable = true;
-      # runAsRoot = false;
+      ovmf = {
+        enable = true;
+        packages = [ pkgs.OVMFFull.fd ];
+      };
+      swtpm.enable = true;
 
       verbatimConfig = ''
         user = "${config.pear.user.name}"
@@ -25,17 +28,15 @@
     };
   };
 
-  # Add libvirtd group
-  users.users."${config.pear.user.name}" = {
-    extraGroups = [ "libvirtd" "kvm" ];
-  };
-
   environment.systemPackages = with pkgs; [
     virt-manager
     libguestfs
   ];
 
   programs.dconf.enable = true; # Needed for saving settings in virt-manager
+
+  # Add libvirtd and tss group
+  users.users."${config.pear.user.name}".extraGroups = [ "libvirtd" "kvm" "tss" ];
 
   # Boot configuration
   boot.kernelParams = [ "amd_iommu=on" "iommu=pt" "video=efifb:off" ];
