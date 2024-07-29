@@ -50,7 +50,7 @@
 
         display = {
           separator = "";
-          keyWidth = 8;
+          key.width = 8;
         };
 
         modules = [
