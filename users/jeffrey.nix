@@ -18,14 +18,5 @@
     uid = 1000;
 
     hashedPasswordFile = config.age.secrets.jeffrey-passwordfile.path;
-
-    # Authorized keys
-    openssh.authorizedKeys.keys = [
-      config.pear.user.publickey
-    ];
   };
-
-  nix.settings.trusted-users = [
-    config.pear.user.name
-  ];
 }
