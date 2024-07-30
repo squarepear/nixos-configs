@@ -5,6 +5,7 @@
     ./hardware-configuration.nix
 
     ../../system
+    ../../system/backup.nix
     ../../system/bat.nix
     ../../system/containers.nix
     ../../system/direnv.nix
