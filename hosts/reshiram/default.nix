@@ -51,24 +51,6 @@
   boot.loader.systemd-boot.memtest86.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
-  # Quiet boot
-  boot = {
-    consoleLogLevel = 3;
-    kernelParams = [
-      "quiet"
-      "systemd.show_status=auto"
-      "rd.udev.log_level=3"
-    ];
-    plymouth = {
-      enable = true;
-      theme = "breeze";
-      logo = pkgs.fetchurl {
-        url = "https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nixos-white.png";
-        hash = "sha256-2bY//ppmTwtovkdaRIj20tKcxOQPrP2Z2zbjQ+9FWtI=";
-      };
-    };
-  };
-
   # Packages
   environment.systemPackages = with pkgs; [ liquidctl ];
 
@@ -79,6 +61,35 @@
   boot.binfmt.emulatedSystems = [
     "aarch64-linux"
   ];
+
+
+  hardware.display =
+    let
+      name = "edid-samsung-g80sd.bin";
+      value = ''
+        AP///////wBMLTXgAAAAAAEiAQS1Rid4OzSVr046uyUMUFQlzwBxT4HAgQCBgJUAqcCzANHATdAA
+        oPBwPoAwIDUAwBwyAAAaAAAA/Qww8P//6gEKICAgICAgAAAA/ABPZHlzc2V5IEc4MFNEAAAAEAAA
+        AAAAAAAAAAAAAAAAA2kCAzpAR2FfED8EA3YjCQcHgwEAAOMFwwDmBgUBYEsD5QGLhJABdBoAAAMH
+        MPAAoGACSwLwAAAAAAAAVl4AoKCgKVAwIDUAgGghAAAab8IAoKCgVVAwIDUAgGghAAAaAjqAGHE4
+        LUBYLEUA4A4RAAAeAAAAAAAAAAAAAAAAAAAARXAgeQAAKgASAf8ObwjvAf8JnwXvAX8HNwTvAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGqQcCB5AAAiABS/lCMA/w6f
+        AC+AHwBvCAwBAgAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAt5A=
+      '';
+    in
+    {
+      edid.enable = true;
+      edid.packages = [
+        (pkgs.runCommand name { } ''
+          mkdir -p "$out/lib/firmware/edid"
+          base64 -d > "$out/lib/firmware/edid/${name}" <<'EOF'
+          ${value}
+          EOF
+        '')
+      ];
+      outputs.DP-1.edid = name;
+    };
 
   pear = {
     desktop = {
