@@ -8,7 +8,7 @@
       qt6.qtwayland
 
       # file manager
-      cinnamon.nemo-with-extensions
+      nemo-with-extensions
 
       # runner
       wofi
