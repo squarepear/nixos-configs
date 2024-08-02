@@ -9,6 +9,7 @@
     ./mako.nix
     ./pkgs.nix
     # ./plugins.nix
+    ./split-monitor-workspace.nix
   ];
 
   config = lib.mkIf (config.pear.desktop.wm == "hyprland") {
