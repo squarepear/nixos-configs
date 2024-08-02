@@ -26,6 +26,7 @@ in
       wayland.windowManager.hyprland.extraConfig = ''
         # See https://wiki.hyprland.org/Configuring/Monitors/
         monitor=DP-1,3840x2160@240,0x0,1,bitdepth,10
+        monitor=DP-2,3840x2160@60,-2160x-1000,1,transform,1,bitdepth,10
         monitor=,highrr,auto,1
 
 
@@ -45,7 +46,8 @@ in
                 natural_scroll = yes
             }
 
-            sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
+            sensitivity = -0.5 # -1.0 - 1.0, 0 means no modification.
+            # accel_profile = flat # flat, adaptive, or none
             # force_no_accel = true
         }
 
@@ -157,38 +159,6 @@ in
         bind = ${PRIMARY} ${SECONDARY}, right, movefocus, r
         bind = ${PRIMARY} ${SECONDARY}, up, movefocus, u
         bind = ${PRIMARY} ${SECONDARY}, down, movefocus, d
-
-        # Switch workspaces with mainMod + [0-9]
-        bind = ${PRIMARY}, 1, workspace, 1
-        bind = ${PRIMARY}, 2, workspace, 2
-        bind = ${PRIMARY}, 3, workspace, 3
-        bind = ${PRIMARY}, 4, workspace, 4
-        bind = ${PRIMARY}, 5, workspace, 5
-        bind = ${PRIMARY}, 6, workspace, 6
-        bind = ${PRIMARY}, 7, workspace, 7
-        bind = ${PRIMARY}, 8, workspace, 8
-        bind = ${PRIMARY}, 9, workspace, 9
-        bind = ${PRIMARY}, 0, workspace, 10
-
-        # Move active window to a workspace with mainMod + SHIFT + [0-9]
-        bind = ${PRIMARY} ${SECONDARY}, 1, movetoworkspacesilent, 1
-        bind = ${PRIMARY} ${SECONDARY}, 2, movetoworkspacesilent, 2
-        bind = ${PRIMARY} ${SECONDARY}, 3, movetoworkspacesilent, 3
-        bind = ${PRIMARY} ${SECONDARY}, 4, movetoworkspacesilent, 4
-        bind = ${PRIMARY} ${SECONDARY}, 5, movetoworkspacesilent, 5
-        bind = ${PRIMARY} ${SECONDARY}, 6, movetoworkspacesilent, 6
-        bind = ${PRIMARY} ${SECONDARY}, 7, movetoworkspacesilent, 7
-        bind = ${PRIMARY} ${SECONDARY}, 8, movetoworkspacesilent, 8
-        bind = ${PRIMARY} ${SECONDARY}, 9, movetoworkspacesilent, 9
-        bind = ${PRIMARY} ${SECONDARY}, 0, movetoworkspacesilent, 10
-
-        # Move through workspaces with mainMod + arrow keys
-        bind = ${PRIMARY}, left, workspace, e-1
-        bind = ${PRIMARY}, right, workspace, e+1
-
-        # Scroll through existing workspaces with mainMod + scroll
-        bind = ${PRIMARY}, mouse_down, workspace, e-1
-        bind = ${PRIMARY}, mouse_up, workspace, e+1
 
         # Move/resize windows with mainMod + LMB/RMB and dragging
         bindm = ${PRIMARY}, mouse:272, movewindow

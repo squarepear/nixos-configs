@@ -1,4 +1,6 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
+
+with lib;
 
 {
   imports = [
@@ -90,6 +92,11 @@
       ];
       outputs.DP-1.edid = name;
     };
+
+  console = {
+    font = mkForce "ter-i32b";
+    packages = [ pkgs.terminus_font ];
+  };
 
   pear = {
     desktop = {
