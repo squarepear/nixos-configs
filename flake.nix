@@ -2,7 +2,7 @@
   description = "NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/master"; # Waiting for https://github.com/NixOS/nixpkgs/pull/331780
 
     agenix.url = "github:ryantm/agenix";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -13,16 +13,16 @@
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
+    nix-colors.url = "github:misterio77/nix-colors";
+    nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    nix-gaming.url = "github:fufexan/nix-gaming";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixos-vscode-server.url = "github:msteen/nixos-vscode-server";
     split-monitor-workspaces = {
       url = "github:Duckonaut/split-monitor-workspaces";
       inputs.hyprland.follows = "hyprland";
     };
-    nix-darwin.url = "github:LnL7/nix-darwin";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    nix-colors.url = "github:misterio77/nix-colors";
-    nix-gaming.url = "github:fufexan/nix-gaming";
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    nixos-vscode-server.url = "github:msteen/nixos-vscode-server";
   };
 
   outputs = inputs:
