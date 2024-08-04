@@ -6,8 +6,6 @@
 
     ./hardware-configuration.nix
 
-    ../../system
-    # ../../system/k3s/server.nix
     ../../system/backup.nix
     ../../system/containers.nix
     ../../system/distributed-building.nix

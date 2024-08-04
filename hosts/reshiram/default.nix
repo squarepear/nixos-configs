@@ -6,7 +6,6 @@ with lib;
   imports = [
     ./hardware-configuration.nix
 
-    ../../system
     ../../system/ai.nix
     ../../system/audio.nix
     ../../system/backup.nix
@@ -51,7 +50,9 @@ with lib;
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.memtest86.enable = true;
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+
+  boot.kernelPackages = pkgs.linuxPackages_cachyos;
+  chaotic.scx.enable = true;
 
   # Packages
   environment.systemPackages = with pkgs; [ liquidctl ];
