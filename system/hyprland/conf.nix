@@ -26,7 +26,7 @@ in
       wayland.windowManager.hyprland.extraConfig = ''
         # See https://wiki.hyprland.org/Configuring/Monitors/
         monitor=DP-1,3840x2160@240,0x0,1,bitdepth,10
-        monitor=DP-2,3840x2160@60,-2160x-1000,1,transform,1,bitdepth,10
+        monitor=DP-2,3840x2160@60,-3840x0,1,bitdepth,10
         monitor=,highrr,auto,1
 
 
@@ -46,7 +46,7 @@ in
                 natural_scroll = yes
             }
 
-            sensitivity = -0.5 # -1.0 - 1.0, 0 means no modification.
+            # sensitivity = -0.5 # -1.0 - 1.0, 0 means no modification.
             # accel_profile = flat # flat, adaptive, or none
             # force_no_accel = true
         }

@@ -2,6 +2,7 @@
 
 {
   imports = [
+    inputs.chaotic.nixosModules.default
     inputs.nix-gaming.nixosModules.pipewireLowLatency
     inputs.nix-gaming.nixosModules.platformOptimizations
   ];
@@ -71,13 +72,34 @@
       remotePlay.openFirewall = true;
       extest.enable = true;
       platformOptimizations.enable = true;
-      gamescopeSession.enable = true;
     };
 
     programs.gamescope = {
       enable = true;
+      # package = pkgs.gamescope-wsi_git;
       capSysNice = true;
     };
+
+    programs.steam.gamescopeSession = {
+      enable = true;
+
+      args = [
+        "--rt"
+        "--hdr-enabled"
+        "--hdr-itm-enable"
+        "--xwayland-count 2"
+        "-W 3840"
+        "-H 2160"
+        "-r 240"
+      ];
+    };
+
+    chaotic.mesa-git.enable = true;
+    chaotic.hdr.enable = true;
+    chaotic.steam.extraCompatPackages = [
+      pkgs.luxtorpeda
+      pkgs.proton-ge-custom
+    ];
 
     # Fixes some broken games
     hardware.graphics = {
@@ -130,9 +152,11 @@
     };
 
     # Enable bluetooth xbox controller support
-    hardware.xpadneo.enable = true;
+    # hardware.xpadneo.enable = true;
 
-    # Add GameCube controller support
-    services.udev.packages = [ pkgs.dolphin-emu-beta ];
+    # Add more controller support
+    hardware.uinput.enable = true;
+    services.udev.packages = [ pkgs.dolphin-emu-beta pkgs.game-devices-udev-rules ];
+    hardware.steam-hardware.enable = true;
   };
 }

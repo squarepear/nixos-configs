@@ -5,6 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/master"; # Waiting for https://github.com/NixOS/nixpkgs/pull/331780
 
     agenix.url = "github:ryantm/agenix";
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
@@ -47,6 +48,7 @@
               ./lib
               ./modules
               ./pkgs
+              ./system
             ];
 
             specialArgs = { inherit inputs; };

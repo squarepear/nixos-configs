@@ -4,7 +4,6 @@
   imports = [
     ./hardware-configuration.nix
 
-    ../../system
     ../../system/backup.nix
     ../../system/containers.nix
     ../../system/distributed-building.nix
