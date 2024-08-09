@@ -119,7 +119,6 @@ in
         misc {
             disable_hyprland_logo = true
             background_color = 0xff000000
-            no_direct_scanout = false
             vfr = true
         }
 
