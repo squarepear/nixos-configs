@@ -38,7 +38,7 @@
     mpv
     shared-mime-info
     slack
-    betterbird
+    # betterbird
   ];
 
   my.xdg.desktopEntries = lib.mkIf config.pear.desktop.enable {

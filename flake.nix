@@ -2,7 +2,7 @@
   description = "NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/master"; # Waiting for https://github.com/NixOS/nixpkgs/pull/331780
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     agenix.url = "github:ryantm/agenix";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
