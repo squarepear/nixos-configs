@@ -38,6 +38,7 @@
     mpv
     shared-mime-info
     slack
+    zathura
     # betterbird
   ];
 
