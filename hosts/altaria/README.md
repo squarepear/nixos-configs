@@ -6,4 +6,4 @@
 Oracle Cloud ARM Server
 
 - 4x ARM CPU cores
-- 16GB memory
+- 24GB memory
