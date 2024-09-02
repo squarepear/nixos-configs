@@ -163,12 +163,18 @@ in
         bindm = ${PRIMARY}, mouse:272, movewindow
         bindm = ${PRIMARY}, mouse:273, resizewindow
 
-        # Force Godot to be tiled
-        # windowrulev2 = tile,title:^(Godot)$
-
         # Firefox Picture-in-Picture floating and sticky
         windowrulev2 = float, title:^(Picture-in-Picture)$
         windowrulev2 = pin, title:^(Picture-in-Picture)$
+
+        windowrulev2=idleinhibit focus, class:^(steam_app).*
+        windowrulev2=idleinhibit focus, class:^(gamescope).*
+        windowrulev2=idleinhibit focus, class:.*(cemu|yuzu|Ryujinx|emulationstation|retroarch).*
+        windowrulev2=idleinhibit fullscreen, title:.*(cemu|yuzu|Ryujinx|emulationstation|retroarch).*
+        windowrulev2=idleinhibit fullscreen, title:^(.*(Twitch|YouTube|Jellyfin)).*(Firefox).*$
+        windowrulev2=idleinhibit focus, title:^(.*(Twitch|YouTube|Jellyfin)).*(Firefox).*$
+        windowrulev2=idleinhibit focus, class:^(mpv|.+exe)$
+        windowrulev2=immediate, class:^(gamescope|steam_app).*$
 
         # Cursor
         exec-once = hyprctl setcursor ${cursor} ${toString cursorSize}

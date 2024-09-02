@@ -10,7 +10,7 @@
     jq
     killall
     lm_sensors
-    neofetch
+    fastfetch
     neovim
     nixpkgs-fmt
     pciutils
