@@ -32,8 +32,10 @@
     };
 
     shellAliases = {
-      cat = "bat";
-      # ssh = if config.programs.kitty.enable then "kitty +kitten ssh" else "ssh";
+      cat = lib.getExe pkgs.bat;
+      open = "${pkgs.xdg-utils}/bin/xdg-open";
+      ls = lib.getExe pkgs.lsd;
+      top = lib.getExe pkgs.btop;
     };
 
     shellGlobalAliases = {
