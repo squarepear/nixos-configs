@@ -26,7 +26,7 @@
       sameboy # GB/GBC
       mgba # GBA
       melonDS # DS
-      # citra # 3DS
+      lime3ds # 3DS
       dolphin-emu-beta # Wii/GameCube
       cemu # Wii U
       ryujinx # Switch
@@ -52,22 +52,22 @@
     # Enable Steam
     programs.steam = {
       enable = true;
-      package = pkgs.steam.override {
-        extraPkgs = pkgs:
-          with pkgs; [
-            keyutils
-            libkrb5
-            libpng
-            libpulseaudio
-            libvorbis
-            stdenv.cc.cc.lib
-            xorg.libXcursor
-            xorg.libXi
-            xorg.libXinerama
-            xorg.libXScrnSaver
-          ];
-
-      };
+      extraPackages = with pkgs; [
+        gamescope
+        keyutils
+        libkrb5
+        libpng
+        libpulseaudio
+        libvorbis
+        stdenv.cc.cc.lib
+        xorg.libXcursor
+        xorg.libXi
+        xorg.libXinerama
+        xorg.libXScrnSaver
+      ];
+      extraCompatPackages = [
+        pkgs.proton-ge-custom
+      ];
 
       remotePlay.openFirewall = true;
       extest.enable = true;
@@ -95,11 +95,10 @@
     };
 
     chaotic.mesa-git.enable = true;
-    chaotic.hdr.enable = true;
-    chaotic.steam.extraCompatPackages = [
-      pkgs.luxtorpeda
-      pkgs.proton-ge-custom
-    ];
+    chaotic.hdr = {
+      enable = true;
+      specialisation.enable = false;
+    };
 
     # Fixes some broken games
     hardware.graphics = {
