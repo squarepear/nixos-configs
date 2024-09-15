@@ -1,34 +1,50 @@
-{ config, pkgs, ... }:
+{ config, inputs, pkgs, ... }:
 let
+  serverPath = "/data/harmon_family_game_servers/mc_vanilla";
 
-  serverPath = "/data/harmon_family_game_servers/mc_vanilla++";
-
+  nix-minecraft = inputs.nix-minecraft;
 in
 {
   networking.firewall = {
-    allowedTCPPorts = [ 25555 23333 ];
+    allowedTCPPorts = [ 25555 ];
     allowedUDPPorts = [ 24444 ];
   };
 
-  containers.hfgs-vanillapp = {
+  containers.hfgs-mc-vanilla = {
+    config = { lib, pkgs, ... }: {
+      imports = [ nix-minecraft.nixosModules.minecraft-servers ];
+      nixpkgs.overlays = [ nix-minecraft.overlay ];
+      nixpkgs.config.allowUnfree = true;
+
+      services.minecraft-server = {
+        enable = true;
+        eula = true;
+        openFirewall = true;
+
+        package = pkgs.fabricServers.fabric-1_21_1;
+        dataDir = "/data";
+        jvmOpts = "-Xms12288M -Xmx12288M --add-modules=jdk.incubator.vector -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -XX:G1NewSizePercent=40 -XX:G1MaxNewSizePercent=50 -XX:G1HeapRegionSize=16M -XX:G1ReservePercent=15";
+      };
+
+      users.users.minecraft = {
+        uid = lib.mkForce 1000;
+        group = lib.mkForce "users";
+      };
+
+      system.stateVersion = "24.11";
+    };
+
     autoStart = true;
 
     forwardPorts = [
       {
-        containerPort = "25555";
-        hostPort = "25555";
+        containerPort = 25555;
+        hostPort = 25555;
         protocol = "tcp";
       }
-
       {
-        containerPort = "23333";
-        hostPort = "23333";
-        protocol = "tcp";
-      }
-
-      {
-        containerPort = "24444";
-        hostPort = "24444";
+        containerPort = 24444;
+        hostPort = 24444;
         protocol = "udp";
       }
     ];
@@ -38,64 +54,6 @@ in
         hostPath = serverPath;
         isReadOnly = false;
       };
-    };
-
-    config = { config, pkgs, lib, ... }: {
-      services.minecraft-server = {
-        enable = true;
-        package = pkgs.emptyDirectory;
-
-        eula = true;
-        dataDir = "/data/server";
-      };
-
-      systemd.services = {
-        "minecraft-server" = {
-          description = lib.mkForce "Vanilla++ Minecraft Server";
-          after = [ "packwiz.service" ];
-          requires = [ "packwiz.service" ];
-
-          serviceConfig = {
-            ExecStartPre = lib.mkForce "${lib.getExe pkgs.temurin-bin-17} -jar packwiz-installer-bootstrap.jar -g -s server http://[::1]:23333/pack.toml";
-            ExecStart = lib.mkForce ''
-              ${lib.getExe pkgs.temurin-bin-17} -Xms10G -Xmx10G \
-                --add-modules=jdk.incubator.vector -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true \
-                -jar quilt-server-launch.jar nogui
-            '';
-          };
-
-          path = with pkgs; [
-            temurin-bin-17
-          ];
-        };
-
-
-        "packwiz" = {
-          description = "Vanilla++ Packwiz Server";
-          wantedBy = [ "multi-user.target" ];
-          after = [ "network.target" ];
-
-          serviceConfig = {
-            Type = "simple";
-            ExecStart = "${lib.getExe pkgs.packwiz} serve --port 23333";
-            WorkingDirectory = "/data/modpack";
-            User = "minecraft";
-          };
-
-          path = with pkgs; [
-            packwiz
-          ];
-        };
-      };
-
-      networking.firewall = {
-        enable = true;
-
-        allowedTCPPorts = [ 25555 23333 ];
-        allowedUDPPorts = [ 24444 ];
-      };
-
-      system.stateVersion = "23.05";
     };
   };
 }
