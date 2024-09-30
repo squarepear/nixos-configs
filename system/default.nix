@@ -35,10 +35,6 @@
   # Allow unfree packages (vscode, steam, ...)
   nixpkgs.config.allowUnfree = true;
 
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-27.3.11"
-  ];
-
   # Allow firmware with a redistribution license
   hardware.enableRedistributableFirmware = true;
 

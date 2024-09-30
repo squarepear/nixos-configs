@@ -50,6 +50,12 @@ in
         }
 
         {
+          name = "immich";
+          ip = uxie;
+          port = 3001;
+        }
+
+        {
           name = "jellyfin";
           ip = uxie;
           port = 8096;
