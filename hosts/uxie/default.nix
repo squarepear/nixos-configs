@@ -19,6 +19,7 @@
     ../../system/zenpower.nix
     ../../system/zsh.nix
 
+    ./immich.nix
     ./jellyfin.nix
 
     ../../users/jeffrey.nix
@@ -57,7 +58,7 @@
   services.samba = {
     enable = true;
 
-    shares = {
+    settings = {
       media = {
         path = "/mnt/main-pool/media";
         "valid users" = "jeffrey";
