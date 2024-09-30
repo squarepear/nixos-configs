@@ -31,6 +31,9 @@
   # System hostname
   networking.hostName = "tepig";
 
+  # Disable TPM (not supported on raspberry pi)
+  boot.initrd.systemd.tpm2.enable = false;
+
   # Networking
   networking.firewall.trustedInterfaces = [ "end0" ];
   networking.enableIPv6 = false;
