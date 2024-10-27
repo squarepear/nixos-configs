@@ -25,7 +25,7 @@
       coc-html
       coc-json
       coc-prettier
-      coc-python
+      coc-pyright
       coc-sh
       coc-tsserver
       coc-vimlsp

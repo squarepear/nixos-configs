@@ -26,7 +26,7 @@
       sameboy # GB/GBC
       mgba # GBA
       melonDS # DS
-      lime3ds # 3DS
+      # lime3ds # 3DS
       dolphin-emu-beta # Wii/GameCube
       cemu # Wii U
       ryujinx # Switch

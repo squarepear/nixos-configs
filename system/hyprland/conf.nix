@@ -103,7 +103,6 @@ in
             # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
             pseudotile = yes # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
             preserve_split = yes # you probably want this
-            no_gaps_when_only = true
         }
 
         master {
@@ -175,6 +174,8 @@ in
         windowrulev2=idleinhibit focus, title:^(.*(Twitch|YouTube|Jellyfin)).*(Firefox).*$
         windowrulev2=idleinhibit focus, class:^(mpv|.+exe)$
         windowrulev2=immediate, class:^(gamescope|steam_app).*$
+
+        workspace = w[t1], gapsin:0, gapsout:0, border:0, rounding:0
 
         # Cursor
         exec-once = hyprctl setcursor ${cursor} ${toString cursorSize}
