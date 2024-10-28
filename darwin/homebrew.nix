@@ -30,6 +30,8 @@
       "freecad"
       "gswitch"
       "handbrake"
+      "keka"
+      "kekaexternalhelper"
       "kicad"
       "krita"
       "logseq"
