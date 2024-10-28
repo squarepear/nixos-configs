@@ -30,7 +30,6 @@
     discord-canary
     google-chrome
     iterm2
-    keka
     mos
     prismlauncher
     qemu
