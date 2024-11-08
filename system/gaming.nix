@@ -46,6 +46,9 @@
       # In-game hardware monitor
       mangohud
 
+      # VR tools
+      sidequest
+
       vulkan-headers
     ];
 
@@ -145,10 +148,39 @@
       };
     };
 
-    programs.alvr = {
+    # programs.alvr = {
+    #   enable = true;
+    #   openFirewall = true;
+    # };
+
+    services.wivrn = {
       enable = true;
       openFirewall = true;
+      defaultRuntime = true;
     };
+
+    my.xdg.configFile."openxr/1/active_runtime.json".source = "${pkgs.wivrn}/share/openxr/1/openxr_wivrn.json";
+    my.xdg.configFile."openvr/openvrpaths.vrpath".text = ''
+      {
+        "config" :
+        [
+          "${config.my.xdg.dataHome}/Steam/config"
+        ],
+        "external_drivers" : null,
+        "jsonid" : "vrpathreg",
+        "log" :
+        [
+          "${config.my.xdg.dataHome}/Steam/logs"
+        ],
+        "runtime" :
+        [
+          "${pkgs.opencomposite}/lib/opencomposite"
+        ],
+        "version" : 1
+      }
+    '';
+
+    services.xserver.desktopManager.gnome.sessionPath = [ pkgs.sidequest ];
 
     # Enable bluetooth xbox controller support
     # hardware.xpadneo.enable = true;

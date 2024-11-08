@@ -56,6 +56,7 @@ with lib;
 
   # Packages
   environment.systemPackages = with pkgs; [ liquidctl ];
+  programs.droidcam.enable = true;
 
   # Automatically trim unused space from the filesystem
   services.fstrim.enable = true;
