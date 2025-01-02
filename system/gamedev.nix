@@ -6,7 +6,7 @@
     godot_4
 
     # Art
-    blender-hip
+    blender
     aseprite-unfree
     krita
     inkscape
@@ -18,14 +18,5 @@
 
     # Other
     logseq # Note taking and planning
-  ];
-
-  # ROCm/HIP
-  systemd.tmpfiles.rules = [
-    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
-  ];
-
-  hardware.graphics.extraPackages = with pkgs; [
-    rocmPackages.clr.icd
   ];
 }

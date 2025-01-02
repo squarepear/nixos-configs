@@ -88,8 +88,8 @@
 
       args = [
         "--rt"
-        "--hdr-enabled"
-        "--hdr-itm-enable"
+        # "--hdr-enabled"
+        # "--hdr-itm-enable"
         "--xwayland-count 2"
         "-W 3840"
         "-H 2160"
@@ -97,11 +97,11 @@
       ];
     };
 
-    chaotic.mesa-git.enable = true;
-    chaotic.hdr = {
-      enable = true;
-      specialisation.enable = false;
-    };
+    # chaotic.mesa-git.enable = true;
+    # chaotic.hdr = {
+    #   enable = true;
+    #   specialisation.enable = false;
+    # };
 
     # Fixes some broken games
     hardware.graphics = {

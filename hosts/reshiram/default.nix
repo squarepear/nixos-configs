@@ -51,8 +51,8 @@ with lib;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.memtest86.enable = true;
 
-  boot.kernelPackages = pkgs.linuxPackages_cachyos;
-  chaotic.scx.enable = true;
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  # services.scx.enable = true;
 
   # Packages
   environment.systemPackages = with pkgs; [ liquidctl ];
