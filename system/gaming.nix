@@ -88,8 +88,8 @@
 
       args = [
         "--rt"
-        # "--hdr-enabled"
-        # "--hdr-itm-enable"
+        "--hdr-enabled"
+        "--hdr-itm-enable"
         "--xwayland-count 2"
         "-W 3840"
         "-H 2160"
