@@ -123,11 +123,11 @@ in
             vfr = true
         }
 
-        # experimental {
-        #   wide_color_gamut = true
-        #   hdr = true
-        #   xx_color_management_v4 = true
-        # }
+        experimental {
+          wide_color_gamut = true
+          # hdr = true
+          xx_color_management_v4 = true
+        }
 
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
         bind = ${PRIMARY}, return, exec, ${terminal}
