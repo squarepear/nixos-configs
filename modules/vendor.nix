@@ -19,7 +19,7 @@ in
   config = {
     boot.initrd.kernelModules = mkIf (cfg.gpu == "amd") [ "amdgpu" ];
 
-    # nixpkgs.config.rocmSupport = mkIf (cfg.gpu == "amd") true; # FIXME: Waiting for https://github.com/NixOS/nixpkgs/issues/368672
+    nixpkgs.config.rocmSupport = mkIf (cfg.gpu == "amd") true;
     nixpkgs.config.cudaSupport = mkIf (cfg.gpu == "nvidia") true;
   };
 }

@@ -5,6 +5,6 @@
     kicad # Electronics
     freecad-wayland # 3D Design
     openscad # 3D Design
-    # orca-slicer # 3D Printing
+    orca-slicer # 3D Printing
   ];
 }
