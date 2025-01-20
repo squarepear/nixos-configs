@@ -52,7 +52,7 @@ in
         {
           name = "immich";
           ip = uxie;
-          port = 3001;
+          port = 2283;
         }
 
         {
