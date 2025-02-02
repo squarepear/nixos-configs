@@ -7,6 +7,7 @@
     ./hyprlock.nix
     # ./hyprpaper.nix
     ./mako.nix
+    ./menu.nix
     ./pkgs.nix
     # ./plugins.nix
     ./split-monitor-workspace.nix
