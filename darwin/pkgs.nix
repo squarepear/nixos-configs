@@ -30,9 +30,13 @@
     discord-canary
     google-chrome
     iterm2
+    melonDS
     mos
+    mpv-unwrapped
+    ollama
     prismlauncher
     qemu
+    rectangle
     slack
     syncthing
     utm
