@@ -20,6 +20,7 @@
         "/System/Applications/System Settings.app"
         "${pkgs.iterm2}/Applications/iTerm2.app"
         "${pkgs.vscode}/Applications/Visual Studio Code.app"
+        "/Applications/Obsidian.app"
       ];
     };
     finder.CreateDesktop = false;

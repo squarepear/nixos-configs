@@ -18,5 +18,6 @@
 
     # Other
     logseq # Note taking and planning
+    obsidian
   ];
 }
