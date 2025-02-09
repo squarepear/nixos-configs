@@ -9,7 +9,7 @@ let
 
   terminal = lib.getExe pkgs.kitty;
   editor = lib.getExe pkgs.vscode;
-  menu = lib.getExe pkgs.wofi;
+  menu = lib.getExe pkgs.nwg-drawer;
   notifs = lib.getExe pkgs.mako;
   screenshot = lib.getExe pkgs.sway-contrib.grimshot;
   date = "${pkgs.coreutils}/bin/date";
@@ -135,7 +135,7 @@ in
         bind = ${PRIMARY}, F, fullscreen,
         bind = ${PRIMARY} ${SECONDARY}, F, exec, nemo
         bind = ${PRIMARY}, C, exec, ${editor} --enable-features=UseOzonePlatform --ozone-platform=wayland
-        bind = ${PRIMARY}, space, exec, pkill wofi || ${menu} --show drun
+        bind = ${PRIMARY}, space, exec, ${menu} --wm hyprland --nofs
         bind = ${PRIMARY} ${SECONDARY}, space, togglefloating,
         bind = ${PRIMARY}, P, pseudo, # dwindle
         bind = ${PRIMARY}, J, togglesplit, # dwindle
@@ -156,7 +156,7 @@ in
         bind  =, XF86AudioPlay,        exec, playerctl play-pause
         bind  =, XF86AudioNext,        exec, playerctl next
         bind  =, XF86AudioPrev,        exec, playerctl previous
-        bind  =, XF86Search,           exec, ${menu} --show drun
+        bind  =, XF86Search,           exec, ${menu} --wm hyprland --nofs
 
         # See Mouse Binds section for bindm usage
 
@@ -191,8 +191,10 @@ in
         env = HYPRCURSOR_SIZE=${toString cursorSize}
 
         env = NIXOS_OZONE_WL=1
-        env = QT_QPA_PLATFORM=wayland-egl
         env = MOZ_ENABLE_WAYLAND=1
+        env = QT_QPA_PLATFORM=wayland
+        env = SDL_VIDEODRIVER=wayland
+        env = XDG_SESSION_TYPE=wayland
       '';
 
       gtk = {
