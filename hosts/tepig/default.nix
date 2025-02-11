@@ -22,6 +22,7 @@
     ../../system/zsh.nix
 
     ./home-assistant.nix
+    ./monitor.nix
     ./ntfy.nix
     ./reverse-proxy.nix
 
