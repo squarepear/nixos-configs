@@ -44,6 +44,12 @@ in
       { }
       [
         {
+          name = "grafana";
+          ip = tepig;
+          port = 2342;
+        }
+
+        {
           name = "ha";
           ip = tepig;
           port = 8123;
