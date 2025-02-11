@@ -18,7 +18,7 @@
     ../../system/vscode.nix
     ../../system/zsh.nix
 
-    ./minecraft-server.nix
+    # ./minecraft-server.nix
 
     ../../users/jeffrey.nix
   ];
