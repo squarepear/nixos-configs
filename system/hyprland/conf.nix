@@ -202,12 +202,12 @@ in
 
         theme = {
           package = pkgs.whitesur-gtk-theme;
-          name = "WhiteSur-Dark";
+          name = "WhiteSur-dark";
         };
 
         iconTheme = {
-          package = pkgs.kora-icon-theme;
-          name = "kora";
+          package = pkgs.whitesur-icon-theme;
+          name = "WhiteSur";
         };
 
         gtk2.extraConfig = ''
