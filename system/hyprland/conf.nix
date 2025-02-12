@@ -202,7 +202,7 @@ in
 
         theme = {
           package = pkgs.whitesur-gtk-theme;
-          name = "WhiteSur-dark";
+          name = "WhiteSur-dark-solid";
         };
 
         iconTheme = {
