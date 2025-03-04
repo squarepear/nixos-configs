@@ -19,7 +19,7 @@
     programs.vscode = {
       enable = config.pear.desktop.enable;
 
-      userSettings = {
+      profiles.default.userSettings = {
         "update.mode" = "none";
 
         "editor" = {
@@ -60,6 +60,7 @@
         "git.enableCommitSigning" = true;
         "window.zoomLevel" = 4;
         "window.menuBarVisibility" = "toggle";
+        "window.titleBarStyle" = "native";
         "editor.inlineSuggest.enabled" = true;
         "platformio-ide.useBuiltinPIOCore" = false;
 
@@ -75,9 +76,9 @@
         "editor.formatOnSave" = true;
       };
 
-      extensions = with pkgs.vscode-extensions; [
-        # TODO: Add VSCode Extensions
-      ];
+      # extensions = with pkgs.vscode-extensions; [
+      # TODO: Add VSCode Extensions
+      # ];
     };
 
     services.vscode-server.enable = true;
