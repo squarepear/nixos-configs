@@ -25,6 +25,7 @@
     ./monitor.nix
     ./ntfy.nix
     ./reverse-proxy.nix
+    ./rssfeed.nix
 
     ../../users/jeffrey.nix
   ];
