@@ -1,0 +1,7 @@
+{ ... }:
+
+{
+  services.commafeed = {
+    enable = true;
+  };
+}

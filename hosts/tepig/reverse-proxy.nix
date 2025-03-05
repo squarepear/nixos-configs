@@ -44,6 +44,12 @@ in
       { }
       [
         {
+          name = "feed";
+          ip = tepig;
+          port = 8082;
+        }
+
+        {
           name = "grafana";
           ip = tepig;
           port = 2342;
