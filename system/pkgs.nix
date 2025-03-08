@@ -37,18 +37,9 @@
     xarchiver
     mpv
     shared-mime-info
+    discord-canary
     slack
     zathura
     # betterbird
   ];
-
-  my.xdg.desktopEntries = lib.mkIf config.pear.desktop.enable {
-    discord = {
-      name = "Discord";
-      genericName = "discord";
-      exec = "${lib.getExe pkgs.vesktop}";
-      terminal = false;
-      categories = [ "Application" "Chat" ];
-    };
-  };
 }

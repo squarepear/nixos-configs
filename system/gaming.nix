@@ -5,6 +5,7 @@
     inputs.chaotic.nixosModules.default
     inputs.nix-gaming.nixosModules.pipewireLowLatency
     inputs.nix-gaming.nixosModules.platformOptimizations
+    inputs.nixpkgs-xr.nixosModules.nixpkgs-xr
   ];
 
   config = lib.mkIf config.pear.desktop.enable {
@@ -107,7 +108,7 @@
     hardware.graphics = {
       enable = true;
       enable32Bit = true;
-      extraPackages = with pkgs; [ libva ];
+      extraPackages = with pkgs; [ libva monado-vulkan-layers ];
       extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
     };
 
@@ -157,30 +158,19 @@
 
     services.wivrn = {
       enable = true;
+      autoStart = true;
       openFirewall = true;
       defaultRuntime = true;
-    };
 
-    my.xdg.configFile."openxr/1/active_runtime.json".source = "${pkgs.wivrn}/share/openxr/1/openxr_wivrn.json";
-    my.xdg.configFile."openvr/openvrpaths.vrpath".text = ''
-      {
-        "config" :
-        [
-          "${config.my.xdg.dataHome}/Steam/config"
-        ],
-        "external_drivers" : null,
-        "jsonid" : "vrpathreg",
-        "log" :
-        [
-          "${config.my.xdg.dataHome}/Steam/logs"
-        ],
-        "runtime" :
-        [
-          "${pkgs.opencomposite}/lib/opencomposite"
-        ],
-        "version" : 1
-      }
-    '';
+      config = {
+        enable = true;
+
+        json = {
+          bitrate = 135000000;
+          application = pkgs.wlx-overlay-s;
+        };
+      };
+    };
 
     services.xserver.desktopManager.gnome.sessionPath = [ pkgs.sidequest ];
 
