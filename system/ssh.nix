@@ -29,6 +29,7 @@
     ];
 
     extraPackages = [ pkgs.ipset ];
+    bantime = "7d";
     banaction = "iptables-ipset-proto6-allports";
 
     jails.sshd.settings = {
