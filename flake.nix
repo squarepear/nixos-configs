@@ -35,6 +35,7 @@
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixos-vscode-server.url = "github:msteen/nixos-vscode-server";
+    nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
     split-monitor-workspaces = {
       url = "github:Duckonaut/split-monitor-workspaces";
       inputs.hyprland.follows = "hyprland";
