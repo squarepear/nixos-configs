@@ -1,7 +1,9 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   imports = [
+    inputs.nixos-hardware.nixosModules.gigabyte-b550
+
     ./hardware-configuration.nix
 
     ../../system/backup.nix
