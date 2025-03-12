@@ -25,22 +25,19 @@
 
     # services.greetd = {
     #   enable = true;
-    #   package = pkgs.greetd.tuigreet;
 
     #   settings.default_session = {
     #     command = ''
-    #       ${lib.getExe pkgs.greetd.tuigreet} -tr --asterisks --greeting "$(${lib.getExe pkgs.pokedex})" --cmd Hyprland
+    #       ${lib.getExe pkgs.greetd.tuigreet} -trd --user-menu --asterisks --greeting "$(${lib.getExe pkgs.pokedex})" --cmd "uwsm select"
     #     '';
     #   };
     # };
 
-    services.displayManager.enable = true;
-    services.displayManager.sddm = {
-      enable = true;
-      wayland.enable = true;
-
-      enableHidpi = true;
-    };
+    my.programs.zsh.profileExtra = ''
+      if uwsm check may-start && uwsm select; then
+        exec uwsm start default
+      fi
+    '';
 
     programs.hyprland = {
       enable = true;
