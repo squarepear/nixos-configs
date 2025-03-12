@@ -80,7 +80,6 @@
 
     programs.gamescope = {
       enable = true;
-      # package = pkgs.gamescope-wsi_git;
       capSysNice = true;
     };
 
@@ -98,11 +97,8 @@
       ];
     };
 
-    # chaotic.mesa-git.enable = true;
-    # chaotic.hdr = {
-    #   enable = true;
-    #   specialisation.enable = false;
-    # };
+    chaotic.mesa-git.enable = true;
+    chaotic.hdr.enable = true;
 
     # Fixes some broken games
     hardware.graphics = {
@@ -161,6 +157,8 @@
       autoStart = true;
       openFirewall = true;
       defaultRuntime = true;
+
+      extraPackages = [ pkgs.wayvr-dashboard ];
 
       config = {
         enable = true;

@@ -61,6 +61,7 @@
         "window.zoomLevel" = 4;
         "window.menuBarVisibility" = "toggle";
         "window.titleBarStyle" = "native";
+        "window.customTitleBarVisibility" = "never";
         "editor.inlineSuggest.enabled" = true;
         "platformio-ide.useBuiltinPIOCore" = false;
 

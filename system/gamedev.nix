@@ -16,8 +16,7 @@
     lmms
     audacity
 
-    # Other
-    logseq # Note taking and planning
+    # Note Taking and Planning
     obsidian
   ];
 }

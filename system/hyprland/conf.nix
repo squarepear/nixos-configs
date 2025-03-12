@@ -130,11 +130,11 @@ in
         }
 
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-        bind = ${PRIMARY}, return, exec, ${terminal}
+        bind = ${PRIMARY}, return, exec, uwsm app -- ${terminal}
         bind = ${PRIMARY}, Q, killactive,
         bind = ${PRIMARY}, F, fullscreen,
         bind = ${PRIMARY} ${SECONDARY}, F, exec, nemo
-        bind = ${PRIMARY}, C, exec, ${editor} --enable-features=UseOzonePlatform --ozone-platform=wayland
+        bind = ${PRIMARY}, C, exec, uwsm app -- ${editor}
         bind = ${PRIMARY}, space, exec, ${menu} --wm hyprland --nofs
         bind = ${PRIMARY} ${SECONDARY}, space, togglefloating,
         bind = ${PRIMARY}, P, pseudo, # dwindle
@@ -187,15 +187,10 @@ in
 
         # Cursor
         exec-once = hyprctl setcursor ${cursor} ${toString cursorSize}
-        env = HYPRCURSOR_THEME=${cursor}
-        env = HYPRCURSOR_SIZE=${toString cursorSize}
-
-        env = NIXOS_OZONE_WL=1
-        env = MOZ_ENABLE_WAYLAND=1
-        env = QT_QPA_PLATFORM=wayland
-        env = SDL_VIDEODRIVER=wayland
-        env = XDG_SESSION_TYPE=wayland
+        env = HYPRCURSOR_THEME,${cursor}
+        env = HYPRCURSOR_SIZE,${toString cursorSize}
       '';
+
 
       gtk = {
         enable = true;
@@ -250,5 +245,7 @@ in
         "inode/directory" = "nemo.desktop;code.desktop;";
       };
     };
+
+    environment.sessionVariables.NIXOS_OZONE_WL = "1";
   };
 }
