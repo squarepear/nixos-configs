@@ -25,8 +25,8 @@ in
     my = {
       wayland.windowManager.hyprland.extraConfig = ''
         # See https://wiki.hyprland.org/Configuring/Monitors/
-        monitor=DP-1,3840x2160@240,3840x0,1,bitdepth,10
-        monitor=DP-2,3840x2160@60,0x0,1,bitdepth,10
+        monitor=DP-1,3840x2160@240,3840x0,1, bitdepth,10
+        monitor=DP-2,3840x2160@60,0x0,1, bitdepth,10
         monitor=,highrr,auto,1
 
 
@@ -123,9 +123,11 @@ in
             vfr = true
         }
 
+        render {
+          cm_fs_passthrough = 2
+        }
+
         experimental {
-          wide_color_gamut = true
-          # hdr = true
           xx_color_management_v4 = true
         }
 
