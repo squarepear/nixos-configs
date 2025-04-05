@@ -2,12 +2,12 @@
 
 {
   environment.systemPackages = [
-    pkgs.platformio-core
+    pkgs.platformio
     pkgs.avrdude
   ];
 
   services.udev.packages = [
-    pkgs.platformio
+    pkgs.platformio-core
     pkgs.openocd
   ];
 
