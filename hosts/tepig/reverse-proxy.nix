@@ -44,6 +44,12 @@ in
       { }
       [
         {
+          name = "ai";
+          ip = uxie;
+          port = 14141;
+        }
+
+        {
           name = "feed";
           ip = tepig;
           port = 8082;

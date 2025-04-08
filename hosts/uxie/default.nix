@@ -23,6 +23,7 @@
 
     ./immich.nix
     ./jellyfin.nix
+    ./open-webui.nix
 
     ../../users/jeffrey.nix
   ];
