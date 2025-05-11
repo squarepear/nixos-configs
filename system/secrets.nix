@@ -12,7 +12,7 @@
       enable = true;
       enableSshSupport = true;
 
-      pinentryPackage = if config.pear.desktop.enable then pkgs.pinentry-qt else pkgs.pinentry-curses;
+      pinentry.package = if config.pear.desktop.enable then pkgs.pinentry-qt else pkgs.pinentry-curses;
     };
 
     # Enable gnome-keyring

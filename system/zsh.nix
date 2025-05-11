@@ -23,7 +23,7 @@
       ${ if config.my.programs.kitty.enable then "kitty + complete setup zsh | source /dev/stdin" else "# Not installed" }
     '';
 
-    initExtra = ''
+    initContent = ''
       ${lib.getExe pkgs.fastfetch}
     '';
 

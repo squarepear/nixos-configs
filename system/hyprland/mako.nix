@@ -9,11 +9,13 @@ in
       mako = {
         enable = true;
 
-        backgroundColor = "#${palette.base00}";
-        borderColor = "#${palette.base02}";
-        textColor = "#${palette.base05}";
-        font = "CaskaydiaCove Nerd Font 20";
-        defaultTimeout = 10000;
+        settings = {
+          background-color = "#${palette.base00}";
+          border-color = "#${palette.base02}";
+          text-color = "#${palette.base05}";
+          font = "CaskaydiaCove Nerd Font 20";
+          default-timeout = 10000;
+        };
       };
     };
   };
