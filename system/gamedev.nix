@@ -10,7 +10,7 @@
     aseprite-unfree
     krita
     inkscape
-    gimp
+    gimp3
 
     # Audio
     lmms
