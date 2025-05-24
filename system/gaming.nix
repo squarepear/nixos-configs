@@ -155,7 +155,7 @@
     services.wivrn = {
       enable = true;
 
-      package = pkgs.wivrn-local.override {
+      package = pkgs.wivrn.override {
         opencomposite = inputs.nixpkgs-xr.packages.${pkgs.stdenv.hostPlatform.system}.opencomposite;
       };
 
