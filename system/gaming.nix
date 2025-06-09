@@ -109,18 +109,8 @@
     };
 
     # Hardware management
-    programs.corectrl = {
-      enable = true;
-
-      gpuOverclock = {
-        enable = true;
-        ppfeaturemask = "0xffffffff";
-      };
-    };
-
-    users.users."${config.pear.user.name}" = {
-      extraGroups = [ "corectrl" ];
-    };
+    hardware.amdgpu.overdrive.enable = true;
+    services.lact.enable = true;
 
     # Enable gamemode
     programs.gamemode = {
