@@ -33,7 +33,6 @@
       ryujinx # Switch
 
       # Remote play
-      sunshine # Host
       moonlight-qt # Client
 
       # Steam tools
@@ -86,10 +85,15 @@
     programs.steam.gamescopeSession = {
       enable = true;
 
+      env = {
+        DXVK_HDR = "1";
+      };
+
       args = [
         "--rt"
         "--hdr-enabled"
-        "--hdr-itm-enable"
+        "--hdr-itm-enabled"
+        "--hdr-debug-force-output"
         "--xwayland-count 2"
         "-W 3840"
         "-H 2160"
@@ -97,6 +101,15 @@
       ];
     };
 
+    # Sunshine settings
+    services.sunshine = {
+      enable = true;
+      autoStart = true;
+      capSysAdmin = true;
+      openFirewall = true;
+    };
+
+    # HDR settings
     chaotic.mesa-git.enable = true;
     chaotic.hdr.enable = true;
 
@@ -165,7 +178,7 @@
       };
     };
 
-    services.xserver.desktopManager.gnome.sessionPath = [ pkgs.sidequest ];
+    services.desktopManager.gnome.sessionPath = [ pkgs.sidequest ];
 
     # Enable bluetooth xbox controller support
     # hardware.xpadneo.enable = true;

@@ -29,6 +29,7 @@
 
     localVariables = {
       EDITOR = "nvim";
+      BROWSER = "firefox";
     };
 
     shellAliases = {

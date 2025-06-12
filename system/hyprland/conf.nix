@@ -9,7 +9,7 @@ let
 
   terminal = lib.getExe pkgs.kitty;
   editor = lib.getExe pkgs.vscode;
-  menu = lib.getExe pkgs.nwg-drawer;
+  menu = "${pkgs.tofi}/bin/tofi-drun | xargs uwsm app --";
   notifs = lib.getExe pkgs.mako;
   screenshot = lib.getExe pkgs.sway-contrib.grimshot;
   date = "${pkgs.coreutils}/bin/date";
@@ -25,7 +25,7 @@ in
     my = {
       wayland.windowManager.hyprland.extraConfig = ''
         # See https://wiki.hyprland.org/Configuring/Monitors/
-        monitor=DP-1,3840x2160@240,3840x0,1, bitdepth,10
+        monitor=DP-1,3840x2160@240,3840x0,1, bitdepth,10, cm,wide
         monitor=DP-2,3840x2160@60,0x0,1, bitdepth,10
         monitor=,highrr,auto,1
 
@@ -78,17 +78,10 @@ in
               size = 3
               passes = 1
             }
-
-            # shadow {
-            #   enabled = true
-            #   range = 4
-            #   render_power = 3
-            #   color = rgba(1a1a1aee)
-            # }
         }
 
         animations {
-            enabled = yes
+            enabled = no
 
             # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
 
@@ -121,6 +114,8 @@ in
             disable_hyprland_logo = true
             background_color = 0xff000000
             vfr = true
+            mouse_move_enables_dpms = true
+            key_press_enables_dpms = true
         }
 
         render {
@@ -135,9 +130,9 @@ in
         bind = ${PRIMARY}, return, exec, uwsm app -- ${terminal}
         bind = ${PRIMARY}, Q, killactive,
         bind = ${PRIMARY}, F, fullscreen,
-        bind = ${PRIMARY} ${SECONDARY}, F, exec, nemo
+        bind = ${PRIMARY} ${SECONDARY}, F, exec, uwsm app -- nemo
         bind = ${PRIMARY}, C, exec, uwsm app -- ${editor}
-        bind = ${PRIMARY}, space, exec, ${menu} --wm hyprland --nofs
+        bind = ${PRIMARY}, space, exec, ${menu}
         bind = ${PRIMARY} ${SECONDARY}, space, togglefloating,
         bind = ${PRIMARY}, P, pseudo, # dwindle
         bind = ${PRIMARY}, J, togglesplit, # dwindle
@@ -158,7 +153,7 @@ in
         bind  =, XF86AudioPlay,        exec, playerctl play-pause
         bind  =, XF86AudioNext,        exec, playerctl next
         bind  =, XF86AudioPrev,        exec, playerctl previous
-        bind  =, XF86Search,           exec, ${menu} --wm hyprland --nofs
+        bind  =, XF86Search,           exec, ${menu}
 
         # See Mouse Binds section for bindm usage
 
@@ -187,10 +182,16 @@ in
 
         workspace = w[t1], gapsin:0, gapsout:0, border:0, rounding:0
 
+        # Blur tofi
+        layerrule = blur, launcher
+
         # Cursor
         exec-once = hyprctl setcursor ${cursor} ${toString cursorSize}
         env = HYPRCURSOR_THEME,${cursor}
         env = HYPRCURSOR_SIZE,${toString cursorSize}
+
+        # Enable HDR
+        debug:full_cm_proto=true
       '';
 
 
