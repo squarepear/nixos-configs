@@ -66,6 +66,7 @@ with lib;
     "aarch64-linux"
   ];
 
+  services.usbmuxd.enable = true;
 
   hardware.display =
     let

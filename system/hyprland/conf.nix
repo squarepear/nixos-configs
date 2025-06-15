@@ -11,7 +11,7 @@ let
   editor = lib.getExe pkgs.vscode;
   menu = "${pkgs.tofi}/bin/tofi-drun | xargs uwsm app --";
   notifs = lib.getExe pkgs.mako;
-  screenshot = lib.getExe pkgs.sway-contrib.grimshot;
+  screenshot = lib.getExe pkgs.grimblast;
   date = "${pkgs.coreutils}/bin/date";
 
   cursor = "HyprBibataModernClassicSVG";
@@ -25,8 +25,8 @@ in
     my = {
       wayland.windowManager.hyprland.extraConfig = ''
         # See https://wiki.hyprland.org/Configuring/Monitors/
-        monitor=DP-1,3840x2160@240,3840x0,1, bitdepth,10, cm,wide
-        monitor=DP-2,3840x2160@60,0x0,1, bitdepth,10
+        monitor=DP-1,3840x2160@240,3840x0,1#, bitdepth,10, cm,wide
+        monitor=DP-2,3840x2160@60,0x0,1#, bitdepth,10
         monitor=,highrr,auto,1
 
 
@@ -120,6 +120,7 @@ in
 
         render {
           cm_fs_passthrough = 2
+          explicit_sync = false
         }
 
         experimental {
@@ -137,7 +138,6 @@ in
         bind = ${PRIMARY}, P, pseudo, # dwindle
         bind = ${PRIMARY}, J, togglesplit, # dwindle
         bind = ${PRIMARY}, R, forcerendererreload,
-        bind = ${PRIMARY}, TAB, exec, eww open dashboard --toggle
         bind = ${PRIMARY}, M, exit,
 
         # Screenshots, Screen Recording, and Color Picker
@@ -192,6 +192,7 @@ in
 
         # Enable HDR
         debug:full_cm_proto=true
+        render:explicit_sync_kms = 0
       '';
 
 
