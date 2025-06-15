@@ -3,7 +3,6 @@
 {
   imports = [
     ./conf.nix
-    ./eww
     ./hyprlock.nix
     # ./hyprpaper.nix
     ./mako.nix
@@ -11,6 +10,7 @@
     ./pkgs.nix
     # ./plugins.nix
     ./split-monitor-workspace.nix
+    ./quickshell
   ];
 
   config = lib.mkIf (config.pear.desktop.wm == "hyprland") {
@@ -52,19 +52,6 @@
 
       package = null;
       portalPackage = null;
-    };
-
-    xdg.portal = {
-      enable = true;
-      xdgOpenUsePortal = true;
-      config = {
-        common.default = [ "gtk" ];
-        hyprland.default = [ "gtk" "hyprland" ];
-      };
-
-      extraPortals = [
-        pkgs.xdg-desktop-portal-gtk
-      ];
     };
   };
 }
