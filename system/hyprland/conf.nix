@@ -3,22 +3,16 @@
 let
   inherit (config.my.colorScheme) palette;
 
-  PRIMARY = "SUPER";
-  SECONDARY = "SHIFT";
-  TERTIARY = "ALT";
+  inherit (import ./lib.nix { inherit pkgs lib; })
+    PRIMARY SECONDARY TERTIARY
+    terminal editor menu screenshot date fileManager colorPicker
+    uwsmExec notifExec;
 
-  terminal = lib.getExe pkgs.kitty;
-  editor = lib.getExe pkgs.vscode;
-  menu = "${pkgs.tofi}/bin/tofi-drun | xargs uwsm app --";
-  notifs = lib.getExe pkgs.mako;
-  screenshot = lib.getExe pkgs.grimblast;
-  date = "${pkgs.coreutils}/bin/date";
+  ssdir = "$HOME/Pictures/Screenshots";
 
   cursor = "HyprBibataModernClassicSVG";
   cursorPackage = pkgs.bibata-hyprcursor;
   cursorSize = 24;
-
-  ssdir = "$HOME/Pictures/Screenshots";
 in
 {
   config = lib.mkIf (config.pear.desktop.wm == "hyprland") {
@@ -128,11 +122,11 @@ in
         }
 
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-        bind = ${PRIMARY}, return, exec, uwsm app -- ${terminal}
+        bind = ${PRIMARY}, return, exec, ${uwsmExec terminal}
         bind = ${PRIMARY}, Q, killactive,
         bind = ${PRIMARY}, F, fullscreen,
-        bind = ${PRIMARY} ${SECONDARY}, F, exec, uwsm app -- nemo
-        bind = ${PRIMARY}, C, exec, uwsm app -- ${editor}
+        bind = ${PRIMARY} ${SECONDARY}, F, exec, ${uwsmExec fileManager}
+        bind = ${PRIMARY}, C, exec, ${uwsmExec editor}
         bind = ${PRIMARY}, space, exec, ${menu}
         bind = ${PRIMARY} ${SECONDARY}, space, togglefloating,
         bind = ${PRIMARY}, P, pseudo, # dwindle
@@ -144,7 +138,7 @@ in
         bind = ${PRIMARY}, s, exec, ${screenshot} save screen "${ssdir}/$(${date} +"%Y-%m-%d %H:%M:%S").png"
         bind = ${PRIMARY} ${SECONDARY}, s, exec, ${screenshot} save active "${ssdir}/$(${date} +"%Y-%m-%d %H:%M:%S").png"
         bind = ${PRIMARY} ${TERTIARY}, s, exec, ${screenshot} save area "${ssdir}/$(${date} +"%Y-%m-%d %H:%M:%S").png"
-        bind = ${PRIMARY} ${SECONDARY}, C, exec, ${lib.getExe pkgs.hyprpicker} -a
+        bind = ${PRIMARY} ${SECONDARY}, C, exec, ${colorPicker} -a
 
         # Special
         binde =, XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+

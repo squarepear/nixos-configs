@@ -2,8 +2,8 @@
 
 let
   inherit (config.my.colorScheme) palette;
-  PRIMARY = "SUPER";
-  SECONDARY = "SHIFT";
+  inherit (import ./lib.nix { inherit config pkgs lib; })
+    PRIMARY SECONDARY;
 in
 {
   config = lib.mkIf (config.pear.desktop.wm == "hyprland") {

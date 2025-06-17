@@ -10,13 +10,6 @@
       # file manager
       nemo-with-extensions
 
-      # runner
-      wofi
-
-      # screenshots
-      sway-contrib.grimshot
-      grim
-
       # random
       libnotify
       xdg-utils
