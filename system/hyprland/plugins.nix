@@ -1,5 +1,9 @@
-{ inputs, pkgs, ... }:
+{ inputs, lib, pkgs, ... }:
 
+let
+  inherit (import ./lib.nix { inherit pkgs lib; })
+    PRIMARY;
+in
 {
   my.wayland.windowManager.hyprland.plugins = with inputs.hyprland-plugins.packages.${pkgs.system}; [
     # hyprbars
@@ -9,7 +13,7 @@
   ];
 
   my.wayland.windowManager.hyprland.extraConfig = ''
-    bind = SUPER, grave, hyprexpo:expo, toggle # can be: toggle, off/disable or on/enable
+    bind = ${PRIMARY}, grave, hyprexpo:expo, toggle # can be: toggle, off/disable or on/enable
 
     plugin {
         hyprexpo {
