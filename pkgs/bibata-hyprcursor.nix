@@ -1,14 +1,13 @@
-{ lib, stdenvNoCC, fetchurl, bibata-cursors, ... }:
+{ lib, stdenvNoCC, fetchurl, ... }:
 
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "bibata-hyprcursor";
 
-  inherit (bibata-cursors) version;
+  version = "1.0";
 
   src = fetchurl {
-    url = "https://drive.usercontent.google.com/download?id=1HkJPuKNkf4zfVYbQ6IxHUl5KaDXgFest";
-    name = "HyprBibataModernClassic.tar.gz";
-    hash = "sha256-KDYoULjJC0Nhdx9Pz5Ezq+1F0tWwkVQIc5buy07hO98=";
+    url = "https://github.com/LOSEARDES77/Bibata-Cursor-hyprcursor/releases/download/1.0/hypr_Bibata-Modern-Classic.tar.gz";
+    hash = "sha256-+ZXnbI3bBLcb0nv2YW3eM/tK4dsraNM4UAO9BpSqfXk=";
   };
 
   installPhase = ''

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   my.fonts.fontconfig.enable = true;
@@ -7,6 +7,6 @@
     nerd-fonts.ubuntu
     nerd-fonts.ubuntu-mono
     nerd-fonts.caskaydia-cove
-    apple-color-emoji
+    inputs.apple-emoji-linux.packages.${pkgs.stdenv.hostPlatform.system}.apple-emoji-linux
   ];
 }
