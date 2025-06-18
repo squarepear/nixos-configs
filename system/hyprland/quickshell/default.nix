@@ -1,7 +1,7 @@
 { config, inputs, lib, pkgs, ... }:
 
 let
-  inherit (import ./lib.nix { inherit pkgs lib; })
+  inherit (import ./../lib.nix { inherit pkgs lib; })
     uwsmExec;
 
   quickshell = inputs.quickshell.packages."${pkgs.stdenv.hostPlatform.system}".default;
@@ -205,12 +205,12 @@ in
       home.packages = [
         quickshell
         (pkgs.writeShellScriptBin "qsmenu" ''
-          ${uwsmExec lib.getExe quickshell} -n -p ${mainShellQML}
+          ${lib.getExe quickshell} -n -p ${mainShellQML}
         '')
       ];
 
       wayland.windowManager.hyprland.settings.bind = [
-        "SUPER, TAB, exec, ${uwsmExec lib.getExe quickshell} -n -p ${mainShellQML}"
+        "SUPER, TAB, exec, ${lib.getExe quickshell} -n -p ${mainShellQML}"
       ];
     };
   };
