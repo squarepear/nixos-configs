@@ -10,7 +10,7 @@ let
 
   ssdir = "$HOME/Pictures/Screenshots";
 
-  cursor = "Bibata-Modern-Classic";
+  cursor = "Bibata-Modern-Classic-hyprcursor";
   cursorPackage = pkgs.bibata-hyprcursor;
   cursorSize = 24;
 in
