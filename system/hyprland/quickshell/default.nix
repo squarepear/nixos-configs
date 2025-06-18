@@ -1,7 +1,8 @@
 { config, inputs, lib, pkgs, ... }:
 
 let
-  inherit (config.my.colorScheme) palette;
+  inherit (import ./lib.nix { inherit pkgs lib; })
+    uwsmExec;
 
   quickshell = inputs.quickshell.packages."${pkgs.stdenv.hostPlatform.system}".default;
   mainShellQML = pkgs.writeText "mainShell.qml" ''
@@ -204,13 +205,13 @@ in
       home.packages = [
         quickshell
         (pkgs.writeShellScriptBin "qsmenu" ''
-          ${lib.getExe quickshell} -n -p ${mainShellQML}
+          ${uwsmExec lib.getExe quickshell} -n -p ${mainShellQML}
         '')
       ];
 
-      wayland.windowManager.hyprland.extraConfig = ''
-        bind = SUPER, TAB, exec, uwsm app -- ${lib.getExe quickshell} -n -p ${mainShellQML}
-      '';
+      wayland.windowManager.hyprland.settings.bind = [
+        "SUPER, TAB, exec, ${uwsmExec lib.getExe quickshell} -n -p ${mainShellQML}"
+      ];
     };
   };
 }

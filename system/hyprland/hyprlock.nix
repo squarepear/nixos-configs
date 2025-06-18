@@ -134,13 +134,13 @@ in
         };
       };
 
-      wayland.windowManager.hyprland.extraConfig = ''
+      wayland.windowManager.hyprland.settings.bind = [
         # Lock screen with hyprlock
-        bind = ${PRIMARY}, L, exec, ${lib.getExe pkgs.hyprlock} --immediate
+        "${PRIMARY}, L, exec, ${lib.getExe pkgs.hyprlock} --immediate"
 
         # Suspend system
-        bind = ${PRIMARY} ${SECONDARY}, L, exec, systemctl suspend
-      '';
+        "${PRIMARY} ${SECONDARY}, L, exec, systemctl suspend"
+      ];
     };
 
     security.pam.services.hyprlock = { };
