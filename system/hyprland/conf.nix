@@ -6,7 +6,7 @@ let
   inherit (import ./lib.nix { inherit pkgs lib; })
     PRIMARY SECONDARY TERTIARY
     terminal editor menu screenshot date fileManager colorPicker
-    uwsmExec notifExec;
+    uwsmExec;
 
   ssdir = "$HOME/Pictures/Screenshots";
 
@@ -17,177 +17,206 @@ in
 {
   config = lib.mkIf (config.pear.desktop.wm == "hyprland") {
     my = {
-      wayland.windowManager.hyprland.extraConfig = ''
-        # See https://wiki.hyprland.org/Configuring/Monitors/
-        monitor=DP-1,3840x2160@240,3840x0,1#, bitdepth,10, cm,wide
-        monitor=DP-2,3840x2160@60,0x0,1#, bitdepth,10
-        monitor=,highrr,auto,1
+      wayland.windowManager.hyprland.settings = {
+        # Monitor configuration
+        monitor = [
+          "DP-1,3840x2160@240,3840x0,1#, bitdepth,10, cm,wide"
+          "DP-2,3840x2160@60,0x0,1#, bitdepth,10"
+          ",highrr,auto,1"
+        ];
 
+        # Input configuration
+        input = {
+          kb_layout = "us";
+          kb_variant = "";
+          kb_model = "";
+          kb_options = "";
+          kb_rules = "";
+          follow_mouse = 1;
 
-        # See https://wiki.hyprland.org/Configuring/Keywords/ for more
+          touchpad = {
+            natural_scroll = true;
+          };
 
-        # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
-        input {
-            kb_layout = us
-            kb_variant =
-            kb_model =
-            kb_options =
-            kb_rules =
+          # sensitivity = -0.5; # -1.0 - 1.0, 0 means no modification.
+          # accel_profile = "flat"; # flat, adaptive, or none
+          # force_no_accel = true;
+        };
 
-            follow_mouse = 1
+        # General window management
+        general = {
+          gaps_in = 5;
+          gaps_out = 0;
+          border_size = 2;
+          "col.active_border" = "0xff${palette.base0C}";
+          "col.inactive_border" = "0xff${palette.base02}";
+          layout = "dwindle";
+        };
 
-            touchpad {
-                natural_scroll = yes
-            }
+        # Group configuration
+        group = {
+          "col.border_active" = "0xff${palette.base0B}";
+          "col.border_inactive" = "0xff${palette.base04}";
+        };
 
-            # sensitivity = -0.5 # -1.0 - 1.0, 0 means no modification.
-            # accel_profile = flat # flat, adaptive, or none
-            # force_no_accel = true
-        }
+        # Decoration settings
+        decoration = {
+          rounding = 10;
 
-        general {
-            # See https://wiki.hyprland.org/Configuring/Variables/ for more
+          blur = {
+            enabled = true;
+            size = 3;
+            passes = 1;
+          };
+        };
 
-            gaps_in = 5
-            gaps_out = 0
-            border_size = 2
-            col.active_border=0xff${palette.base0C}
-            col.inactive_border=0xff${palette.base02}
+        # Animation settings
+        animations = {
+          enabled = false;
 
-            layout = dwindle
-        }
+          bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
 
-        group {
-          col.border_active=0xff${palette.base0B}
-          col.border_inactive=0xff${palette.base04}
-        }
+          animation = [
+            "windows, 1, 7, myBezier"
+            "windowsOut, 1, 7, default, popin 80%"
+            "border, 1, 10, default"
+            "fade, 1, 7, default"
+            "workspaces, 1, 6, default"
+          ];
+        };
 
-        decoration {
-            # See https://wiki.hyprland.org/Configuring/Variables/ for more
+        # Dwindle layout settings
+        dwindle = {
+          pseudotile = true; # master switch for pseudotiling
+          preserve_split = true; # you probably want this
+        };
 
-            rounding = 10
+        # Master layout settings
+        master = {
+          new_status = "master";
+        };
 
-            blur {
-              enabled = true
-              size = 3
-              passes = 1
-            }
-        }
+        # Gesture settings
+        gestures = {
+          workspace_swipe = true;
+        };
 
-        animations {
-            enabled = no
+        # Miscellaneous settings
+        misc = {
+          disable_hyprland_logo = true;
+          background_color = "0xff000000";
+          vfr = true;
+          mouse_move_enables_dpms = true;
+          key_press_enables_dpms = true;
+        };
 
-            # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
+        # Render settings
+        render = {
+          cm_fs_passthrough = 2;
+          explicit_sync = false;
+          explicit_sync_kms = 0;
+        };
 
-            bezier = myBezier, 0.05, 0.9, 0.1, 1.05
+        # Experimental features
+        experimental = {
+          xx_color_management_v4 = true;
+        };
 
-            animation = windows, 1, 7, myBezier
-            animation = windowsOut, 1, 7, default, popin 80%
-            animation = border, 1, 10, default
-            animation = fade, 1, 7, default
-            animation = workspaces, 1, 6, default
-        }
+        # Debug settings
+        debug = {
+          full_cm_proto = true;
+        };
 
-        dwindle {
-            # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
-            pseudotile = yes # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
-            preserve_split = yes # you probably want this
-        }
+        # Key bindings
+        bind = [
+          "${PRIMARY}, return, exec, ${uwsmExec terminal}"
+          "${PRIMARY}, Q, killactive,"
+          "${PRIMARY}, F, fullscreen,"
+          "${PRIMARY} ${SECONDARY}, F, exec, ${uwsmExec fileManager}"
+          "${PRIMARY}, C, exec, ${uwsmExec editor}"
+          "${PRIMARY}, space, exec, ${menu}"
+          "${PRIMARY} ${SECONDARY}, space, togglefloating,"
+          "${PRIMARY}, P, pseudo," # dwindle
+          "${PRIMARY}, J, togglesplit," # dwindle
+          "${PRIMARY}, R, forcerendererreload,"
+          "${PRIMARY}, M, exit,"
 
-        master {
-            # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-            new_status = master
-        }
+          # Screenshots, Screen Recording, and Color Picker
+          "${PRIMARY}, s, exec, ${screenshot} save screen \"${ssdir}/$(${date} +\"%Y-%m-%d %H:%M:%S\").png\""
+          "${PRIMARY} ${SECONDARY}, s, exec, ${screenshot} save active \"${ssdir}/$(${date} +\"%Y-%m-%d %H:%M:%S\").png\""
+          "${PRIMARY} ${TERTIARY}, s, exec, ${screenshot} save area \"${ssdir}/$(${date} +\"%Y-%m-%d %H:%M:%S\").png\""
+          "${PRIMARY} ${SECONDARY}, C, exec, ${colorPicker} -a"
 
-        gestures {
-            # See https://wiki.hyprland.org/Configuring/Variables/ for more
-            workspace_swipe = on
-        }
+          # Media keys
+          ", XF86AudioPlay, exec, playerctl play-pause"
+          ", XF86AudioNext, exec, playerctl next"
+          ", XF86AudioPrev, exec, playerctl previous"
+          ", XF86Search, exec, ${menu}"
 
-        misc {
-            disable_hyprland_logo = true
-            background_color = 0xff000000
-            vfr = true
-            mouse_move_enables_dpms = true
-            key_press_enables_dpms = true
-        }
+          # Move focus with mainMod + SHIFT + arrow keys
+          "${PRIMARY} ${SECONDARY}, left, movefocus, l"
+          "${PRIMARY} ${SECONDARY}, right, movefocus, r"
+          "${PRIMARY} ${SECONDARY}, up, movefocus, u"
+          "${PRIMARY} ${SECONDARY}, down, movefocus, d"
+        ];
 
-        render {
-          cm_fs_passthrough = 2
-          explicit_sync = false
-        }
+        # Volume bindings (special types)
+        binde = [
+          ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+        ];
 
-        experimental {
-          xx_color_management_v4 = true
-        }
+        bindle = [
+          ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        ];
 
-        # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-        bind = ${PRIMARY}, return, exec, ${uwsmExec terminal}
-        bind = ${PRIMARY}, Q, killactive,
-        bind = ${PRIMARY}, F, fullscreen,
-        bind = ${PRIMARY} ${SECONDARY}, F, exec, ${uwsmExec fileManager}
-        bind = ${PRIMARY}, C, exec, ${uwsmExec editor}
-        bind = ${PRIMARY}, space, exec, ${menu}
-        bind = ${PRIMARY} ${SECONDARY}, space, togglefloating,
-        bind = ${PRIMARY}, P, pseudo, # dwindle
-        bind = ${PRIMARY}, J, togglesplit, # dwindle
-        bind = ${PRIMARY}, R, forcerendererreload,
-        bind = ${PRIMARY}, M, exit,
+        bindl = [
+          ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ];
 
-        # Screenshots, Screen Recording, and Color Picker
-        bind = ${PRIMARY}, s, exec, ${screenshot} save screen "${ssdir}/$(${date} +"%Y-%m-%d %H:%M:%S").png"
-        bind = ${PRIMARY} ${SECONDARY}, s, exec, ${screenshot} save active "${ssdir}/$(${date} +"%Y-%m-%d %H:%M:%S").png"
-        bind = ${PRIMARY} ${TERTIARY}, s, exec, ${screenshot} save area "${ssdir}/$(${date} +"%Y-%m-%d %H:%M:%S").png"
-        bind = ${PRIMARY} ${SECONDARY}, C, exec, ${colorPicker} -a
+        # Mouse bindings
+        bindm = [
+          "${PRIMARY}, mouse:272, movewindow"
+          "${PRIMARY}, mouse:273, resizewindow"
+        ];
 
-        # Special
-        binde =, XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
-        bindle=, XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
-        bindl =, XF86AudioMute,        exec, wpctl set-mute   @DEFAULT_AUDIO_SINK@ toggle
-        bind  =, XF86AudioPlay,        exec, playerctl play-pause
-        bind  =, XF86AudioNext,        exec, playerctl next
-        bind  =, XF86AudioPrev,        exec, playerctl previous
-        bind  =, XF86Search,           exec, ${menu}
+        # Window rules
+        windowrulev2 = [
+          # Firefox Picture-in-Picture floating and sticky
+          "float, title:^(Picture-in-Picture)$"
+          "pin, title:^(Picture-in-Picture)$"
 
-        # See Mouse Binds section for bindm usage
+          # Gaming and media idle inhibit rules
+          "idleinhibit focus, class:^(steam_app).*"
+          "idleinhibit focus, class:^(gamescope).*"
+          "idleinhibit focus, class:.*(cemu|yuzu|Ryujinx|emulationstation|retroarch).*"
+          "idleinhibit fullscreen, title:.*(cemu|yuzu|Ryujinx|emulationstation|retroarch).*"
+          "idleinhibit fullscreen, title:^(.*(Twitch|YouTube|Jellyfin)).*(Firefox).*$"
+          "idleinhibit focus, title:^(.*(Twitch|YouTube|Jellyfin)).*(Firefox).*$"
+          "idleinhibit focus, class:^(mpv|.+exe)$"
+          "immediate, class:^(gamescope|steam_app).*$"
+        ];
 
-        # Move focus with mainMod + SHIFT + arrow keys
-        bind = ${PRIMARY} ${SECONDARY}, left, movefocus, l
-        bind = ${PRIMARY} ${SECONDARY}, right, movefocus, r
-        bind = ${PRIMARY} ${SECONDARY}, up, movefocus, u
-        bind = ${PRIMARY} ${SECONDARY}, down, movefocus, d
+        # Workspace rules
+        workspace = [
+          "w[t1], gapsin:0, gapsout:0, border:0, rounding:0"
+        ];
 
-        # Move/resize windows with mainMod + LMB/RMB and dragging
-        bindm = ${PRIMARY}, mouse:272, movewindow
-        bindm = ${PRIMARY}, mouse:273, resizewindow
+        # Layer rules
+        layerrule = [
+          "blur, launcher"
+        ];
 
-        # Firefox Picture-in-Picture floating and sticky
-        windowrulev2 = float, title:^(Picture-in-Picture)$
-        windowrulev2 = pin, title:^(Picture-in-Picture)$
+        # Environment variables
+        env = [
+          "HYPRCURSOR_THEME,${cursor}"
+          "HYPRCURSOR_SIZE,${toString cursorSize}"
+        ];
 
-        windowrulev2=idleinhibit focus, class:^(steam_app).*
-        windowrulev2=idleinhibit focus, class:^(gamescope).*
-        windowrulev2=idleinhibit focus, class:.*(cemu|yuzu|Ryujinx|emulationstation|retroarch).*
-        windowrulev2=idleinhibit fullscreen, title:.*(cemu|yuzu|Ryujinx|emulationstation|retroarch).*
-        windowrulev2=idleinhibit fullscreen, title:^(.*(Twitch|YouTube|Jellyfin)).*(Firefox).*$
-        windowrulev2=idleinhibit focus, title:^(.*(Twitch|YouTube|Jellyfin)).*(Firefox).*$
-        windowrulev2=idleinhibit focus, class:^(mpv|.+exe)$
-        windowrulev2=immediate, class:^(gamescope|steam_app).*$
-
-        workspace = w[t1], gapsin:0, gapsout:0, border:0, rounding:0
-
-        # Blur tofi
-        layerrule = blur, launcher
-
-        # Cursor
-        exec-once = hyprctl setcursor ${cursor} ${toString cursorSize}
-        env = HYPRCURSOR_THEME,${cursor}
-        env = HYPRCURSOR_SIZE,${toString cursorSize}
-
-        # Enable HDR
-        debug:full_cm_proto=true
-        render:explicit_sync_kms = 0
-      '';
+        # Startup commands
+        "exec-once" = [
+          "hyprctl setcursor ${cursor} ${toString cursorSize}"
+        ];
+      };
 
 
       gtk = {

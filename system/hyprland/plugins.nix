@@ -12,9 +12,11 @@ in
     # hyprwinwrap
   ];
 
-  my.wayland.windowManager.hyprland.extraConfig = ''
-    bind = ${PRIMARY}, grave, hyprexpo:expo, toggle # can be: toggle, off/disable or on/enable
+  my.wayland.windowManager.hyprland.settings.bind = [
+    "${PRIMARY}, grave, hyprexpo:expo, toggle" # can be: toggle, off/disable or on/enable
+  ];
 
+  my.wayland.windowManager.hyprland.extraConfig = ''
     plugin {
         hyprexpo {
             columns = 3
