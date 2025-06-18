@@ -13,8 +13,13 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   installPhase = ''
     runHook preInstall
 
-    mkdir -p $out/share/icons
-    cp -r $PWD $out/share/icons
+    mkdir -p $out/share/icons/Bibata-Modern-Classic-hyprcursor
+    cp -r ../hyprcursors $out/share/icons/Bibata-Modern-Classic-hyprcursor/
+    cp ../manifest.hl $out/share/icons/Bibata-Modern-Classic-hyprcursor/
+    
+    # Replace the name in manifest.hl
+    substituteInPlace $out/share/icons/Bibata-Modern-Classic-hyprcursor/manifest.hl \
+      --replace "name = Bibata-Modern-Classic" "name = Bibata-Modern-Classic-hyprcursor"
 
     runHook postInstall
   '';
