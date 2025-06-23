@@ -4,7 +4,7 @@
   imports = [
     ./conf.nix
     ./hyprlock.nix
-    # ./hyprpaper.nix
+    ./hyprpaper.nix
     ./mako.nix
     ./menu.nix
     ./pkgs.nix
