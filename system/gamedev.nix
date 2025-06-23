@@ -13,7 +13,7 @@
     gimp3
 
     # Audio
-    lmms
+    # lmms # FIXME: Waiting for https://github.com/NixOS/nixpkgs/pull/418925
     audacity
 
     # Note Taking and Planning
