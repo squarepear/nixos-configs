@@ -113,8 +113,6 @@ in
         # Render settings
         render = {
           cm_fs_passthrough = 2;
-          explicit_sync = false;
-          explicit_sync_kms = 0;
         };
 
         # Experimental features
