@@ -111,7 +111,9 @@
 
     # HDR settings
     chaotic.mesa-git.enable = true;
+    chaotic.mesa-git.fallbackSpecialisation = false;
     chaotic.hdr.enable = true;
+    chaotic.hdr.specialisation.enable = false;
 
     # Fixes some broken games
     hardware.graphics = {
