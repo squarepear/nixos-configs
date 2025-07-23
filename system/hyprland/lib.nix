@@ -18,4 +18,7 @@ rec {
   # Helper functions
   uwsmExec = cmd: "uwsm app -- ${cmd}";
   notifExec = notif: cmd: "notify-send ${notif}; ${cmd}";
+
+  # Variables
+  primaryMonitor = "DP-2";
 }
