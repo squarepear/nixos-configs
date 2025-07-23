@@ -3,7 +3,7 @@
 let
   inherit (config.my.colorScheme) palette;
   inherit (import ./lib.nix { inherit config pkgs lib; })
-    PRIMARY SECONDARY;
+    PRIMARY SECONDARY primaryMonitor;
 in
 {
   config = lib.mkIf (config.pear.desktop.wm == "hyprland") {
@@ -29,7 +29,7 @@ in
           label = [
             # Time
             {
-              monitor = "DP-1";
+              monitor = primaryMonitor;
               text = "$TIME12";
               color = "rgb(${palette.base05})";
               font_size = 64;
@@ -40,7 +40,7 @@ in
             }
             # Date
             {
-              monitor = "DP-1";
+              monitor = primaryMonitor;
               text = "cmd[update:1000] echo \"$(date '+%A, %B %d')\"";
               color = "rgb(${palette.base04})";
               font_size = 24;
@@ -51,7 +51,7 @@ in
             }
             # Layout indicator
             {
-              monitor = "DP-1";
+              monitor = primaryMonitor;
               text = "Layout: $LAYOUT";
               color = "rgb(${palette.base04})";
               font_size = 16;
@@ -62,7 +62,7 @@ in
             }
             # Failed attempts
             {
-              monitor = "DP-1";
+              monitor = primaryMonitor;
               text = "$FAIL";
               color = "rgb(${palette.base08})";
               font_size = 18;
@@ -75,7 +75,7 @@ in
 
           # Password input field
           input-field = {
-            monitor = "DP-1";
+            monitor = primaryMonitor;
             size = "400, 60";
             outline_thickness = 3;
             dots_size = 0.3;

@@ -93,7 +93,7 @@ with lib;
           EOF
         '')
       ];
-      outputs.DP-1.edid = name;
+      outputs.DP-2.edid = name;
     };
 
   console = {
