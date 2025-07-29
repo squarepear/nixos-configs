@@ -13,8 +13,8 @@
     enableCompletion = true;
     syntaxHighlighting.enable = true;
     autocd = true;
-    dotDir = ".config/zsh";
-    history.path = "$HOME/.cache/.zsh_history";
+    dotDir = "${config.my.xdg.configHome}/zsh";
+    history.path = "${config.my.xdg.cacheHome}/.zsh_history";
 
     completionInit = ''
       autoload -Uz compinit
