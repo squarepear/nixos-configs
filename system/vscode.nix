@@ -1,15 +1,16 @@
 { config, inputs, lib, pkgs, ... }:
 
 {
-  environment.systemPackages = [
-    pkgs.platformio
-    pkgs.avrdude
-  ];
+  # FIXME: Waiting on https://github.com/NixOS/nixpkgs/pull/429157
+  # environment.systemPackages = [
+  #   pkgs.platformio
+  #   pkgs.avrdude
+  # ];
 
-  services.udev.packages = [
-    pkgs.platformio-core
-    pkgs.openocd
-  ];
+  # services.udev.packages = [
+  #   pkgs.platformio-core
+  #   pkgs.openocd
+  # ];
 
   my = {
     imports = [
