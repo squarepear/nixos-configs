@@ -29,7 +29,7 @@ with lib;
     ../../system/nfs.nix
     ../../system/obs.nix
     ../../system/printing.nix
-    ../../system/rgb.nix
+    # ../../system/rgb.nix
     ../../system/secrets.nix
     ../../system/ssh.nix
     ../../system/tailscale.nix

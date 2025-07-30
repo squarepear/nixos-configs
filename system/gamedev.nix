@@ -14,7 +14,8 @@
 
     # Audio
     lmms
-    audacity
+    # FIXME: Waiting on https://github.com/NixOS/nixpkgs/pull/429334
+    # audacity
 
     # Note Taking and Planning
     obsidian

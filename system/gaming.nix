@@ -30,7 +30,7 @@
       # lime3ds # 3DS
       dolphin-emu-beta # Wii/GameCube
       cemu # Wii U
-      ryujinx # Switch
+      torzu_git # Switch
 
       # Remote play
       moonlight-qt # Client
@@ -148,6 +148,13 @@
           end = "${lib.getExe pkgs.libnotify} 'GameMode ended'";
         };
       };
+    };
+
+    # https://github.com/CachyOS/ananicy-rules
+    services.ananicy = {
+      enable = true;
+      package = pkgs.ananicy-cpp;
+      rulesProvider = pkgs.ananicy-rules-cachyos_git;
     };
 
     # programs.alvr = {
