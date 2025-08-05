@@ -1,21 +1,14 @@
 { config, pkgs, ... }:
 
 {
-  # Enable Connman
-  services.connman = {
-    enable = true;
-    package = pkgs.connmanFull;
-
-    wifi.backend = "iwd";
-  };
-
-  networking.wireless.iwd.enable = true;
+  # Enable NetworkManager
+  networking.networkmanager.enable = true;
+  users.users.${config.pear.user.name}.extraGroups = [ "networkmanager" ];
 
   # Enable TCP BBR
   boot.kernelModules = [ "tcp_bbr" ];
   boot.kernel.sysctl."net.core.default_qdisc" = "fq";
   boot.kernel.sysctl."net.ipv4.tcp_congestion_control" = "bbr";
-
 
   # # Disable dhcpd service
   # networking.dhcpcd.enable = false;
@@ -29,6 +22,6 @@
   programs.mtr.enable = true;
 
   my.home.packages = with pkgs; lib.mkIf config.pear.desktop.enable [
-    cmst
+    networkmanagerapplet
   ];
 }
