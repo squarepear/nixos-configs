@@ -2,6 +2,7 @@
 
 {
   # AMD Zen CPU monitoring
+  boot.kernelModules = [ "zenpower" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [
     zenpower
   ];

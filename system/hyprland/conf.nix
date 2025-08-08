@@ -1,12 +1,26 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}@attrs:
 
 let
   inherit (config.my.colorScheme) palette;
 
-  inherit (import ./lib.nix { inherit pkgs lib; })
-    PRIMARY SECONDARY TERTIARY
-    terminal editor menu screenshot date fileManager colorPicker
-    uwsmExec;
+  inherit (import ./lib.nix attrs)
+    PRIMARY
+    SECONDARY
+    TERTIARY
+    terminal
+    editor
+    menu
+    screenshot
+    date
+    fileManager
+    colorPicker
+    uwsmExec
+    ;
 
   ssdir = "$HOME/Pictures/Screenshots";
 
@@ -216,7 +230,6 @@ in
         ];
       };
 
-
       gtk = {
         enable = true;
 
@@ -259,7 +272,6 @@ in
 
       home.file.".icons/${cursor}".source = "${cursorPackage}/share/icons/${cursor}";
       xdg.dataFile."icons/${cursor}".source = "${cursorPackage}/share/icons/${cursor}";
-
 
       qt = {
         enable = true;

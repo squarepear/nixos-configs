@@ -7,5 +7,8 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-  services.printing.drivers = with pkgs; [ brlaser gutenprint ];
+  services.printing.drivers = with pkgs; [
+    brlaser
+    gutenprint
+  ];
 }

@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   environment.systemPackages = with pkgs; [
@@ -30,16 +35,18 @@
     pokedex
   ];
 
-  my.home.packages = with pkgs; lib.mkIf config.pear.desktop.enable [
-    feh
-    # libreoffice
-    lxmenu-data
-    xarchiver
-    mpv
-    shared-mime-info
-    discord-canary
-    slack
-    zathura
-    # betterbird
-  ];
+  my.home.packages =
+    with pkgs;
+    lib.mkIf config.pear.desktop.enable [
+      feh
+      # libreoffice
+      lxmenu-data
+      xarchiver
+      mpv
+      shared-mime-info
+      discord-canary
+      slack
+      zathura
+      # betterbird
+    ];
 }

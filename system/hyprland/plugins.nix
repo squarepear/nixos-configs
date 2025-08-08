@@ -1,8 +1,13 @@
-{ inputs, lib, pkgs, ... }:
+{
+  inputs,
+  pkgs,
+  ...
+}@attrs:
 
 let
-  inherit (import ./lib.nix { inherit pkgs lib; })
-    PRIMARY;
+  inherit (import ./lib.nix attrs)
+    PRIMARY
+    ;
 in
 {
   my.wayland.windowManager.hyprland.plugins = with inputs.hyprland-plugins.packages.${pkgs.system}; [

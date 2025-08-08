@@ -29,61 +29,66 @@ in
     enable = true;
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
-    virtualHosts = builtins.foldl'
-      (acc: site: acc // {
-        "${site.name}.${root}" = {
-          useACMEHost = "${root}";
-          forceSSL = true;
+    virtualHosts =
+      builtins.foldl'
+        (
+          acc: site:
+          acc
+          // {
+            "${site.name}.${root}" = {
+              useACMEHost = "${root}";
+              forceSSL = true;
 
-          locations."/" = {
-            proxyPass = "http://${site.ip}:${builtins.toString site.port}";
-            proxyWebsockets = true;
-          };
-        };
-      })
-      { }
-      [
-        {
-          name = "ai";
-          ip = uxie;
-          port = 14141;
-        }
+              locations."/" = {
+                proxyPass = "http://${site.ip}:${builtins.toString site.port}";
+                proxyWebsockets = true;
+              };
+            };
+          }
+        )
+        { }
+        [
+          {
+            name = "ai";
+            ip = uxie;
+            port = 14141;
+          }
 
-        {
-          name = "feed";
-          ip = tepig;
-          port = 8082;
-        }
+          {
+            name = "feed";
+            ip = tepig;
+            port = 8082;
+          }
 
-        {
-          name = "grafana";
-          ip = tepig;
-          port = 2342;
-        }
+          {
+            name = "grafana";
+            ip = tepig;
+            port = 2342;
+          }
 
-        {
-          name = "ha";
-          ip = tepig;
-          port = 8123;
-        }
+          {
+            name = "ha";
+            ip = tepig;
+            port = 8123;
+          }
 
-        {
-          name = "immich";
-          ip = uxie;
-          port = 2283;
-        }
+          {
+            name = "immich";
+            ip = uxie;
+            port = 2283;
+          }
 
-        {
-          name = "jellyfin";
-          ip = uxie;
-          port = 8096;
-        }
+          {
+            name = "jellyfin";
+            ip = uxie;
+            port = 8096;
+          }
 
-        {
-          name = "ntfy";
-          ip = tepig;
-          port = 8585;
-        }
-      ];
+          {
+            name = "ntfy";
+            ip = tepig;
+            port = 8585;
+          }
+        ];
   };
 }

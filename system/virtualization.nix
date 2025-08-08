@@ -19,10 +19,24 @@
   programs.virt-manager.enable = true;
 
   # Add libvirtd and tss group
-  users.users."${config.pear.user.name}".extraGroups = [ "libvirtd" "kvm" "tss" ];
+  users.users."${config.pear.user.name}".extraGroups = [
+    "libvirtd"
+    "kvm"
+    "tss"
+  ];
 
   # Boot configuration
-  boot.kernelParams = [ "amd_iommu=on" "iommu=pt" "video=efifb:off" ];
-  boot.kernelModules = [ "kvm-amd" "vfio" "vfio_iommu_type1" "vfio_pci" "vfio_virqfd" ];
+  boot.kernelParams = [
+    "amd_iommu=on"
+    "iommu=pt"
+    "video=efifb:off"
+  ];
+  boot.kernelModules = [
+    "kvm-amd"
+    "vfio"
+    "vfio_iommu_type1"
+    "vfio_pci"
+    "vfio_virqfd"
+  ];
 
 }

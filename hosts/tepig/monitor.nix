@@ -30,16 +30,20 @@
     scrapeConfigs = [
       {
         job_name = "tepig";
-        static_configs = [{
-          targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.node.port}" ];
-        }];
+        static_configs = [
+          {
+            targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.node.port}" ];
+          }
+        ];
       }
 
       {
         job_name = "nginx";
-        static_configs = [{
-          targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.nginx.port}" ];
-        }];
+        static_configs = [
+          {
+            targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.nginx.port}" ];
+          }
+        ];
       }
     ];
   };

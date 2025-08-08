@@ -1,8 +1,15 @@
-{ inputs, lib, pkgs, ... }:
+{
+  inputs,
+  pkgs,
+  ...
+}@attrs:
 
 let
-  inherit (import ./lib.nix { inherit pkgs lib; })
-    PRIMARY SECONDARY TERTIARY;
+  inherit (import ./lib.nix attrs)
+    PRIMARY
+    SECONDARY
+    TERTIARY
+    ;
 
   plugin = inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces;
 in

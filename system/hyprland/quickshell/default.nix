@@ -1,9 +1,12 @@
-{ config, inputs, lib, pkgs, ... }:
+{
+  config,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
-  inherit (import ./../lib.nix { inherit pkgs lib; })
-    uwsmExec;
-
   quickshell = inputs.quickshell.packages."${pkgs.stdenv.hostPlatform.system}".default;
   mainShellQML = pkgs.writeText "mainShell.qml" ''
     import Quickshell

@@ -4,7 +4,12 @@
   # Import config options and system packages
   imports = [
     inputs.home-manager.nixosModules.home-manager
-    ({ ... }: { nix.registry.nixpkgs.flake = inputs.nixpkgs; })
+    (
+      { ... }:
+      {
+        nix.registry.nixpkgs.flake = inputs.nixpkgs;
+      }
+    )
 
     ./age.nix
     ./pkgs.nix

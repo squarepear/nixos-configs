@@ -21,7 +21,9 @@
 
   programs.mtr.enable = true;
 
-  my.home.packages = with pkgs; lib.mkIf config.pear.desktop.enable [
-    networkmanagerapplet
-  ];
+  my.home.packages =
+    with pkgs;
+    lib.mkIf config.pear.desktop.enable [
+      networkmanagerapplet
+    ];
 }
