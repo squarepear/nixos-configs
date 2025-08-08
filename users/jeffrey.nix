@@ -12,7 +12,14 @@
     isNormalUser = true;
     description = "Jeffrey Harmon";
     group = "users";
-    extraGroups = [ "wheel" "input" "audio" "video" "cdrom" "tty" ];
+    extraGroups = [
+      "wheel"
+      "input"
+      "audio"
+      "video"
+      "cdrom"
+      "tty"
+    ];
     home = "/home/${config.pear.user.name}";
     shell = pkgs.zsh;
     uid = 1000;

@@ -52,7 +52,8 @@
     };
   };
 
-  outputs = inputs:
+  outputs =
+    inputs:
     let
       nixos-hosts = [
         "altaria"
@@ -68,36 +69,42 @@
     {
       nixosConfigurations =
         let
-          mkSystem = name: inputs.nixpkgs.lib.nixosSystem {
-            modules = [
-              ./hosts/${name}
-              ./lib
-              ./modules
-              ./pkgs
-              ./system
-            ];
+          mkSystem =
+            name:
+            inputs.nixpkgs.lib.nixosSystem {
+              modules = [
+                ./hosts/${name}
+                ./lib
+                ./modules
+                ./pkgs
+                ./system
+              ];
 
-            specialArgs = { inherit inputs; };
-          };
+              specialArgs = { inherit inputs; };
+            };
 
           # Creates a set of systems with the given names
-          mkSystems = systems: builtins.foldl' (acc: system: acc // { ${system} = mkSystem system; }) { } systems;
+          mkSystems =
+            systems: builtins.foldl' (acc: system: acc // { ${system} = mkSystem system; }) { } systems;
         in
         mkSystems nixos-hosts;
 
       darwinConfigurations =
         let
-          mkSystem = name: inputs.nix-darwin.lib.darwinSystem {
-            modules = [
-              ./hosts/${name}
-              ./darwin
-            ];
+          mkSystem =
+            name:
+            inputs.nix-darwin.lib.darwinSystem {
+              modules = [
+                ./hosts/${name}
+                ./darwin
+              ];
 
-            specialArgs = { inherit inputs; };
-          };
+              specialArgs = { inherit inputs; };
+            };
 
           # Creates a set of systems with the given names
-          mkSystems = systems: builtins.foldl' (acc: system: acc // { ${system} = mkSystem system; }) { } systems;
+          mkSystems =
+            systems: builtins.foldl' (acc: system: acc // { ${system} = mkSystem system; }) { } systems;
         in
         mkSystems darwin-hosts;
     };

@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   inherit (config.my.colorScheme) palette;
@@ -53,7 +58,7 @@ in
 
         .dashboard-box {
           color: #${palette.base05};
-          font-size: ${ toString font-size }px;
+          font-size: ${toString font-size}px;
           
           .widget-box {
             background-color: #${palette.base00};
@@ -75,7 +80,7 @@ in
 
           .song-info {
             .artist-album {
-              font-size: ${ toString(font-size - 6) }px;
+              font-size: ${toString (font-size - 6)}px;
             }
           }
         }

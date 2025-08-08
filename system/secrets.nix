@@ -21,9 +21,13 @@
     # Enable password-store
     programs.password-store = {
       enable = true;
-      package = with pkgs; (pass-wayland.withExtensions (ext: with ext; [
-        pass-update
-      ]));
+      package =
+        with pkgs;
+        (pass-wayland.withExtensions (
+          ext: with ext; [
+            pass-update
+          ]
+        ));
     };
 
     # Enable pass-secret (gnome-keyring alternative)

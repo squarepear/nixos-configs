@@ -1,4 +1,9 @@
-{ lib, stdenvNoCC, fetchurl, ... }:
+{
+  lib,
+  stdenvNoCC,
+  fetchurl,
+  ...
+}:
 
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "bibata-hyprcursor";
@@ -16,7 +21,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     mkdir -p $out/share/icons/Bibata-Modern-Classic-hyprcursor
     cp -r ../hyprcursors $out/share/icons/Bibata-Modern-Classic-hyprcursor/
     cp ../manifest.hl $out/share/icons/Bibata-Modern-Classic-hyprcursor/
-    
+
     # Replace the name in manifest.hl
     substituteInPlace $out/share/icons/Bibata-Modern-Classic-hyprcursor/manifest.hl \
       --replace "name = Bibata-Modern-Classic" "name = Bibata-Modern-Classic-hyprcursor"

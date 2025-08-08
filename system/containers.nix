@@ -21,5 +21,8 @@
   };
 
   # Enable cgroups
-  boot.kernelParams = [ "cgroup_memory=1" "cgroup_enable=memory" ];
+  boot.kernelParams = [
+    "cgroup_memory=1"
+    "cgroup_enable=memory"
+  ];
 }

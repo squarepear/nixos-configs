@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   wallpaper = "/home/jeffrey/Pictures/Wallpapers/wallpaper.jpg";

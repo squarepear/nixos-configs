@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   programs.zsh.enable = true;
@@ -20,7 +25,12 @@
       autoload -Uz compinit
       compinit
       # Completion for kitty
-      ${ if config.my.programs.kitty.enable then "kitty + complete setup zsh | source /dev/stdin" else "# Not installed" }
+      ${
+        if config.my.programs.kitty.enable then
+          "kitty + complete setup zsh | source /dev/stdin"
+        else
+          "# Not installed"
+      }
     '';
 
     initContent = ''

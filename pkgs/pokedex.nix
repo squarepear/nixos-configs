@@ -1,4 +1,9 @@
-{ lib, pkgs, writeShellScriptBin, ... }:
+{
+  lib,
+  pkgs,
+  writeShellScriptBin,
+  ...
+}:
 
 with lib;
 

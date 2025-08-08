@@ -1,4 +1,10 @@
-{ config, inputs, lib, pkgs, ... }:
+{
+  config,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
@@ -119,7 +125,10 @@
     hardware.graphics = {
       enable = true;
       enable32Bit = true;
-      extraPackages = with pkgs; [ libva monado-vulkan-layers ];
+      extraPackages = with pkgs; [
+        libva
+        monado-vulkan-layers
+      ];
       extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
     };
 
@@ -194,7 +203,10 @@
 
     # Add more controller support
     hardware.uinput.enable = true;
-    services.udev.packages = [ pkgs.dolphin-emu-beta pkgs.game-devices-udev-rules ];
+    services.udev.packages = [
+      pkgs.dolphin-emu-beta
+      pkgs.game-devices-udev-rules
+    ];
     hardware.steam-hardware.enable = true;
   };
 }

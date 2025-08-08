@@ -8,7 +8,12 @@ let
   tepig = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHNS2qVtpFUJqZYhrqtbaIXa9TgCvYQiQtf47tXM1iP0";
   uxie = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB7dRYCqWEzF4OUABaid16HXrzVvUx8YMii/FdSdOXvj";
 
-  hosts = [ altaria reshiram tepig uxie ];
+  hosts = [
+    altaria
+    reshiram
+    tepig
+    uxie
+  ];
 in
 {
   "secrets/test-secret.age".publicKeys = users ++ hosts;
@@ -17,5 +22,8 @@ in
   "secrets/jeffrey/passwordfile.age".publicKeys = [ jeffrey ] ++ hosts;
 
   # Host Specific
-  "secrets/tepig/cloudflare-creds.age".publicKeys = [ jeffrey tepig ];
+  "secrets/tepig/cloudflare-creds.age".publicKeys = [
+    jeffrey
+    tepig
+  ];
 }

@@ -1,9 +1,17 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}@attrs:
 
 let
   inherit (config.my.colorScheme) palette;
-  inherit (import ./lib.nix { inherit config pkgs lib; })
-    PRIMARY SECONDARY primaryMonitor;
+  inherit (import ./lib.nix attrs)
+    PRIMARY
+    SECONDARY
+    primaryMonitor
+    ;
 in
 {
   config = lib.mkIf (config.pear.desktop.wm == "hyprland") {

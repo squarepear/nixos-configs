@@ -1,4 +1,10 @@
-{ config, inputs, lib, pkgs, ... }:
+{
+  config,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   # FIXME: Waiting on https://github.com/NixOS/nixpkgs/pull/429157
@@ -72,7 +78,9 @@
         "nix.serverPath" = "${lib.getExe pkgs.nil}";
         "nix.serverSettings" = {
           "nil" = {
-            "formatting" = { "command" = [ "${lib.getExe pkgs.nixpkgs-fmt}" ]; };
+            "formatting" = {
+              "command" = [ "${lib.getExe pkgs.nixpkgs-fmt}" ];
+            };
           };
         };
         "editor.formatOnSave" = true;

@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   security.rtkit.enable = true;
@@ -13,9 +18,11 @@
 
   programs.noisetorch.enable = true;
 
-  environment.systemPackages = with pkgs; lib.mkIf config.pear.desktop.enable [
-    pavucontrol # Audio control panel
-    helvum # audio channel manager
-    pulseaudio # For pactl
-  ];
+  environment.systemPackages =
+    with pkgs;
+    lib.mkIf config.pear.desktop.enable [
+      pavucontrol # Audio control panel
+      helvum # audio channel manager
+      pulseaudio # For pactl
+    ];
 }

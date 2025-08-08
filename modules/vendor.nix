@@ -8,11 +8,20 @@ in
 {
   options.pear.vendor = {
     cpu = mkOption {
-      type = types.enum [ "intel" "amd" "other" ];
+      type = types.enum [
+        "intel"
+        "amd"
+        "other"
+      ];
     };
 
     gpu = mkOption {
-      type = types.enum [ "amd" "nvidia" "intel" "other" ];
+      type = types.enum [
+        "amd"
+        "nvidia"
+        "intel"
+        "other"
+      ];
     };
   };
 
