@@ -1,8 +1,7 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, ...
 }@attrs:
 
 let
@@ -34,8 +33,8 @@ in
       wayland.windowManager.hyprland.settings = {
         # Monitor configuration
         monitor = [
-          "DP-2,3840x2160@240,3840x0,1#, bitdepth,10, cm,wide"
-          "DP-3,3840x2160@60,0x0,1#, bitdepth,10"
+          "DP-2,3840x2160@240,2160x840,1#, bitdepth,10, cm,wide"
+          "DP-3,3840x2160@60,0x0,1,transform,1#, bitdepth,10"
           ",highrr,auto,1"
         ];
 
