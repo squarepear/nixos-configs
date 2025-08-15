@@ -107,5 +107,7 @@
             systems: builtins.foldl' (acc: system: acc // { ${system} = mkSystem system; }) { } systems;
         in
         mkSystems darwin-hosts;
+
+      formatter.x86_64-linux = inputs.nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
     };
 }
