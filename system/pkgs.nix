@@ -17,7 +17,8 @@
     lm_sensors
     fastfetch
     neovim
-    nixpkgs-fmt
+    nixfmt
+    nixfmt-tree
     pciutils
     pfetch-rs
     rsync # Backup utility

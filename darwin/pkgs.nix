@@ -14,7 +14,8 @@
     htop
     neovim
     nil
-    nixpkgs-fmt
+    nixfmt
+    nixfmt-tree
     pinentry_mac
     platformio-core
     podman
