@@ -79,7 +79,7 @@
         "nix.serverSettings" = {
           "nil" = {
             "formatting" = {
-              "command" = [ "${lib.getExe pkgs.nixpkgs-fmt}" ];
+              "command" = [ "${lib.getExe pkgs.nixfmt}" ];
             };
           };
         };
