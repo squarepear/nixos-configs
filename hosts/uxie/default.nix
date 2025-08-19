@@ -43,6 +43,8 @@
   # Automatically trim unused space from the filesystem
   services.fstrim.enable = true;
 
+  services.smartd.enable = true;
+
   # Enable building for aarch64 (Raspberry Pi)
   boot.binfmt.emulatedSystems = [
     "aarch64-linux"
