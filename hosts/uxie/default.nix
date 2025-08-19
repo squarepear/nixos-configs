@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, lib, pkgs, ... }:
 
 {
   imports = [
@@ -47,6 +47,13 @@
   boot.binfmt.emulatedSystems = [
     "aarch64-linux"
   ];
+
+  users.extraUsers.kiosk.isNormalUser = true;
+  services.cage = {
+    enable = true;
+    user = "kiosk";
+    program = "${lib.getExe pkgs.firefox} --new-window https://jeffreyharmon.dev --kiosk";
+  };
 
   pear = {
     desktop.enable = false;
