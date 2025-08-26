@@ -26,4 +26,9 @@ in
     jeffrey
     tepig
   ];
+
+  "secrets/tepig/miniflux-admin.age".publicKeys = [
+    jeffrey
+    tepig
+  ];
 }
