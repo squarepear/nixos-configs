@@ -85,6 +85,12 @@ in
           }
 
           {
+            name = "nas";
+            ip = uxie;
+            port = 3210;
+          }
+
+          {
             name = "ntfy";
             ip = tepig;
             port = 8585;
