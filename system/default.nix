@@ -23,6 +23,7 @@
 
   # Set timezone
   time.timeZone = "America/Indiana/Indianapolis";
+  environment.sessionVariables.TZ = "America/Indiana/Indianapolis";
 
   # Set localization options
   i18n.defaultLocale = "en_US.UTF-8";
