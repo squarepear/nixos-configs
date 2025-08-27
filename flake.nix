@@ -8,6 +8,7 @@
     apple-emoji-linux.url = "github:samuelngs/apple-emoji-linux";
     apple-emoji-linux.inputs.nixpkgs.follows = "nixpkgs";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    copyparty.url = "github:9001/copyparty";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     homebrew-bundle = {
