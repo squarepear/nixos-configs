@@ -31,4 +31,9 @@ in
     jeffrey
     tepig
   ];
+
+  "secrets/uxie/copyparty/jeffrey-passwordfile.age".publicKeys = [
+    jeffrey
+    uxie
+  ];
 }

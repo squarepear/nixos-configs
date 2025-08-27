@@ -1,4 +1,9 @@
-{ inputs, lib, pkgs, ... }:
+{
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
@@ -21,6 +26,7 @@
     ../../system/zenpower.nix
     ../../system/zsh.nix
 
+    ./copyparty.nix
     ./immich.nix
     ./jellyfin.nix
     ./open-webui.nix
@@ -63,41 +69,6 @@
     vendor = {
       cpu = "amd";
       gpu = "amd";
-    };
-  };
-
-  # SMB
-  services.samba = {
-    enable = true;
-
-    settings = {
-      media = {
-        path = "/mnt/main-pool/media";
-        "valid users" = "jeffrey";
-        public = false;
-        writable = true;
-      };
-
-      time-machine = {
-        path = "/mnt/main-pool/backups/macOS";
-        "valid users" = "jeffrey";
-        public = false;
-        writeable = true;
-        "force user" = "jeffrey";
-        "fruit:aapl" = true;
-        "fruit:time machine" = true;
-        "vfs objects" = "catia fruit streams_xattr";
-      };
-
-      homes = {
-        path = "/mnt/main-pool/users-share/%S";
-        "valid users" = "%S";
-        "create mask" = "0700";
-        "directory mask" = "0700";
-        browseable = false;
-        public = false;
-        writeable = true;
-      };
     };
   };
 }
