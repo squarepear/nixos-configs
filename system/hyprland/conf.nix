@@ -222,6 +222,8 @@ in
         env = [
           "HYPRCURSOR_THEME,${cursor}"
           "HYPRCURSOR_SIZE,${toString cursorSize}"
+          "QT_SCALE_FACTOR,1.5"
+          "GTK_DPI_SCALE,1.5"
         ];
 
         # Startup commands
