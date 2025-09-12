@@ -29,21 +29,7 @@
       inputs.hyprland.homeManagerModules.default
     ];
 
-    # services.greetd = {
-    #   enable = true;
-
-    #   settings.default_session = {
-    #     command = ''
-    #       ${lib.getExe pkgs.greetd.tuigreet} -trd --user-menu --asterisks --greeting "$(${lib.getExe pkgs.pokedex})" --cmd "uwsm select"
-    #     '';
-    #   };
-    # };
-
-    my.programs.zsh.profileExtra = ''
-      if uwsm check may-start && uwsm select; then
-        exec uwsm start default
-      fi
-    '';
+    services.displayManager.ly.enable = true;
 
     programs.hyprland = {
       enable = true;
@@ -60,5 +46,9 @@
       package = null;
       portalPackage = null;
     };
+
+    # Fix for UWSM `A compositor or graphical-session* target is already active!` error
+    services.displayManager.ly.x11Support = false;
+    systemd.user.targets.nixos-fake-graphical-session = lib.mkForce { };
   };
 }
