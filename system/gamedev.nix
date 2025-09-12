@@ -7,13 +7,13 @@
 
     # Art
     blender
-    aseprite-unfree
+    # aseprite
     krita
     inkscape
     gimp3
 
     # Audio
-    lmms
+    # lmms
     # FIXME: Waiting on https://github.com/NixOS/nixpkgs/pull/429334
     # audacity
 

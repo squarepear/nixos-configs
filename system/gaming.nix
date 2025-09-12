@@ -176,22 +176,20 @@
     services.wivrn = {
       enable = true;
 
-      package = pkgs.wivrn.override {
-        opencomposite = inputs.nixpkgs-xr.packages.${pkgs.stdenv.hostPlatform.system}.opencomposite;
-      };
+      package = pkgs.wivrn;
 
       autoStart = true;
       openFirewall = true;
+      highPriority = true;
       defaultRuntime = true;
-
-      extraPackages = [ pkgs.wayvr-dashboard ];
+      steam.importOXRRuntimes = true;
 
       config = {
         enable = true;
 
         json = {
           bitrate = 135000000;
-          application = pkgs.wlx-overlay-s;
+          # application = pkgs.wlx-overlay-s;
         };
       };
     };
