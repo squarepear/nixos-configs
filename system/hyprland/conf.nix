@@ -110,11 +110,6 @@ in
           new_status = "master";
         };
 
-        # Gesture settings
-        gestures = {
-          workspace_swipe = true;
-        };
-
         # Miscellaneous settings
         misc = {
           disable_hyprland_logo = true;
