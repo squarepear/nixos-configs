@@ -24,11 +24,27 @@
     accounts.jeffrey.passwordFile = config.age.secrets.copyparty-jeffrey-passwordfile.path;
 
     volumes = {
-      "/" = {
+      "/public" = {
         path = "/mnt/main-pool/public";
 
         access = {
           r = "*";
+          A = "jeffrey";
+        };
+      };
+
+      "/" = {
+        path = "/mnt/main-pool/srv";
+
+        access = {
+          r = "*";
+        };
+      };
+
+      "/jeffrey" = {
+        path = "/mnt/main-pool/users/jeffrey";
+
+        access = {
           A = "jeffrey";
         };
       };
