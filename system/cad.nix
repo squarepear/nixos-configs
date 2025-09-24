@@ -12,7 +12,6 @@
       kicad # Electronics
       freecad-wayland # 3D Design
       openscad # 3D Design
-      # FIXME: Waiting on https://github.com/NixOS/nixpkgs/issues/429433
-      # orca-slicer # 3D Printing
+      orca-slicer # 3D Printing
     ];
 }
