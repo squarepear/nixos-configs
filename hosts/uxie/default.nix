@@ -30,6 +30,7 @@
     ./immich.nix
     ./jellyfin.nix
     ./open-webui.nix
+    ./reverse-proxy.nix
 
     ../../users/jeffrey.nix
   ];

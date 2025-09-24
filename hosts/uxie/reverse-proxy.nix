@@ -1,6 +1,4 @@
-{ config, lib, ... }:
-
-with lib;
+{ config, ... }:
 
 let
   root = "hl.pear.cx";
@@ -9,7 +7,7 @@ let
   tepig = "100.69.116.34";
 in
 {
-  age.secrets.tepig-cloudflare-creds.file = ../../secrets/tepig/cloudflare-creds.age;
+  age.secrets.uxie-cloudflare-creds.file = ../../secrets/uxie/cloudflare-creds.age;
 
   security.acme = {
     acceptTerms = true;
@@ -19,7 +17,7 @@ in
       domain = "${root}";
       extraDomainNames = [ "*.${root}" ];
       dnsProvider = "cloudflare";
-      environmentFile = config.age.secrets.tepig-cloudflare-creds.path;
+      environmentFile = config.age.secrets.uxie-cloudflare-creds.path;
     };
   };
 
