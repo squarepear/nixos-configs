@@ -29,6 +29,7 @@
     ./copyparty.nix
     ./immich.nix
     ./jellyfin.nix
+    ./n8n.nix
     ./open-webui.nix
     ./reverse-proxy.nix
 

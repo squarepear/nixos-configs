@@ -83,6 +83,12 @@ in
           }
 
           {
+            name = "n8n";
+            ip = uxie;
+            port = 5678;
+          }
+
+          {
             name = "nas";
             ip = uxie;
             port = 3210;
