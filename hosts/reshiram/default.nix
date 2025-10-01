@@ -72,6 +72,12 @@ with lib;
 
   services.usbmuxd.enable = true;
 
+  services.udev.extraRules = ''
+    # USB Receipt Printer
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="0416", ATTRS{idProduct}=="5011", MODE="0664", GROUP="dialout"
+  '';
+  users.users.jeffrey.extraGroups = [ "dialout" ];
+
   hardware.display =
     let
       name = "edid-samsung-g80sd.bin";
