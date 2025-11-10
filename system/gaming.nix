@@ -34,9 +34,9 @@
       mgba # GBA
       melonDS # DS
       # lime3ds # 3DS
-      dolphin-emu-beta # Wii/GameCube
+      dolphin-emu # Wii/GameCube
       cemu # Wii U
-      torzu_git # Switch
+      # torzu_git # Switch
 
       # Remote play
       moonlight-qt # Client
@@ -46,8 +46,7 @@
       steam-rom-manager
 
       # Proton tools
-      protonup
-      proton-caller
+      protonup-ng
 
       # In-game hardware monitor
       mangohud
@@ -202,7 +201,7 @@
     # Add more controller support
     hardware.uinput.enable = true;
     services.udev.packages = [
-      pkgs.dolphin-emu-beta
+      pkgs.dolphin-emu
       pkgs.game-devices-udev-rules
     ];
     hardware.steam-hardware.enable = true;
