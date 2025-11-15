@@ -53,6 +53,7 @@
 
       # VR tools
       sidequest
+      bs-manager
 
       vulkan-headers
     ];
