@@ -193,6 +193,8 @@
       };
     };
 
+    programs.adb.enable = true;
+
     services.desktopManager.gnome.sessionPath = [ pkgs.sidequest ];
 
     # Enable bluetooth xbox controller support
