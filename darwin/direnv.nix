@@ -1,5 +1,0 @@
-{ ... }:
-
-{
-  programs.direnv.enable = true;
-}

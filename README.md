@@ -14,7 +14,7 @@
   - Home automation, monitoring, reverse proxy, RSS feeds
 - [**uxie**](./hosts/uxie/) - NAS Server (x86_64-linux)
   - Media server (Jellyfin), photo management (Immich), SMB shares
-- [**kyurem**](./hosts/kyurem/) - macOS (darwin)
+<!-- - [**kyurem**](./hosts/kyurem/) - macOS (darwin) -->
 
 ## 📁 Structure
 

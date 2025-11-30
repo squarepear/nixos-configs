@@ -1,7 +1,5 @@
-{ ... }@attrs:
+attrs:
 
 {
-  _module.args = {
-    # utils = import ./utils attrs;
-  };
+  _module.args.pearlib = import ./pearlib attrs;
 }

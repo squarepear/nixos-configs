@@ -1,0 +1,35 @@
+{
+  config,
+  lib,
+  pearlib,
+  pkgs,
+  ...
+}:
+
+let
+  cfg = config.pear.programs.music;
+in
+{
+  options.pear.programs.music = {
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = pearlib.profileEnabled "desktop";
+    };
+  };
+
+  config = lib.mkIf cfg.enable {
+    nixpkgs.config.allowUnfree = true;
+
+    home-manager.users = pearlib.perUser (name: {
+      home.packages = with pkgs; [
+        cider-2
+      ];
+    });
+
+    pear.system.impermanence.users = pearlib.perUser (name: {
+      persist.directories = [
+        ".config/sh.cider.genten"
+      ];
+    });
+  };
+}

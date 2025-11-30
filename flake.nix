@@ -2,69 +2,42 @@
   description = "NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    home-manager.url = "github:nix-community/home-manager/release-25.11";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     agenix.url = "github:ryantm/agenix";
-    apple-emoji-linux.url = "github:samuelngs/apple-emoji-linux";
-    apple-emoji-linux.inputs.nixpkgs.follows = "nixpkgs";
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    copyparty.url = "github:9001/copyparty";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.url = "github:nix-community/home-manager";
-    homebrew-bundle = {
-      url = "github:homebrew/homebrew-bundle";
-      flake = false;
-    };
-    homebrew-core = {
-      url = "github:homebrew/homebrew-core";
-      flake = false;
-    };
-    homebrew-cask = {
-      url = "github:homebrew/homebrew-cask";
-      flake = false;
-    };
-    hyprland.inputs.nixpkgs.follows = "nixpkgs";
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-    mac-app-util.url = "github:hraban/mac-app-util";
-    nix-colors.url = "github:misterio77/nix-colors";
-    nix-darwin.url = "github:LnL7/nix-darwin";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    nix-gaming.url = "github:fufexan/nix-gaming";
-    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
-    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    nixos-vscode-server.url = "github:msteen/nixos-vscode-server";
-    nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    split-monitor-workspaces = {
-      url = "github:Duckonaut/split-monitor-workspaces";
-      inputs.hyprland.follows = "hyprland";
-    };
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
+    agenix.inputs.home-manager.follows = "home-manager";
+
+    nixvim.url = "github:nix-community/nixvim";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
+    # UI/UX related packages and modules
+    # use commit ee67278038b5b6597172b2a3ee9d57f6ad0eafc7 to fix no mouse cursor issue
+    hyprland.url = "github:hyprwm/Hyprland";
+    # hyprland.url = "github:hyprwm/Hyprland/ee67278038b5b6597172b2a3ee9d57f6ad0eafc7";
+    hyprland.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    split-monitor-workspaces.url = "github:Duckonaut/split-monitor-workspaces";
+    split-monitor-workspaces.inputs.hyprland.follows = "hyprland";
+
+    # Disk and boot management tools
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
+    impermanence.url = "github:nix-community/impermanence";
+    impermanence.inputs.nixpkgs.follows = "nixpkgs";
+    impermanence.inputs.home-manager.follows = "home-manager";
   };
 
   outputs =
     inputs:
     let
-      nixos-hosts = [
-        "altaria"
+      hosts = [
+        # "altaria"
         "reshiram"
-        "tepig"
-        "uxie"
-      ];
-
-      darwin-hosts = [
-        "kyurem"
+        # "tepig"
+        # "uxie"
       ];
     in
     {
@@ -78,36 +51,18 @@
                 ./lib
                 ./modules
                 ./pkgs
-                ./system
               ];
 
-              specialArgs = { inherit inputs; };
+              specialArgs = {
+                inherit inputs;
+              };
             };
 
           # Creates a set of systems with the given names
           mkSystems =
             systems: builtins.foldl' (acc: system: acc // { ${system} = mkSystem system; }) { } systems;
         in
-        mkSystems nixos-hosts;
-
-      darwinConfigurations =
-        let
-          mkSystem =
-            name:
-            inputs.nix-darwin.lib.darwinSystem {
-              modules = [
-                ./hosts/${name}
-                ./darwin
-              ];
-
-              specialArgs = { inherit inputs; };
-            };
-
-          # Creates a set of systems with the given names
-          mkSystems =
-            systems: builtins.foldl' (acc: system: acc // { ${system} = mkSystem system; }) { } systems;
-        in
-        mkSystems darwin-hosts;
+        mkSystems hosts;
 
       formatter.x86_64-linux = inputs.nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
     };

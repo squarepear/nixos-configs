@@ -1,83 +1,35 @@
-{
-  lib,
-  pkgs,
-  ...
-}:
-
-with lib;
+{ pkgs, ... }:
 
 {
   imports = [
+    ./config.nix
     ./hardware-configuration.nix
-
-    ../../system/ai.nix
-    ../../system/audio.nix
-    ../../system/backup.nix
-    ../../system/bat.nix
-    ../../system/bluetooth.nix
-    ../../system/cad.nix
-    ../../system/containers.nix
-    ../../system/direnv.nix
-    ../../system/firefox.nix
-    ../../system/fonts.nix
-    ../../system/gamedev.nix
-    ../../system/gaming.nix
-    ../../system/git.nix
-    ../../system/keyboard.nix
-    ../../system/hyprland
-    ../../system/k3s/manager.nix
-    ../../system/kitty.nix
-    ../../system/music.nix
-    ../../system/neovim
-    ../../system/networking.nix
-    ../../system/nfs.nix
-    ../../system/obs.nix
-    ../../system/printing.nix
-    # ../../system/rgb.nix
-    ../../system/secrets.nix
-    ../../system/ssh.nix
-    ../../system/tailscale.nix
-    ../../system/usb.nix
-    ../../system/virtualization.nix
-    ../../system/vscode.nix
-    # ../../system/waydroid.nix
-    ../../system/zenpower.nix
-    ../../system/zsh.nix
-
-    ../../users/jeffrey.nix
+    ./disks.nix
   ];
 
-  # System hostname
-  networking.hostName = "reshiram";
+  disko.devices.disk.main.device = "/dev/nvme0n1";
+  # disko.devices.disk.extra.device = "/dev/nvme1n1";
 
-  # Boot Settings
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.systemd-boot.memtest86.enable = true;
+  boot = {
+    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
 
-  boot.kernelPackages = pkgs.linuxPackages_cachyos;
-  # services.scx.enable = true;
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+    kernelParams = [ "resume_offset=533760" ];
+    resumeDevice = "/dev/disk/by-label/nixos";
+  };
 
-  # Packages
-  environment.systemPackages = with pkgs; [ liquidctl ];
-  programs.droidcam.enable = true;
+  networking.hostName = "reshiram"; # Define your hostname.
 
-  # Automatically trim unused space from the filesystem
-  services.fstrim.enable = true;
+  # Set your time zone.
+  time.timeZone = "America/Indianapolis";
 
-  # Enable building for aarch64 (Raspberry Pi)
-  boot.binfmt.emulatedSystems = [
-    "aarch64-linux"
-  ];
+  # Select internationalisation properties.
+  i18n.defaultLocale = "en_US.UTF-8";
 
-  services.usbmuxd.enable = true;
-
-  services.udev.extraRules = ''
-    # USB Receipt Printer
-    SUBSYSTEM=="usb", ATTRS{idVendor}=="0416", ATTRS{idProduct}=="5011", MODE="0664", GROUP="dialout"
-  '';
-  users.users.jeffrey.extraGroups = [ "dialout" ];
-
+  # Enable 4k240hz for primary display
   hardware.display =
     let
       name = "edid-samsung-g80sd.bin";
@@ -105,21 +57,4 @@ with lib;
       ];
       outputs.DP-2.edid = name;
     };
-
-  console = {
-    font = mkForce "ter-i32b";
-    packages = [ pkgs.terminus_font ];
-  };
-
-  pear = {
-    desktop = {
-      enable = true;
-      wm = "hyprland";
-    };
-
-    vendor = {
-      cpu = "amd";
-      gpu = "amd";
-    };
-  };
 }
