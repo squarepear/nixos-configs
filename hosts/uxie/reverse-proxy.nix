@@ -12,6 +12,10 @@ in
   security.acme = {
     acceptTerms = true;
     defaults.email = "letsencrypt@jeffreyharmon.dev";
+    defaults.extraLegoFlags = [
+      "--dns.propagation-wait"
+      "300s"
+    ];
 
     certs."${root}" = {
       domain = "${root}";
