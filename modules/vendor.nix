@@ -1,34 +1,35 @@
 { config, lib, ... }:
 
-with lib;
-
 let
   cfg = config.pear.vendor;
 in
 {
   options.pear.vendor = {
-    cpu = mkOption {
-      type = types.enum [
+    cpu = lib.mkOption {
+      type = lib.types.enum [
         "intel"
         "amd"
-        "other"
+        "arm"
+        "undefined"
       ];
+      default = "undefined";
     };
 
-    gpu = mkOption {
-      type = types.enum [
+    gpu = lib.mkOption {
+      type = lib.types.enum [
         "amd"
         "nvidia"
         "intel"
-        "other"
+        "undefined"
       ];
+      default = "undefined";
     };
   };
 
   config = {
-    boot.initrd.kernelModules = mkIf (cfg.gpu == "amd") [ "amdgpu" ];
+    boot.initrd.kernelModules = lib.mkIf (cfg.gpu == "amd") [ "amdgpu" ];
 
-    nixpkgs.config.rocmSupport = mkIf (cfg.gpu == "amd") true;
-    nixpkgs.config.cudaSupport = mkIf (cfg.gpu == "nvidia") true;
+    nixpkgs.config.rocmSupport = lib.mkIf (cfg.gpu == "amd") true;
+    nixpkgs.config.cudaSupport = lib.mkIf (cfg.gpu == "nvidia") true;
   };
 }
