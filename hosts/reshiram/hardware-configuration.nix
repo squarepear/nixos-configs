@@ -64,28 +64,6 @@
     fsType = "vfat";
   };
 
-  fileSystems."/mnt/extra/games" = {
-    device = "/dev/disk/by-uuid/6e625a88-27a8-490d-8179-486ca0fccae3";
-    fsType = "btrfs";
-    options = [
-      "subvol=games"
-      "autodefrag"
-      "noatime"
-      "compress=zstd"
-    ];
-  };
-
-  fileSystems."/mnt/extra/media" = {
-    device = "/dev/disk/by-uuid/6e625a88-27a8-490d-8179-486ca0fccae3";
-    fsType = "btrfs";
-    options = [
-      "subvol=media"
-      "autodefrag"
-      "noatime"
-      "compress=zstd"
-    ];
-  };
-
   swapDevices = [ { device = "/dev/disk/by-uuid/79744317-a269-4ad8-b201-889e7e146b6e"; } ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
