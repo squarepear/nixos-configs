@@ -62,7 +62,7 @@
   services.cage = {
     enable = true;
     user = "kiosk";
-    program = "${pkgs.ungoogled-chromium}/bin/chromium --incognito --disable-infobars --kiosk https://jeffreyharmon.dev";
+    program = "${pkgs.ungoogled-chromium}/bin/chromium --password-store=basic --incognito --disable-infobars --kiosk https://nas.hl.pear.cx/public/display/index.html";
     #program = "${pkgs.mesa-demos}/bin/glxgears";
     extraArguments = [
       "-d"
