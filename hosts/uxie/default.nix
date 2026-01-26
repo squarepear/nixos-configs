@@ -62,8 +62,18 @@
   services.cage = {
     enable = true;
     user = "kiosk";
-    program = "${lib.getExe pkgs.firefox} --new-window https://jeffreyharmon.dev --kiosk";
+    program = "${pkgs.ungoogled-chromium}/bin/chromium --incognito --disable-infobars --kiosk https://jeffreyharmon.dev";
+    #program = "${pkgs.mesa-demos}/bin/glxgears";
+    extraArguments = [
+      "-d"
+      "-D"
+      "-s"
+    ];
+    environment = {
+      WLR_LIBINPUT_NO_DEVICES = "1";
+    };
   };
+  systemd.services."cage-tty1".restartIfChanged = lib.mkForce true;
 
   pear = {
     desktop.enable = false;
