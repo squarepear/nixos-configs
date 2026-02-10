@@ -2,7 +2,7 @@
   config,
   lib,
   pearlib,
-  pkgs,
+  unstable,
   ...
 }:
 
@@ -23,8 +23,9 @@ in
 
     programs.steam = {
       enable = true;
+      package = unstable.steam;
       extraCompatPackages = [
-        pkgs.proton-ge-bin
+        unstable.proton-ge-bin
       ];
 
       remotePlay.openFirewall = true;

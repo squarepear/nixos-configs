@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, unstable, ... }:
 
 {
   imports = [
@@ -11,7 +11,7 @@
   # disko.devices.disk.extra.device = "/dev/nvme1n1";
 
   boot = {
-    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    kernelPackages = unstable.linuxKernel.packages.linux_zen;
 
     loader = {
       systemd-boot.enable = true;

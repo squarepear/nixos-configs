@@ -2,6 +2,7 @@
   config,
   lib,
   pearlib,
+  unstable,
   ...
 }:
 
@@ -20,6 +21,7 @@ in
   config = lib.mkIf cfg.enable {
     home-manager.users = pearlib.perUser (_: {
       programs.firefox.enable = true;
+      programs.firefox.package = unstable.firefox;
     });
 
     pear.system.impermanence.users = pearlib.perUser (_: {

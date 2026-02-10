@@ -3,6 +3,7 @@
   lib,
   pearlib,
   pkgs,
+  unstable,
   ...
 }:
 
@@ -32,6 +33,8 @@ in
 
     programs.gamescope = {
       enable = true;
+      package = unstable.gamescope;
+
       capSysNice = true;
     };
 

@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  unstable,
+  ...
+}:
 
 let
   cfg = config.pear.system.networking.tailscale;
@@ -14,6 +19,7 @@ in
   config = lib.mkIf cfg.enable {
     services.tailscale = {
       enable = true;
+      package = unstable.tailscale;
 
       useRoutingFeatures = "both";
       openFirewall = true;

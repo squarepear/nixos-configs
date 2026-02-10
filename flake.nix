@@ -33,19 +33,20 @@
   outputs =
     inputs:
     let
-      hosts = [
-        # "altaria"
-        "reshiram"
-        # "tepig"
-        # "uxie"
-      ];
+      hosts = {
+        # "altaria" = "x86_64-linux";
+        reshiram = "x86_64-linux";
+        # "tepig" = "x86_64-linux";
+        # "uxie" = "x86_64-linux";
+      };
     in
     {
       nixosConfigurations =
         let
           mkSystem =
-            name:
+            name: system:
             inputs.nixpkgs.lib.nixosSystem {
+              inherit system;
               modules = [
                 ./hosts/${name}
                 ./lib
@@ -59,8 +60,7 @@
             };
 
           # Creates a set of systems with the given names
-          mkSystems =
-            systems: builtins.foldl' (acc: system: acc // { ${system} = mkSystem system; }) { } systems;
+          mkSystems = hosts: builtins.mapAttrs mkSystem hosts;
         in
         mkSystems hosts;
 

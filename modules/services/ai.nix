@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  unstable,
+  ...
+}:
 
 let
   cfg = config.pear.services.ai;
@@ -12,6 +17,7 @@ in
   config = lib.mkIf cfg.enable {
     services.ollama = {
       enable = true;
+      package = unstable.ollama;
 
       host = "0.0.0.0";
       port = 11434;

@@ -3,6 +3,7 @@
   lib,
   pearlib,
   pkgs,
+  unstable,
   ...
 }:
 
@@ -25,12 +26,12 @@ in
     nixpkgs.config.allowUnfree = true;
 
     home-manager.users = pearlib.perUser (name: {
-      home.packages = with pkgs; [
-        godot_4_6
-        gdscript-formatter
-        blender
-        krita
-        aseprite
+      home.packages = [
+        unstable.godot_4_6
+        unstable.gdscript-formatter
+        pkgs.blender
+        pkgs.krita
+        pkgs.aseprite
       ];
     });
 

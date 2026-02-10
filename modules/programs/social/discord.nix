@@ -2,7 +2,7 @@
   config,
   lib,
   pearlib,
-  pkgs,
+  unstable,
   ...
 }:
 
@@ -24,7 +24,7 @@ in
     nixpkgs.config.allowUnfree = true;
 
     home-manager.users = pearlib.perUser (name: {
-      home.packages = with pkgs; [
+      home.packages = with unstable; [
         discord-canary
       ];
     });

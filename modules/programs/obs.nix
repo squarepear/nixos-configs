@@ -2,7 +2,7 @@
   config,
   lib,
   pearlib,
-  pkgs,
+  unstable,
   ...
 }:
 
@@ -28,7 +28,8 @@ in
     programs.obs-studio = {
       enable = true;
       enableVirtualCamera = cfg.enableVirtualCamera;
-      plugins = with pkgs.obs-studio-plugins; [
+      package = unstable.obs-studio;
+      plugins = with unstable.obs-studio-plugins; [
         wlrobs
         droidcam-obs
         obs-backgroundremoval

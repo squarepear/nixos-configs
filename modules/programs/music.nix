@@ -2,7 +2,7 @@
   config,
   lib,
   pearlib,
-  pkgs,
+  unstable,
   ...
 }:
 
@@ -21,8 +21,8 @@ in
     nixpkgs.config.allowUnfree = true;
 
     home-manager.users = pearlib.perUser (name: {
-      home.packages = with pkgs; [
-        cider-2
+      home.packages = [
+        unstable.cider-2
       ];
     });
 

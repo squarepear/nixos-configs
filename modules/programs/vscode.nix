@@ -3,6 +3,7 @@
   lib,
   pearlib,
   pkgs,
+  unstable,
   ...
 }:
 
@@ -27,6 +28,7 @@ in
     home-manager.users = pearlib.perUser (name: {
       programs.vscode = {
         enable = true;
+        package = unstable.vscode;
 
         profiles.default.userSettings = {
           "update.mode" = "none";
