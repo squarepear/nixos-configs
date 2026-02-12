@@ -67,9 +67,8 @@ in
           "telemetry.telemetryLevel" = "off";
           "git.enableCommitSigning" = true;
           "window.zoomLevel" = 4;
+          "chat.commandCenter.enabled" = false;
           "window.menuBarVisibility" = "toggle";
-          "window.titleBarStyle" = "native";
-          "window.customTitleBarVisibility" = "never";
           "editor.inlineSuggest.enabled" = true;
           "platformio-ide.useBuiltinPIOCore" = false;
 
