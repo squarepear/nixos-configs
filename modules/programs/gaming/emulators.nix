@@ -23,7 +23,7 @@ in
       home.packages = with unstable; [
         sameboy # GB/GBC
         mgba # GBA
-        melonDS # DS
+        melonds # DS
         # ... # 3DS
         dolphin-emu # Wii/GameCube
         cemu # Wii U
