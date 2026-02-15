@@ -32,6 +32,9 @@ in
         pkgs.blender
         pkgs.krita
         pkgs.aseprite
+
+        # itch.io command-line tool for uploading game builds
+        pkgs.butler
       ];
     });
 
@@ -41,6 +44,7 @@ in
         ".local/share/godot"
         ".config/blender"
         ".config/aseprite"
+        ".config/itch"
       ];
 
       persist.files = [
