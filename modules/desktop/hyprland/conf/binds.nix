@@ -78,7 +78,6 @@ in
           "${PRIMARY}, F, fullscreen,"
           "${PRIMARY} ${SECONDARY}, space, togglefloating,"
           "${PRIMARY}, P, pseudo,"
-          "${PRIMARY}, J, togglesplit,"
           "${PRIMARY}, R, forcerendererreload,"
 
           # utility
