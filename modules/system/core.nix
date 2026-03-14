@@ -26,6 +26,10 @@ in
       type = lib.types.str;
       default = "en_US.UTF-8";
     };
+
+    flakePath = lib.mkOption {
+      type = lib.types.str;
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -51,6 +55,13 @@ in
 
     boot.tmp.cleanOnBoot = true;
     zramSwap.enable = true;
+
+    programs.nh = {
+      enable = true;
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 7d --keep 3";
+      flake = cfg.flakePath;
+    };
 
     # Enable flakes/nix-command.
     nix.extraOptions = ''
