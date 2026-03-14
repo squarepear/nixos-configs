@@ -36,7 +36,6 @@ in
         coreutils
         fastfetch
         fd
-        fzf
         jq
         just
         lsd
@@ -53,6 +52,11 @@ in
         enable = true;
         enableZshIntegration = true;
         settings = { };
+      };
+
+      programs.fzf = {
+        enable = true;
+        enableZshIntegration = true;
       };
 
       programs.zsh =
