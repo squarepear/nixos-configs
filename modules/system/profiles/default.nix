@@ -7,6 +7,7 @@ let
     "server"
     "gaming"
     "development"
+    "pearlab"
   ];
 
   profileDependencies = {
@@ -17,6 +18,10 @@ let
     ];
     server = [ "minimal" ];
     development = [ "minimal" ];
+    pearlab = [
+      "server"
+      "development"
+    ];
   };
 
   expandProfiles =

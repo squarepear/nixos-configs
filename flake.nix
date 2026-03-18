@@ -28,16 +28,22 @@
     impermanence.url = "github:nix-community/impermanence";
     impermanence.inputs.nixpkgs.follows = "nixpkgs";
     impermanence.inputs.home-manager.follows = "home-manager";
+
+    # Homelab related modules and packages
+    copyparty.url = "github:9001/copyparty";
+
+    # Hardware-specific NixOS modules (raspberry-pi-4, gigabyte-b550, etc.)
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
 
   outputs =
     inputs:
     let
       hosts = {
-        # "altaria" = "x86_64-linux";
+        # "altaria" = "aarch64-linux";
         reshiram = "x86_64-linux";
-        # "tepig" = "x86_64-linux";
-        # "uxie" = "x86_64-linux";
+        tepig = "aarch64-linux";
+        uxie = "x86_64-linux";
       };
     in
     {

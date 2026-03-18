@@ -8,6 +8,7 @@
 {
   imports = [
     ./desktop
+    ./lab
     ./programs
     ./services
     ./system

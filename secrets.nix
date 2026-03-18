@@ -21,18 +21,18 @@ in
   # User Specific
   "secrets/jeffrey/passwordfile.age".publicKeys = [ jeffrey ] ++ hosts;
 
-  # Host Specific
-  "secrets/tepig/miniflux-admin.age".publicKeys = [
+  # Lab Specific
+  "secrets/lab/miniflux-admin.age".publicKeys = [
     jeffrey
     tepig
   ];
 
-  "secrets/uxie/cloudflare-creds.age".publicKeys = [
+  "secrets/lab/cloudflare-creds.age".publicKeys = [
     jeffrey
     uxie
   ];
 
-  "secrets/uxie/copyparty/jeffrey-passwordfile.age".publicKeys = [
+  "secrets/lab/copyparty/jeffrey-passwordfile.age".publicKeys = [
     jeffrey
     uxie
   ];
