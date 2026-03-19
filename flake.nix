@@ -40,7 +40,7 @@
     inputs:
     let
       hosts = {
-        # "altaria" = "aarch64-linux";
+        altaria = "aarch64-linux";
         reshiram = "x86_64-linux";
         tepig = "aarch64-linux";
         uxie = "x86_64-linux";
