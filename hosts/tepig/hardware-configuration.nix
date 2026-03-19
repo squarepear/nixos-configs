@@ -17,6 +17,66 @@
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
+  # /boot/firmware is the FAT partition for the Raspberry Pi 4 firmware.
+  # The nixos-hardware raspberry-pi-4 module expects this exact mountpoint.
+  fileSystems."/boot/firmware" = {
+    device = "/dev/disk/by-label/FIRMWARE";
+    fsType = "vfat";
+    options = [ "umask=0077" ];
+  };
+
+  fileSystems."/" = {
+    device = "/dev/disk/by-label/NIXOS_SD";
+    fsType = "btrfs";
+    options = [
+      "subvol=@"
+      "compress=zstd"
+      "noatime"
+    ];
+  };
+
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-label/NIXOS_SD";
+    fsType = "btrfs";
+    options = [
+      "subvol=@nix"
+      "compress=zstd"
+      "noatime"
+    ];
+  };
+
+  fileSystems."/var" = {
+    device = "/dev/disk/by-label/NIXOS_SD";
+    fsType = "btrfs";
+    options = [
+      "subvol=@var"
+      "compress=zstd"
+      "noatime"
+    ];
+  };
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-label/NIXOS_SD";
+    fsType = "btrfs";
+    options = [
+      "subvol=@boot"
+      "compress=zstd"
+      "noatime"
+    ];
+  };
+
+  fileSystems."/home" = {
+    device = "/dev/disk/by-label/NIXOS_SD";
+    fsType = "btrfs";
+    options = [
+      "subvol=@home"
+      "compress=zstd"
+      "noatime"
+    ];
+  };
+
+  swapDevices = [ ];
+
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
 }

@@ -1,3 +1,8 @@
+# This disko config documents the intended disk layout for reinstallation.
+# Mountpoints are intentionally omitted so disko does not generate fileSystems
+# entries — the existing disk uses MBR partitioning (Raspberry Pi 4 requirement)
+# so GPT partlabels cannot be set. See hardware-configuration.nix for the
+# actual mount definitions.
 {
   disko.devices = {
     disk = {
@@ -10,13 +15,9 @@
             firmware = {
               label = "FIRMWARE";
               size = "512M";
-              # Plain FAT partition for Raspberry Pi 4 firmware — not an EFI system partition.
-              # The nixos-hardware raspberry-pi-4 module mounts this at /boot/firmware.
               content = {
                 type = "filesystem";
                 format = "vfat";
-                mountpoint = "/boot/firmware";
-                mountOptions = [ "umask=0077" ];
               };
             };
             root = {
@@ -29,41 +30,11 @@
                   "-f"
                 ];
                 subvolumes = {
-                  "@" = {
-                    mountpoint = "/";
-                    mountOptions = [
-                      "compress=zstd"
-                      "noatime"
-                    ];
-                  };
-                  "@nix" = {
-                    mountpoint = "/nix";
-                    mountOptions = [
-                      "compress=zstd"
-                      "noatime"
-                    ];
-                  };
-                  "@var" = {
-                    mountpoint = "/var";
-                    mountOptions = [
-                      "compress=zstd"
-                      "noatime"
-                    ];
-                  };
-                  "@boot" = {
-                    mountpoint = "/boot";
-                    mountOptions = [
-                      "compress=zstd"
-                      "noatime"
-                    ];
-                  };
-                  "@home" = {
-                    mountpoint = "/home";
-                    mountOptions = [
-                      "compress=zstd"
-                      "noatime"
-                    ];
-                  };
+                  "@" = { };
+                  "@nix" = { };
+                  "@var" = { };
+                  "@boot" = { };
+                  "@home" = { };
                 };
               };
             };
