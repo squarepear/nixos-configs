@@ -14,7 +14,6 @@ in
       port = 5678;
     };
 
-    nixpkgs.config.allowUnfree = lib.mkIf cfg.enable true;
     services.n8n.enable = lib.mkIf cfg.enable true;
   };
 }

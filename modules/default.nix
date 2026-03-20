@@ -29,6 +29,8 @@
   };
 
   config = {
+    nixpkgs.config.allowUnfree = true;
+
     _module.args.unstable = import inputs.nixpkgs-unstable {
       inherit (pkgs.stdenv.hostPlatform) system;
       config.allowUnfree = true;

@@ -22,8 +22,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    nixpkgs.config.allowUnfree = true;
-
     # Configure VSCode for all defined users
     home-manager.users = pearlib.perUser (name: {
       programs.vscode = {

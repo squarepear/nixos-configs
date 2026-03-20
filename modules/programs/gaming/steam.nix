@@ -19,8 +19,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    nixpkgs.config.allowUnfree = true;
-
     programs.steam = {
       enable = true;
       package = unstable.steam;

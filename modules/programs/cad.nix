@@ -21,8 +21,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    nixpkgs.config.allowUnfree = true;
-
     home-manager.users = pearlib.perUser (name: {
       home.packages = with pkgs; [
         kicad # Electronics
