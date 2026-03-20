@@ -29,6 +29,7 @@ in
 
     flakePath = lib.mkOption {
       type = lib.types.str;
+      default = "github:squarepear/nixos-configs";
     };
   };
 

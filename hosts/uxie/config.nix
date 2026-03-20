@@ -12,8 +12,6 @@
       signingKey = "EC6381EC5C7904E8";
     };
 
-    system.core.flakePath = "/home/jeffrey/Development/nixos-configs";
-
     system.vendor.cpu = "amd";
     system.vendor.gpu = "amd";
 
