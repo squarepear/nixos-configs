@@ -29,6 +29,7 @@ in
 
         exec-once = [
           "hyprctl setcursor ${cursor} ${toString cursorSize}"
+          "${lib.getExe pkgs.wl-clip-persist} --clipboard regular"
         ];
 
         input = {
