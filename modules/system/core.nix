@@ -64,6 +64,13 @@ in
       flake = cfg.flakePath;
     };
 
+    system.autoUpgrade = {
+      enable = true;
+      flake = cfg.flakePath;
+      dates = "*-*-* 02:00:00"; # Every day at 2am
+      randomizedDelaySec = "45min";
+    };
+
     # Enable flakes/nix-command.
     nix.extraOptions = ''
       experimental-features = nix-command flakes
