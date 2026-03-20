@@ -84,6 +84,7 @@ in
 
         misc = {
           disable_hyprland_logo = true;
+          disable_splash_rendering = true;
           background_color = "0xff000000";
           vfr = true;
           mouse_move_enables_dpms = true;
