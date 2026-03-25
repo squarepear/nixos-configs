@@ -14,6 +14,9 @@
     ./disks.nix
   ];
 
+  disko.devices.disk.main.device = "/dev/disk/by-id/ata-KINGSTON_SV300S37A120G_50026B773B0342AF";
+  disko.devices.disk.extra.device = "/dev/disk/by-id/nvme-Samsung_SSD_980_500GB_S64ENG0R305552V";
+
   networking.hostName = "uxie";
 
   boot = {
