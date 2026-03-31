@@ -37,7 +37,7 @@ in
           # Godot sub windows (not "Godot" or emptymatch:title)
           "tag godot_sub, float on, tile off, center on, dim_around on, match:initial_class ^(Godot)$, match:initial_title negative:^(Godot)?$"
           # Godot in-engine game preview
-          "tag gaming, content game, match:initial_title ^.*\\(DEBUG\\).*$"
+          "tag gaming, content game, float on, center on, match:initial_title ^Godot$, match:initial_class negative:^Godot$"
           # VSCode floating dialogs
           "float on, center on, match:class ^code$, match:title ^(Open File|Open Folder|Save|Settings).*$"
 
