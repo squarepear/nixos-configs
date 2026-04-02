@@ -1,16 +1,14 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pearlib,
+  ...
+}:
 
 let
   cfg = config.pear.lab.service.reverse-proxy;
   labCfg = config.pear.lab;
   root = "hl.pear.cx";
-
-  # For a given service name, find which host runs it.
-  hostForService =
-    svcName:
-    lib.findFirst (
-      hostName: lib.elem svcName (labCfg.services.${hostName} or [ ])
-    ) (throw "pear.lab: no host defined for service '${svcName}'") (lib.attrNames labCfg.services);
 
   # Build vhosts from all declared proxy routes.
   vhosts = lib.mapAttrs' (
@@ -19,7 +17,7 @@ let
       useACMEHost = root;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://${labCfg.hosts.${hostForService svcName}}:${toString route.port}";
+        proxyPass = "http://${pearlib.ipForService svcName}:${toString route.port}";
         proxyWebsockets = true;
       };
     }

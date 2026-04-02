@@ -3,4 +3,5 @@
 lib.foldl' lib.recursiveUpdate { } [
   (import ./profiles.nix attrs)
   (import ./users.nix attrs)
+  (import ./lab.nix attrs)
 ]

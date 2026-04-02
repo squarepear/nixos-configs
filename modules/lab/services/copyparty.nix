@@ -2,6 +2,7 @@
   config,
   lib,
   inputs,
+  pearlib,
   ...
 }:
 
@@ -38,6 +39,8 @@ in
           i = "0.0.0.0";
           p = 3210;
           usernames = true;
+          rproxy = -1;
+          xff-src = "${pearlib.ipForService "reverse-proxy"}/32";
         };
 
         accounts.jeffrey.passwordFile = config.age.secrets.lab-copyparty-jeffrey-passwordfile.path;
