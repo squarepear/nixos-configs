@@ -13,8 +13,9 @@ let
 in
 {
   imports = [
-    ./steam.nix
     ./emulators.nix
+    ./minecraft.nix
+    ./steam.nix
   ];
 
   options.pear.programs.gaming = {
