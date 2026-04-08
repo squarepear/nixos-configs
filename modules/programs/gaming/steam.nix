@@ -27,7 +27,6 @@ in
       ];
 
       remotePlay.openFirewall = true;
-      extest.enable = true;
 
       gamescopeSession.enable = true;
     };
