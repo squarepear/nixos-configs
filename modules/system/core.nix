@@ -38,8 +38,11 @@ in
     # Use latest nix version from unstable
     nix.package = unstable.nixVersions.latest;
 
-    # Make `nixpkgs` available in `nix registry`.
-    nix.registry.nixpkgs.flake = inputs.nixpkgs;
+    # Make flake inputs available in the Nix registry for nix command
+    nix.registry = {
+      nixpkgs.flake = inputs.nixpkgs;
+      unstable.flake = inputs.nixpkgs-unstable;
+    };
 
     # Set timezone + convenience TZ env.
     time.timeZone = cfg.timeZone;
