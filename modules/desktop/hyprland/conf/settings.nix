@@ -3,6 +3,7 @@
   lib,
   pearlib,
   pkgs,
+  unstable,
   ...
 }@attrs:
 
