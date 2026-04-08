@@ -43,9 +43,10 @@ in
         qt6.qtwayland
 
         # theme assets
-        whitesur-gtk-theme
         whitesur-icon-theme
         numix-icon-theme-circle
+        libadwaita
+        gnome-themes-extra
 
         # cursors
         bibata-hyprcursor
@@ -74,8 +75,8 @@ in
         enable = true;
 
         theme = {
-          package = pkgs.whitesur-gtk-theme;
-          name = "WhiteSur-Dark-solid";
+          package = pkgs.gnome-themes-extra;
+          name = "Adwaita-dark";
         };
 
         iconTheme = {
@@ -95,10 +96,9 @@ in
           gtk-toolbar-icon-size = "GTK_ICON_SIZE_LARGE_TOOLBAR";
         };
 
-        gtk4.extraConfig = {
-          gtk-application-prefer-dark-theme = 1;
-          gtk-toolbar-style = "GTK_TOOLBAR_ICONS";
-          gtk-toolbar-icon-size = "GTK_ICON_SIZE_LARGE_TOOLBAR";
+        gtk4 = {
+          theme = lib.mkForce null;
+          extraConfig = { };
         };
       };
 
