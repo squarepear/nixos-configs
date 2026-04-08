@@ -3,6 +3,7 @@
   inputs,
   lib,
   pearlib,
+  unstable,
   ...
 }:
 
@@ -34,6 +35,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    # Use latest nix version from unstable
+    nix.package = unstable.nixVersions.latest;
+
     # Make `nixpkgs` available in `nix registry`.
     nix.registry.nixpkgs.flake = inputs.nixpkgs;
 
