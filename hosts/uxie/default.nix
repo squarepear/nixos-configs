@@ -38,14 +38,7 @@
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   # Kiosk display: runs Chromium in a locked-down Wayland cage session
-  # seatd opens DRM devices as root on cage's behalf, avoiding the logind
-  # TakeDevice race that occurs when pam_systemd.so creates the session scope
-  # asynchronously while cage's wlroots backend is already initialising.
-  services.seatd.enable = true;
-  users.extraUsers.kiosk = {
-    isNormalUser = true;
-    extraGroups = [ "seat" ];
-  };
+  users.extraUsers.kiosk.isNormalUser = true;
   services.cage = {
     enable = true;
     user = "kiosk";
@@ -55,12 +48,7 @@
       "-D"
       "-s"
     ];
-    environment = {
-      WLR_LIBINPUT_NO_DEVICES = "1";
-      # Skip libseat-logind (which races with pam_systemd.so scope creation)
-      # and use seatd directly for device access.
-      LIBSEAT_BACKEND = "seatd";
-    };
+    environment.WLR_LIBINPUT_NO_DEVICES = "1";
   };
   systemd.services."cage-tty1".restartIfChanged = lib.mkForce true;
 }
