@@ -12,6 +12,8 @@
       signingKey = "EC6381EC5C7904E8";
     };
 
+    system.printing.enable = true;
+
     system.vendor.cpu = "arm";
     system.vendor.gpu = "undefined";
 
