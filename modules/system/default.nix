@@ -13,6 +13,7 @@
     ./impermanence.nix
     ./printing.nix
     ./secrets.nix
+    ./secureboot.nix
     ./vendor.nix
   ];
 }

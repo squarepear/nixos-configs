@@ -14,6 +14,8 @@
 
     services.ai.enable = true;
     programs.obs.enable = true;
+
+    system.secureboot.enable = true;
     system.impermanence.enable = true;
 
     system.vendor.cpu = "amd";
