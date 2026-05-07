@@ -81,7 +81,7 @@ in
             "Music"
             "Pictures"
             "Documents"
-            "Development"
+            "Projects"
             "Videos"
           ];
           files = [

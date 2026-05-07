@@ -21,7 +21,7 @@
     system.vendor.cpu = "amd";
     system.vendor.gpu = "amd";
 
-    system.core.flakePath = "/home/jeffrey/Development/nixos-configs";
+    system.core.flakePath = "/home/jeffrey/Projects/nixos-configs";
 
     system.profiles = [
       "desktop"
