@@ -15,6 +15,7 @@
     ./music.nix
     ./nixvim.nix
     ./obs.nix
+    ./tmux.nix
     ./vscode.nix
     ./zsh.nix
   ];
