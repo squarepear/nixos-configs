@@ -37,7 +37,11 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    age.secrets.lab-cloudflare-creds.file = ../../../secrets/lab/cloudflare-creds.age;
+    age.secrets.lab-cloudflare-creds = {
+      file = ../../../secrets/lab/cloudflare-creds.age;
+      owner = "traefik";
+      group = config.services.traefik.group;
+    };
 
     # Inject Cloudflare credentials for the DNS challenge.
     services.traefik.environmentFiles = [
@@ -71,12 +75,18 @@ in
           };
         };
 
+        api = {
+          dashboard = true;
+          insecure = true; # binds to localhost:8080 only, access via SSH tunnel
+        };
+
         certificatesResolvers.letsencrypt.acme = {
           email = "letsencrypt@jeffreyharmon.dev";
           storage = "${config.services.traefik.dataDir}/acme.json";
           dnsChallenge = {
             provider = "cloudflare";
-            delayBeforeCheck = 300;
+            delayBeforeCheck = 30;
+            disablePropagationCheck = true;
           };
         };
       };
