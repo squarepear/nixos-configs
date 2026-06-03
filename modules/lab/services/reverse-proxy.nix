@@ -40,7 +40,7 @@ in
     age.secrets.lab-cloudflare-creds.file = ../../../secrets/lab/cloudflare-creds.age;
 
     # Inject Cloudflare credentials for the DNS challenge.
-    systemd.services.traefik.serviceConfig.EnvironmentFiles = [
+    services.traefik.environmentFiles = [
       config.age.secrets.lab-cloudflare-creds.path
     ];
 
