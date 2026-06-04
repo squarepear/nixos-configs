@@ -17,6 +17,8 @@ in
 {
   config = lib.mkIf cfg.enable {
     home-manager.users = pearlib.perUser (_: {
+      wayland.windowManager.hyprland.configType = "hyprlang";
+
       wayland.windowManager.hyprland.settings = {
         monitorv2 = cfg.monitors;
 

@@ -33,6 +33,7 @@ in
 
       programs.nixvim = {
         enable = true;
+        nixpkgs.source = inputs.nixpkgs-unstable;
 
         colorschemes.base16 = {
           enable = true;

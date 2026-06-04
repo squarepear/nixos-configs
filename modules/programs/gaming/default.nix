@@ -36,7 +36,7 @@ in
       enable = true;
       package = unstable.gamescope;
 
-      capSysNice = true;
+      # capSysNice = true; # https://github.com/NixOS/nixpkgs/issues/523200
     };
 
     hardware.graphics.enable = true;

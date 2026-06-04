@@ -38,7 +38,7 @@ in
     home-manager.users = pearlib.perUser (user: {
       home.packages = with pkgs; [
         pwvucontrol
-        helvum
+        crosspipe
       ];
     });
 
