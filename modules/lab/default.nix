@@ -22,6 +22,7 @@ in
     ./services/open-webui.nix
     ./services/reverse-proxy.nix
     ./services/rssfeed.nix
+    ./services/searxng.nix
   ];
 
   options.pear.system.lab = {

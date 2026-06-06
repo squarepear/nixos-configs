@@ -13,7 +13,7 @@ in
 
     services = {
       tepig = [ "home-assistant" "ntfy" "rssfeed" ];
-      uxie = [ "copyparty" "immich" "jellyfin" "n8n" "open-webui" "reverse-proxy" ];
+      uxie = [ "copyparty" "immich" "jellyfin" "n8n" "open-webui" "reverse-proxy" "searxng" ];
     };
   };
 }

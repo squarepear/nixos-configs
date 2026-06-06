@@ -36,4 +36,9 @@ in
     jeffrey
     uxie
   ];
+
+  "secrets/lab/searxng-env.age".publicKeys = [
+    jeffrey
+    uxie
+  ];
 }
