@@ -79,8 +79,9 @@ in
     };
 
     # Enable flakes/nix-command.
-    nix.extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
+    nix.settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
   };
 }
