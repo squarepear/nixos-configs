@@ -43,7 +43,6 @@ in
         plugins.lualine.enable = true;
 
         opts = {
-          compatible = false;
           showmatch = true;
           ignorecase = true;
           hlsearch = true;

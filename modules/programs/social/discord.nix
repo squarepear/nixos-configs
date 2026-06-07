@@ -30,7 +30,7 @@ in
     pear.system.impermanence.users = pearlib.perUser (name: {
       persist.directories = [
         ".config/discord"
-        ".config/discordcanary/"
+        ".config/discordcanary"
       ];
     });
   };

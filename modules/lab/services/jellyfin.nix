@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pearlib,
   ...
 }:
 
@@ -23,7 +22,15 @@ in
       enable = true;
 
       openFirewall = true;
-      user = builtins.head pearlib.admins;
     };
+
+    # Shared group so jeffrey can write media files that jellyfin can read.
+    users.groups.media = { };
+    users.users = lib.mkIf cfg.enable (
+      {
+        jellyfin.extraGroups = [ "media" ];
+      }
+      // lib.mapAttrs (_: _: { extraGroups = [ "media" ]; }) config.pear.users.users
+    );
   };
 }

@@ -59,52 +59,48 @@ in
         enableZshIntegration = true;
       };
 
-      programs.zsh =
-        let
-          homeDir = config.home-manager.users.${name}.home.homeDirectory;
-        in
-        {
-          enable = true;
-          enableCompletion = true;
-          enableVteIntegration = true;
-          syntaxHighlighting.enable = true;
-          autosuggestion.enable = false;
-          autocd = true;
+      programs.zsh = {
+        enable = true;
+        enableCompletion = true;
+        enableVteIntegration = true;
+        syntaxHighlighting.enable = true;
+        autosuggestion.enable = false;
+        autocd = true;
 
-          dotDir = "${homeDir}/.config/zsh";
-          history.path = "${homeDir}/.cache/.zsh_history";
+        dotDir = "${config.home-manager.users.${name}.xdg.configHome}/zsh";
+        history.path = "${config.home-manager.users.${name}.xdg.cacheHome}/.zsh_history";
 
-          shellAliases = {
-            cat = lib.getExe pkgs.bat;
-            open = "${pkgs.xdg-utils}/bin/xdg-open";
-            ls = lib.getExe pkgs.lsd;
-            top = lib.getExe pkgs.btop;
-          };
-
-          # Global alias UUID
-          shellGlobalAliases.UUID = "$(uuidgen | tr -d \\n)";
-
-          sessionVariables = {
-            EDITOR = "nvim";
-            BROWSER = "firefox";
-          };
-
-          completionInit = ''
-            autoload -Uz compinit
-            compinit
-            # Completion for kitty
-            ${
-              if config.pear.programs.kitty.enable then
-                "kitty + complete setup zsh | source /dev/stdin"
-              else
-                "# Not installed"
-            }
-          '';
-
-          initContent = ''
-            ${lib.getExe pkgs.fastfetch}
-          '';
+        shellAliases = {
+          cat = lib.getExe pkgs.bat;
+          open = "${pkgs.xdg-utils}/bin/xdg-open";
+          ls = lib.getExe pkgs.lsd;
+          top = lib.getExe pkgs.btop;
         };
+
+        # Global alias UUID
+        shellGlobalAliases.UUID = "$(uuidgen | tr -d \\n)";
+
+        sessionVariables = {
+          EDITOR = "nvim";
+          BROWSER = "firefox";
+        };
+
+        completionInit = ''
+          autoload -Uz compinit
+          compinit
+          # Completion for kitty
+          ${
+            if config.pear.programs.kitty.enable then
+              "kitty + complete setup zsh | source /dev/stdin"
+            else
+              "# Not installed"
+          }
+        '';
+
+        initContent = ''
+          ${lib.getExe pkgs.fastfetch}
+        '';
+      };
 
       programs.fastfetch = {
         enable = true;

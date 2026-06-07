@@ -15,5 +15,9 @@ in
     };
 
     services.n8n.enable = lib.mkIf cfg.enable true;
+
+    pear.system.impermanence.persist.directories = lib.mkIf cfg.enable [
+      "/var/lib/n8n"
+    ];
   };
 }

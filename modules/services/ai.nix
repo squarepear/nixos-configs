@@ -40,9 +40,6 @@ in
       group = "ollama";
     };
 
-    nixpkgs.config.rocmSupport = lib.mkIf (vendor.gpu == "amd") true;
-    nixpkgs.config.cudaSupport = lib.mkIf (vendor.gpu == "nvidia") true;
-
     pear.system.impermanence.users = pearlib.perUser (name: {
       persist.directories = [
         ".ollama"

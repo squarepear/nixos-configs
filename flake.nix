@@ -33,9 +33,11 @@
 
     # Homelab related modules and packages
     copyparty.url = "github:9001/copyparty";
+    copyparty.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     # Hardware-specific NixOS modules (raspberry-pi-4, gigabyte-b550, etc.)
     nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nixos-hardware.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =

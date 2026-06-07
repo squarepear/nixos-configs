@@ -45,7 +45,6 @@ in
       "vfio"
       "vfio_iommu_type1"
       "vfio_pci"
-      "vfio_virqfd"
     ]
     ++ lib.optionals (vendor.cpu == "amd") [ "kvm_amd" ];
 
