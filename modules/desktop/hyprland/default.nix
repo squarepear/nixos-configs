@@ -44,7 +44,7 @@ in
     ./hm-base.nix
     ./hyprlock.nix
     ./hyprpaper.nix
-    ./mako.nix
+    ./dunst.nix
     ./tofi.nix
   ];
 
@@ -100,16 +100,13 @@ in
 
     programs.hyprland = {
       enable = true;
-      withUWSM = true;
 
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       portalPackage =
         inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
 
-    # Fix for UWSM `A compositor or graphical-session* target is already active!` error
     services.displayManager.ly.x11Support = false;
-    systemd.user.targets.nixos-fake-graphical-session = lib.mkForce { };
 
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
   };

@@ -15,7 +15,6 @@ let
     PRIMARY
     SECONDARY
     TERTIARY
-    uwsmExec
     terminal
     editor
     fileManager
@@ -83,13 +82,13 @@ in
 
           # utility
           # terminal
-          "${PRIMARY}, return, exec, ${uwsmExec terminal}"
+          "${PRIMARY}, return, exec, ${terminal}"
           # popup terminal
-          "${PRIMARY} ${SECONDARY}, return, exec, ${uwsmExec terminal} --class popup-terminal"
+          "${PRIMARY} ${SECONDARY}, return, exec, ${terminal} --class popup-terminal"
           # file manager
-          "${PRIMARY} ${SECONDARY}, F, exec, ${uwsmExec fileManager}"
+          "${PRIMARY} ${SECONDARY}, F, exec, ${fileManager}"
           # editor
-          "${PRIMARY}, C, exec, ${uwsmExec editor}"
+          "${PRIMARY}, C, exec, ${editor}"
           # launcher
           "${PRIMARY}, space, exec, ${menu}"
           ", XF86Search, exec, ${menu}"
