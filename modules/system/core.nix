@@ -20,7 +20,7 @@ in
 
     timeZone = lib.mkOption {
       type = lib.types.str;
-      default = "America/Indianapolis";
+      default = "America/Indiana/Indianapolis";
     };
 
     locale = lib.mkOption {
@@ -44,9 +44,8 @@ in
       unstable.flake = inputs.nixpkgs-unstable;
     };
 
-    # Set timezone + convenience TZ env.
+    # Set timezone
     time.timeZone = cfg.timeZone;
-    environment.sessionVariables.TZ = cfg.timeZone;
 
     # Locale + console.
     i18n.defaultLocale = cfg.locale;

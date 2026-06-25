@@ -21,13 +21,7 @@
     resumeDevice = "/dev/disk/by-label/nixos";
   };
 
-  networking.hostName = "reshiram"; # Define your hostname.
-
-  # Set your time zone.
-  time.timeZone = "America/Indianapolis";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+  networking.hostName = "reshiram";
 
   # Enable 4k240hz for primary display
   hardware.display =
