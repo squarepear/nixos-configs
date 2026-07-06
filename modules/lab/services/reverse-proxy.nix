@@ -48,10 +48,18 @@ in
       config.age.secrets.lab-cloudflare-creds.path
     ];
 
+    networking.firewall = {
+      allowedTCPPorts = [
+        80 # HTTP (redirects to HTTPS)
+        443 # HTTPS
+      ];
+    };
+
     services.traefik = {
       enable = true;
 
       dataDir = lib.mkIf impermanence.enable "/persist/var/lib/traefik";
+
       staticConfigOptions = {
         entryPoints = {
           web = {

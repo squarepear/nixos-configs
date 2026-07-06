@@ -12,8 +12,18 @@ in
     };
 
     services = {
-      tepig = [ "home-assistant" "ntfy" "rssfeed" ];
-      uxie = [ "copyparty" "immich" "jellyfin" "n8n" "open-webui" "reverse-proxy" "searxng" ];
+      tepig = [
+        "home-assistant"
+        "ntfy"
+      ];
+      uxie = [
+        "copyparty"
+        "dash"
+        "immich"
+        "jellyfin"
+        "open-webui"
+        "reverse-proxy"
+      ];
     };
   };
 }

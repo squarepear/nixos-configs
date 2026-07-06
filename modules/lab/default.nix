@@ -14,15 +14,13 @@ in
   imports = [
     ../../hosts/pearlab.nix
     ./services/copyparty.nix
+    ./services/dash.nix
     ./services/home-assistant.nix
     ./services/immich.nix
     ./services/jellyfin.nix
-    ./services/n8n.nix
     ./services/ntfy.nix
     ./services/open-webui.nix
     ./services/reverse-proxy.nix
-    ./services/rssfeed.nix
-    ./services/searxng.nix
   ];
 
   options.pear.system.lab = {

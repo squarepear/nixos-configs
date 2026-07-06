@@ -32,6 +32,11 @@ in
     uxie
   ];
 
+  "secrets/lab/glance-env.age".publicKeys = [
+    jeffrey
+    uxie
+  ];
+
   "secrets/lab/copyparty/jeffrey-passwordfile.age".publicKeys = [
     jeffrey
     uxie
