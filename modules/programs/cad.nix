@@ -34,7 +34,7 @@ in
       persist.directories = [
         ".config/kicad"
         ".config/FreeCAD"
-        ".config/Orca-Slicer"
+        ".config/OrcaSlicer"
       ];
     });
   };
