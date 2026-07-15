@@ -18,10 +18,10 @@ in
       description = "Enable PipeWire audio stack and related tools.";
     };
 
-    enableNoiseTorch = lib.mkOption {
+    enableEasyEffects = lib.mkOption {
       type = lib.types.bool;
       default = desktopEnabled;
-      description = "Enable NoiseTorch (microphone noise suppression).";
+      description = "Enable EasyEffects (microphone noise suppression).";
     };
   };
 
@@ -40,19 +40,25 @@ in
         pwvucontrol
         crosspipe
       ];
+
+      services.easyeffects.enable = lib.mkIf cfg.enableEasyEffects true;
     });
 
-    pear.users.adminGroups = [ "audio" ];
+    programs.dconf.enable = lib.mkIf cfg.enableEasyEffects true;
 
-    programs.noisetorch.enable = lib.mkIf cfg.enableNoiseTorch true;
+    pear.users.adminGroups = [ "audio" ];
 
     # Persist PipeWire and audio configuration
     pear.system.impermanence.users = pearlib.perUser (name: {
       persist.directories = [
         ".local/state/wireplumber"
       ]
-      ++ lib.optionals cfg.enableNoiseTorch [
-        ".config/noisetorch"
+      ++ lib.optionals cfg.enableEasyEffects [
+        ".config/easyeffects"
+      ];
+
+      persist.files = [
+        ".config/easyeffectsrc"
       ];
     });
   };
