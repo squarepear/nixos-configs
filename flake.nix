@@ -59,6 +59,7 @@
               inherit system;
               modules = [
                 ./hosts/${name}
+                ./hosts/users.nix
                 ./lib
                 ./modules
                 ./pkgs
