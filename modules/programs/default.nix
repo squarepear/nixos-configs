@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./ai
     ./gaming
     ./social
 

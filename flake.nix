@@ -35,6 +35,10 @@
     copyparty.url = "github:9001/copyparty";
     copyparty.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
+    # AI stuff to try out
+    nix-ai-tools.url = "github:numtide/nix-ai-tools";
+    nix-ai-tools.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
     # Hardware-specific NixOS modules (raspberry-pi-4, gigabyte-b550, etc.)
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixos-hardware.inputs.nixpkgs.follows = "nixpkgs";
