@@ -8,7 +8,9 @@
 
 let
   cfg = config.pear.programs.ai.crush;
-  crushPkg = inputs.nix-ai-tools.packages.${config.nixpkgs.hostPlatform.system}.crush;
+  crushPkg =
+    (inputs.charmbracelet.legacyPackages.${config.nixpkgs.hostPlatform.system}.crush).overrideAttrs
+      (_: { meta = { license = [ ]; }; });
 in
 {
   options.pear.programs.ai.crush = {

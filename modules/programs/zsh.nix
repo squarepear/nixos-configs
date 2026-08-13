@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pearlib,
   pkgs,
@@ -46,6 +47,7 @@ in
         wget
         xdg-utils
         zip
+        inputs.charmbracelet.packages.${config.nixpkgs.hostPlatform.system}.gum
       ];
 
       programs.starship = {
