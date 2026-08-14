@@ -36,7 +36,14 @@ in
       enable = true;
       package = unstable.gamescope;
 
-      # capSysNice = true; # https://github.com/NixOS/nixpkgs/issues/523200
+      capSysNice = true;
+    };
+
+    programs.gamemode = {
+      enable = true;
+      # package = unstable.gamemode; # TODO: Only added in 26.11+
+
+      enableRenice = true;
     };
 
     hardware.graphics.enable = true;
