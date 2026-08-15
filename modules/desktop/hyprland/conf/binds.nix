@@ -25,123 +25,142 @@ let
     ssdir
     ;
 
-  # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
-  workspaces = builtins.concatLists (
-    builtins.genList (
-      x:
-      let
-        ws =
-          let
-            c = (x + 1) / 10;
-          in
-          builtins.toString (x + 1 - (c * 10));
-      in
-      [
-        "${PRIMARY}, ${ws}, workspace, ${toString (x + 1)}"
-        "${PRIMARY} ${SECONDARY}, ${ws}, movetoworkspacesilent, ${toString (x + 1)}"
-      ]
-    ) 10
+  mkLua = lib.generators.mkLuaInline;
+  toLua = lib.generators.toLua { };
+
+  # hl.bind entry from keys + dispatcher + opts (always passed; an empty table is fine).
+  bind = keys: dispatcher: opts: {
+    _args = [
+      keys
+      (mkLua dispatcher)
+      opts
+    ];
+  };
+
+  # Shorthand for `hl.dsp.exec_cmd("...")`.
+  dspExec = cmd: "hl.dsp.exec_cmd(${toLua cmd})";
+
+  # Plugin dispatcher reference wrapped in a function so the lookup happens
+  # at bind-fire time, after the package has been required (in conf/settings.nix).
+  smw = expr: "function() return smw.${expr}() end";
+
+  # Generate workspace 1-10 binds for either the built-in or split-monitor dispatcher.
+  wsBinds =
+    switch: move:
+    builtins.concatLists (
+      builtins.genList (
+        x:
+        let
+          i = x + 1;
+          key = if i == 10 then "0" else toString i;
+        in
+        [
+          (bind "${PRIMARY} + ${key}" (switch i) { })
+          (bind "${PRIMARY} + ${SECONDARY} + ${key}" (move i) { })
+        ]
+      ) 10
+    );
+
+  builtinWsBinds = wsBinds (i: ''hl.dsp.workspace("${toString i}")'') (
+    i: "hl.dsp.window.move({ workspace = ${toString i}, follow = false })"
   );
 
-  splitWorkspaces = builtins.concatLists (
-    builtins.genList (
-      x:
-      let
-        ws =
-          let
-            c = (x + 1) / 10;
-          in
-          builtins.toString (x + 1 - (c * 10));
-      in
-      [
-        "${PRIMARY}, ${ws}, split-workspace, ${toString (x + 1)}"
-        "${PRIMARY} ${SECONDARY}, ${ws}, split-movetoworkspacesilent, ${toString (x + 1)}"
-      ]
-    ) 10
+  smwWsBinds = wsBinds (i: smw "workspace(\"${toString i}\")") (
+    i: smw "move_to_workspace_silent(\"${toString i}\")"
   );
+
+  bindList = [
+    # compositor commands
+    (bind "${PRIMARY} + M" (dspExec "pkill Hyprland") { })
+    (bind "${PRIMARY} + Q" "hl.dsp.window.kill()" { })
+    (bind "${PRIMARY} + F" "hl.dsp.window.fullscreen()" { })
+    (bind "${PRIMARY} + ${SECONDARY} + space" ''hl.dsp.window.float({ action = "toggle" })'' { })
+    (bind "${PRIMARY} + P" "hl.dsp.window.pseudo()" { })
+    (bind "${PRIMARY} + R" "hl.dsp.force_renderer_reload()" { })
+
+    # utility
+    (bind "${PRIMARY} + return" (dspExec terminal) { })
+    (bind "${PRIMARY} + ${SECONDARY} + return" (dspExec "${terminal} --class popup-terminal") { })
+    (bind "${PRIMARY} + ${SECONDARY} + F" (dspExec fileManager) { })
+    (bind "${PRIMARY} + C" (dspExec editor) { })
+    (bind "${PRIMARY} + space" (dspExec menu) { })
+    (bind "XF86Search" (dspExec menu) { })
+    (bind "${PRIMARY} + L" (dspExec "${lib.getExe pkgs.hyprlock} --immediate") { })
+    (bind "${PRIMARY} + ${SECONDARY} + L" (dspExec "systemctl suspend") { })
+    (bind "${PRIMARY} + ${SECONDARY} + C" (dspExec "${colorPicker} -a") { })
+
+    # move focus
+    (bind "${PRIMARY} + ${SECONDARY} + left" ''hl.dsp.focus({ direction = "l" })'' { })
+    (bind "${PRIMARY} + ${SECONDARY} + right" ''hl.dsp.focus({ direction = "r" })'' { })
+    (bind "${PRIMARY} + ${SECONDARY} + up" ''hl.dsp.focus({ direction = "u" })'' { })
+    (bind "${PRIMARY} + ${SECONDARY} + down" ''hl.dsp.focus({ direction = "d" })'' { })
+
+    # screenshots
+    (bind "${PRIMARY} + s"
+      (dspExec "${screenshot} save screen \"${ssdir}/$(${date} +\"%Y-%m-%d %H:%M:%S\").png\"")
+      { }
+    )
+    (bind "${PRIMARY} + ${SECONDARY} + s"
+      (dspExec "${screenshot} save active \"${ssdir}/$(${date} +\"%Y-%m-%d %H:%M:%S\").png\"")
+      { }
+    )
+    (bind "${PRIMARY} + ${TERTIARY} + s"
+      (dspExec "${screenshot} save area \"${ssdir}/$(${date} +\"%Y-%m-%d %H:%M:%S\").png\"")
+      { }
+    )
+  ]
+  ++ (
+    if cfg.enableSplitMonitorWorkspaces then
+      smwWsBinds
+      ++ [
+        (bind "${PRIMARY} + left" (smw "cycle_workspaces(\"prev\")") { })
+        (bind "${PRIMARY} + right" (smw "cycle_workspaces(\"next\")") { })
+        (bind "${PRIMARY} + mouse_down" (smw "cycle_workspaces(\"prev\")") { mouse = true; })
+        (bind "${PRIMARY} + mouse_up" (smw "cycle_workspaces(\"next\")") { mouse = true; })
+        (bind "${PRIMARY} + ${TERTIARY} + left" (smw "change_monitor(\"prev\")") { })
+        (bind "${PRIMARY} + ${TERTIARY} + right" (smw "change_monitor(\"next\")") { })
+      ]
+    else
+      builtinWsBinds
+      ++ [
+        (bind "${PRIMARY} + left" ''hl.dsp.workspace("-1")'' { })
+        (bind "${PRIMARY} + right" ''hl.dsp.workspace("+1")'' { })
+        (bind "${PRIMARY} + mouse_down" ''hl.dsp.workspace("-1")'' { mouse = true; })
+        (bind "${PRIMARY} + mouse_up" ''hl.dsp.workspace("+1")'' { mouse = true; })
+      ]
+  );
+
+  bindlList = [
+    (bind "XF86AudioPlay" (dspExec "playerctl play-pause") { locked = true; })
+    (bind "XF86AudioNext" (dspExec "playerctl next") { locked = true; })
+    (bind "XF86AudioPrev" (dspExec "playerctl previous") { locked = true; })
+    (bind "XF86AudioMute" (dspExec "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") { locked = true; })
+  ];
+
+  bindleList = [
+    (bind "XF86AudioLowerVolume" (dspExec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-") {
+      locked = true;
+      repeating = true;
+    })
+  ];
+
+  bindeList = [
+    (bind "XF86AudioRaiseVolume" (dspExec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+") {
+      locked = true;
+      repeating = true;
+    })
+  ];
+
+  bindmList = [
+    (bind "${PRIMARY} + mouse:272" "hl.dsp.window.drag()" { mouse = true; })
+    (bind "${PRIMARY} + mouse:273" "hl.dsp.window.resize()" { mouse = true; })
+  ];
 in
 {
   config = lib.mkIf cfg.enable {
     home-manager.users = pearlib.perUser (_: {
       wayland.windowManager.hyprland.settings = {
-        # mouse movements
-        bindm = [
-          "${PRIMARY}, mouse:272, movewindow"
-          "${PRIMARY}, mouse:273, resizewindow"
-        ];
-
-        # binds
-        bind = [
-          # compositor commands
-          "${PRIMARY}, M, exec, pkill Hyprland"
-          "${PRIMARY}, Q, killactive,"
-          "${PRIMARY}, F, fullscreen,"
-          "${PRIMARY} ${SECONDARY}, space, togglefloating,"
-          "${PRIMARY}, P, pseudo,"
-          "${PRIMARY}, R, forcerendererreload,"
-
-          # utility
-          # terminal
-          "${PRIMARY}, return, exec, ${terminal}"
-          # popup terminal
-          "${PRIMARY} ${SECONDARY}, return, exec, ${terminal} --class popup-terminal"
-          # file manager
-          "${PRIMARY} ${SECONDARY}, F, exec, ${fileManager}"
-          # editor
-          "${PRIMARY}, C, exec, ${editor}"
-          # launcher
-          "${PRIMARY}, space, exec, ${menu}"
-          ", XF86Search, exec, ${menu}"
-          # lock screen
-          "${PRIMARY}, L, exec, ${lib.getExe pkgs.hyprlock} --immediate"
-          "${PRIMARY} ${SECONDARY}, L, exec, systemctl suspend"
-          # color picker
-          "${PRIMARY} ${SECONDARY}, C, exec, ${colorPicker} -a"
-
-          # move focus
-          "${PRIMARY} ${SECONDARY}, left, movefocus, l"
-          "${PRIMARY} ${SECONDARY}, right, movefocus, r"
-          "${PRIMARY} ${SECONDARY}, up, movefocus, u"
-          "${PRIMARY} ${SECONDARY}, down, movefocus, d"
-
-          # screenshots
-          "${PRIMARY}, s, exec, ${screenshot} save screen \"${ssdir}/$(${date} +\"%Y-%m-%d %H:%M:%S\").png\""
-          "${PRIMARY} ${SECONDARY}, s, exec, ${screenshot} save active \"${ssdir}/$(${date} +\"%Y-%m-%d %H:%M:%S\").png\""
-          "${PRIMARY} ${TERTIARY}, s, exec, ${screenshot} save area \"${ssdir}/$(${date} +\"%Y-%m-%d %H:%M:%S\").png\""
-        ]
-        ++ (
-          if cfg.enableSplitMonitorWorkspaces then
-            splitWorkspaces
-            ++ [
-              "${PRIMARY}, left, split-workspace, e-1"
-              "${PRIMARY}, right, split-workspace, e+1"
-              "${PRIMARY}, mouse_down, split-workspace, e-1"
-              "${PRIMARY}, mouse_up, split-workspace, e+1"
-              "${PRIMARY} ${TERTIARY}, left, split-changemonitor, prev"
-              "${PRIMARY} ${TERTIARY}, right, split-changemonitor, next"
-            ]
-          else
-            workspaces
-            ++ [
-              "${PRIMARY}, left, workspace, e-1"
-              "${PRIMARY}, right, workspace, e+1"
-              "${PRIMARY}, mouse_down, workspace, e-1"
-              "${PRIMARY}, mouse_up, workspace, e+1"
-            ]
-        );
-
-        bindl = [
-          # media controls
-          ", XF86AudioPlay, exec, playerctl play-pause"
-          ", XF86AudioNext, exec, playerctl next"
-          ", XF86AudioPrev, exec, playerctl previous"
-          # audio
-          ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        ];
-
-        bindle = [ ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-" ];
-
-        binde = [ ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+" ];
+        bind = bindList ++ bindlList ++ bindleList ++ bindeList ++ bindmList;
       };
     });
   };

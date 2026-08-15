@@ -636,21 +636,6 @@
         "type": "github"
       }
     },
-    "nix-filter": {
-      "locked": {
-        "lastModified": 1693833173,
-        "narHash": "sha256-hlMABKrGbEiJD5dwUSfnw1CQ3bG7KKwDV+Nx3bEZd7U=",
-        "owner": "numtide",
-        "repo": "nix-filter",
-        "rev": "ac030bd9ba98e318e1f4c4328d60766ade8ebe8b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "nix-filter",
-        "type": "github"
-      }
-    },
     "nixos-hardware": {
       "inputs": {
         "nixpkgs": [
@@ -810,21 +795,21 @@
     },
     "split-monitor-workspaces": {
       "inputs": {
-        "hyprland": [
-          "hyprland"
-        ],
-        "nix-filter": "nix-filter"
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
       },
       "locked": {
-        "lastModified": 1786046605,
-        "narHash": "sha256-+ROT5vBruI7d0B2RKbpl2dT76Zf90urrOxfrhzfaVr4=",
-        "owner": "Duckonaut",
+        "lastModified": 1786743153,
+        "narHash": "sha256-Z725hiWE3MN9fgTeR4iB+JUQstQoOQ7+sQ3OiiEtxpc=",
+        "owner": "squarepear",
         "repo": "split-monitor-workspaces",
-        "rev": "3c2020a1f574aaec17ffe39e73468b73643990e3",
+        "rev": "227852241c7e96f8bf4ba01e414dc4444f80ccd1",
         "type": "github"
       },
       "original": {
-        "owner": "Duckonaut",
+        "owner": "squarepear",
+        "ref": "fix-lua-nix-build",
         "repo": "split-monitor-workspaces",
         "type": "github"
       }

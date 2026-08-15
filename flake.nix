@@ -15,12 +15,10 @@
     nixvim.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     # UI/UX related packages and modules
-    # use commit ee67278038b5b6597172b2a3ee9d57f6ad0eafc7 to fix no mouse cursor issue
     hyprland.url = "github:hyprwm/Hyprland";
-    # hyprland.url = "github:hyprwm/Hyprland/ee67278038b5b6597172b2a3ee9d57f6ad0eafc7";
     hyprland.inputs.nixpkgs.follows = "nixpkgs-unstable";
-    split-monitor-workspaces.url = "github:Duckonaut/split-monitor-workspaces";
-    split-monitor-workspaces.inputs.hyprland.follows = "hyprland";
+    split-monitor-workspaces.url = "github:squarepear/split-monitor-workspaces/fix-lua-nix-build";
+    split-monitor-workspaces.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     # Disk and boot management tools
     disko.url = "github:nix-community/disko";
