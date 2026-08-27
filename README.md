@@ -4,7 +4,7 @@
     <p>Personal NixOS configurations for multiple hosts with shared modules and packages</p>
 </div>
 
-## 🏠 [Hosts](./hosts/)
+## [Hosts](./hosts/)
 
 - [**altaria**](./hosts/altaria/) - Oracle Cloud ARM Server (aarch64-linux)
   - Minecraft server, containers, distributed building
@@ -16,22 +16,13 @@
   - Media server (Jellyfin), photo management (Immich), SMB shares
 <!-- - [**kyurem**](./hosts/kyurem/) - macOS (darwin) -->
 
-## 📁 Structure
+## Structure
 
 ```
 ├── hosts/          # Host-specific configurations
 ├── system/         # Reusable system modules
-├── users/          # User configurations
 ├── modules/        # Custom NixOS modules
 ├── pkgs/           # Custom package definitions
 ├── secrets/        # Encrypted secrets (agenix)
-├── darwin/         # macOS-specific configurations
 └── flake.nix       # Main flake configuration
 ```
-
-## 📝 Notes
-
-- Auto-upgrade is enabled and pulls from this repository
-- Configurations use NixOS unstable for latest packages
-- Distributed building configured between hosts
-- Home Manager manages user-specific dotfiles and packages
