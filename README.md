@@ -6,8 +6,6 @@
 
 ## [Hosts](./hosts/)
 
-- [**altaria**](./hosts/altaria/) - Oracle Cloud ARM Server (aarch64-linux)
-  - Minecraft server, containers, distributed building
 - [**reshiram**](./hosts/reshiram/) - Main Desktop (x86_64-linux)
   - Gaming rig with AMD CPU/GPU, Hyprland, development environment
 - [**tepig**](./hosts/tepig/) - Raspberry Pi 4b 8G (aarch64-linux)
