@@ -7,20 +7,20 @@
 ## [Hosts](./hosts/)
 
 - [**reshiram**](./hosts/reshiram/) - Main Desktop (x86_64-linux)
-  - Gaming rig with AMD CPU/GPU, Hyprland, development environment
+  - Gaming rig with AMD CPU/GPU, Niri, development environment
 - [**tepig**](./hosts/tepig/) - Raspberry Pi 4b 8G (aarch64-linux)
-  - Home automation, monitoring, reverse proxy, RSS feeds
+  - Home automation (Home Assistant), notification server (ntfy), and more
 - [**uxie**](./hosts/uxie/) - NAS Server (x86_64-linux)
-  - Media server (Jellyfin), photo management (Immich), SMB shares
-<!-- - [**kyurem**](./hosts/kyurem/) - macOS (darwin) -->
+  - Media server (Jellyfin), photo management (Immich), file sharing (Copyparty/SMB), dashboard (Glance), reverse proxy (Traefik), and more
 
 ## Structure
 
 ```
+├── flake.nix       # Main flake configuration
 ├── hosts/          # Host-specific configurations
-├── system/         # Reusable system modules
-├── modules/        # Custom NixOS modules
+├── lib/            # Shared helper modules
+├── modules/        # Reusable NixOS modules (system, programs, desktop, lab, ...)
 ├── pkgs/           # Custom package definitions
 ├── secrets/        # Encrypted secrets (agenix)
-└── flake.nix       # Main flake configuration
+└── secrets.nix     # Secret public keys
 ```
