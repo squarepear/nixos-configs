@@ -44,19 +44,15 @@
   outputs =
     inputs:
     let
-      hosts = {
-        reshiram = "x86_64-linux";
-        tepig = "aarch64-linux";
-        uxie = "x86_64-linux";
-      };
+      hosts = import ./hosts/info.nix;
     in
     {
       nixosConfigurations =
         let
           mkSystem =
-            name: system:
+            name: info:
             inputs.nixpkgs.lib.nixosSystem {
-              inherit system;
+              system = info.arch;
               modules = [
                 ./hosts/${name}
                 ./hosts/users.nix
