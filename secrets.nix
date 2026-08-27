@@ -1,15 +1,15 @@
 let
+  info = import ./hosts/info.nix;
+
   jeffrey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPyZWg5m3pXHOqNfdrO6ecghFfQowb/Y7Df7otocETHq";
 
   users = [ jeffrey ];
 
-  altaria = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJwtSK+fzHcdehRsrYSz/fqfiKvSQ9P6NZTUVwRKR9za";
-  reshiram = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMQFyx2qVTzlr6Fc2fXLGTPiBy1+wS1fI42fGzM3Gkrp";
-  tepig = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHNS2qVtpFUJqZYhrqtbaIXa9TgCvYQiQtf47tXM1iP0";
-  uxie = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB7dRYCqWEzF4OUABaid16HXrzVvUx8YMii/FdSdOXvj";
+  reshiram = info.reshiram.publicKey;
+  tepig = info.tepig.publicKey;
+  uxie = info.uxie.publicKey;
 
   hosts = [
-    altaria
     reshiram
     tepig
     uxie
