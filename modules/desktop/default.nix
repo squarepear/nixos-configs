@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pearlib,
+  ...
+}:
 
 let
   cfg = config.pear.desktop;
@@ -6,15 +11,22 @@ in
 {
   imports = [
     ./hyprland
+    ./niri
+
+    ./displays.nix
   ];
 
   options.pear.desktop = {
-    enable = lib.mkEnableOption "desktop environment support";
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = pearlib.profileEnabled "desktop";
+    };
 
     environment = lib.mkOption {
       type = lib.types.enum [
         "none"
         "hyprland"
+        "niri"
       ];
       default = "none";
     };
@@ -29,6 +41,13 @@ in
       "cdrom"
       "video"
       "input"
+    ];
+
+    assertions = [
+      {
+        assertion = cfg.environment != "none";
+        message = "pear.desktop.environment must be set when desktop is enabled.";
+      }
     ];
   };
 }

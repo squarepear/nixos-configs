@@ -15,10 +15,9 @@
     nixvim.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     # UI/UX related packages and modules
-    hyprland.url = "github:hyprwm/Hyprland";
-    hyprland.inputs.nixpkgs.follows = "nixpkgs-unstable";
-    split-monitor-workspaces.url = "github:squarepear/split-monitor-workspaces/fix-lua-nix-build";
-    split-monitor-workspaces.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    niri.url = "github:epireyn/niri-flake";
+    niri.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    niri.inputs.nixpkgs-stable.follows = "nixpkgs";
 
     # Disk and boot management tools
     disko.url = "github:nix-community/disko";

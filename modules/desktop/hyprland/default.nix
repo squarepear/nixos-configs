@@ -51,7 +51,7 @@ in
   options.pear.desktop.hyprland = {
     enable = lib.mkOption {
       type = lib.types.bool;
-      default = pearlib.profileEnabled "desktop";
+      default = config.pear.desktop.environment == "hyprland";
     };
 
     monitors = lib.mkOption {
@@ -86,11 +86,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    pear.desktop = {
-      enable = lib.mkForce true;
-      environment = lib.mkForce "hyprland";
-    };
-
     pear.programs = {
       vscode.enable = true;
       kitty.enable = true;

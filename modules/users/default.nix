@@ -42,6 +42,10 @@ in
       default = pearlib.profileEnabled "minimal";
     };
 
+    primaryUser = lib.mkOption {
+      type = lib.types.str;
+    };
+
     users = lib.mkOption {
       type = lib.types.attrsOf (lib.types.submodule userOptions);
     };
@@ -58,6 +62,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    # Set the primary user to the first user in the list if not explicitly set
+    pear.users.primaryUser = lib.mkDefault (lib.head (lib.attrNames cfg.users));
+
     users.mutableUsers = false;
 
     users.users = lib.mapAttrs (name: userCfg: {
