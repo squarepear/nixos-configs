@@ -3,6 +3,7 @@
 {
   pear = {
     services.ai.enable = true;
+    programs.librepods.enable = true;
     programs.obs.enable = true;
 
     system.secureboot.enable = true;
