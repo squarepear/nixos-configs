@@ -5,45 +5,39 @@ let
 
   users = [ jeffrey ];
 
-  reshiram = info.reshiram.publicKey;
-  tepig = info.tepig.publicKey;
-  uxie = info.uxie.publicKey;
+  hosts = builtins.mapAttrs (_: host: host.publicKey) info;
 
-  hosts = [
-    reshiram
-    tepig
-    uxie
-  ];
+  allHosts = builtins.attrValues hosts;
 in
 {
-  "secrets/test-secret.age".publicKeys = users ++ hosts;
+  "secrets/test-secret.age".publicKeys = users ++ allHosts;
 
   # User Specific
-  "secrets/jeffrey/passwordfile.age".publicKeys = [ jeffrey ] ++ hosts;
+  "secrets/jeffrey/passwordfile.age".publicKeys = [ jeffrey ] ++ allHosts;
 
   # Lab Specific
   "secrets/lab/miniflux-admin.age".publicKeys = [
     jeffrey
-    tepig
+    hosts.tepig
   ];
 
   "secrets/lab/cloudflare-creds.age".publicKeys = [
     jeffrey
-    uxie
+    hosts.uxie
   ];
 
   "secrets/lab/glance-env.age".publicKeys = [
     jeffrey
-    uxie
+    hosts.uxie
   ];
 
   "secrets/lab/copyparty/jeffrey-passwordfile.age".publicKeys = [
     jeffrey
-    uxie
+    hosts.uxie
   ];
 
   "secrets/lab/searxng-env.age".publicKeys = [
     jeffrey
-    uxie
+    hosts.uxie
   ];
 }
