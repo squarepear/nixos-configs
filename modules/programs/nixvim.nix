@@ -10,9 +10,9 @@
 let
   cfg = config.pear.programs.nixvim;
 
-  # Reuse the temporary palette used by the Hyprland module until a proper
+  # Reuse the temporary palette used by the Niri module until a proper
   # `pear.colors` / `pear.theme` module exists.
-  palette = import ../desktop/hyprland/colors.nix;
+  palette = import ../desktop/niri/colors.nix;
 
   # Convert { base00 = "0b0f14"; } -> { base00 = "#0b0f14"; }
   paletteWithHash = builtins.mapAttrs (_: color: "#${color}") palette;

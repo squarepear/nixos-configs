@@ -10,7 +10,6 @@ let
 in
 {
   imports = [
-    ./hyprland
     ./niri
 
     ./displays.nix
@@ -25,7 +24,6 @@ in
     environment = lib.mkOption {
       type = lib.types.enum [
         "none"
-        "hyprland"
         "niri"
       ];
       default = "none";
