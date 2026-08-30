@@ -61,6 +61,7 @@ in
 
         spawn-at-startup = [
           { argv = [ (lib.getExe pkgs.mako) ]; }
+          { argv = [ (lib.getExe pkgs.hypridle) ]; }
         ];
 
         environment = {
@@ -257,6 +258,7 @@ in
           "XF86Search".action.spawn = LAUNCHER;
           "Mod+Shift+F".action.spawn = FILE_MANAGER;
           "Mod+C".action.spawn = EDITOR;
+          "Mod+L".action.spawn-sh = "pidof hyprlock >/dev/null && exit 0; ${lib.getExe pkgs.hyprlock}";
           "Mod+Shift+L".action.spawn = [
             "systemctl"
             "suspend"

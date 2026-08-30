@@ -77,8 +77,8 @@ in
 
   config.assertions = [
     {
-      assertion = primaryCount <= 1;
-      message = "pear.desktop.displays: at most one display may have primary = true (got ${toString primaryCount}).";
+      assertion = primaryCount == 1;
+      message = "pear.desktop.displays: exactly one display may have primary = true (got ${toString primaryCount}).";
     }
   ];
 }

@@ -15,6 +15,7 @@ in
 {
   imports = [
     ./hm-base.nix
+    ./lock.nix
     ./mako.nix
     ./settings.nix
     ./tofi.nix
