@@ -27,7 +27,7 @@
           output = "DP-2";
           width = 3840;
           height = 2160;
-          refreshRate = 240.0;
+          refreshRate = 239.914;
           x = 3840;
           y = 0;
           primary = true;
