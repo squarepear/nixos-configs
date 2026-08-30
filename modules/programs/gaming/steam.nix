@@ -34,6 +34,9 @@ in
     pear.system.impermanence.users = pearlib.perUser (name: {
       persist.directories = [
         ".local/share/Steam"
+
+        # Various game settings and save data
+        ".local/share/SlayTheSpire2"
       ];
     });
   };
