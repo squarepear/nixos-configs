@@ -4,6 +4,8 @@
     <p>Personal NixOS configurations for multiple hosts with shared modules and packages</p>
 </div>
 
+![reshiram desktop](./hosts/reshiram/desktop.png)
+
 ## [Hosts](./hosts/)
 
 - [**reshiram**](./hosts/reshiram/) - Main Desktop (x86_64-linux)
@@ -12,6 +14,7 @@
   - Home automation (Home Assistant), notification server (ntfy), and more
 - [**uxie**](./hosts/uxie/) - NAS Server (x86_64-linux)
   - Media server (Jellyfin), photo management (Immich), file sharing (Copyparty/SMB), dashboard (Glance), reverse proxy (Traefik), and more
+
 
 ## Structure
 
