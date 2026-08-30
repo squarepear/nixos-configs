@@ -36,5 +36,11 @@ in
         obs-pipewire-audio-capture
       ];
     };
+
+    pear.system.impermanence.users = pearlib.perUser (_: {
+      persist.directories = [
+        ".config/obs-studio"
+      ];
+    });
   };
 }
