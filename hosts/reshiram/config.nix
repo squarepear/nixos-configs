@@ -21,15 +21,16 @@
           height = 2160;
           refreshRate = 60.0;
           x = 0;
-          y = 432;
+          y = 0;
+          rotation = 90;
         }
         {
           output = "DP-2";
           width = 3840;
           height = 2160;
           refreshRate = 239.914;
-          x = 3840;
-          y = 0;
+          x = 2160;
+          y = 840;
           primary = true;
         }
       ];
