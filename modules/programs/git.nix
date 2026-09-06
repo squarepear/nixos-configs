@@ -23,6 +23,11 @@ let
         type = lib.types.nullOr lib.types.str;
         default = null;
       };
+
+      username = lib.mkOption {
+        type = lib.types.nullOr lib.types.str;
+        default = null;
+      };
     };
   };
 in
@@ -59,9 +64,15 @@ in
             init.defaultBranch = "main";
             http.postBuffer = "524288000";
 
+            alias = lib.mkIf (gitIdentity.username != null) {
+              gh-remoteadd = "git remote add ${gitIdentity.username} https://github.com/${gitIdentity.username}/$(basename -s .git $(git config --get remote.origin.url)).git";
+              push-me = "git push ${gitIdentity.username}";
+            };
+
             user = lib.mkIf ((gitIdentity.name or null) != null || (gitIdentity.email or null) != null) {
               name = gitIdentity.name;
               email = gitIdentity.email;
+              username = gitIdentity.username;
             };
           };
         };

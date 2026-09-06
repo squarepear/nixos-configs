@@ -13,5 +13,6 @@
     name = "Jeffrey Harmon";
     email = "contact@jeffreyharmon.dev";
     signingKey = "EC6381EC5C7904E8";
+    username = "squarepear";
   };
 }
