@@ -4,6 +4,7 @@
   pear = {
     programs.librepods.enable = true;
     programs.obs.enable = true;
+    programs.gaming.vr.enable = true;
 
     system.secureboot.enable = true;
     system.impermanence.enable = true;

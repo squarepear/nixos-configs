@@ -16,6 +16,7 @@ in
     ./emulators.nix
     ./minecraft.nix
     ./steam.nix
+    ./vr.nix
   ];
 
   options.pear.programs.gaming = {
