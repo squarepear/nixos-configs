@@ -23,6 +23,11 @@ in
       autoStart = true;
       openFirewall = true;
       highPriority = true;
+      steam = lib.mkIf gamingCfg.steam.enable {
+        enable = true;
+        package = config.programs.steam.package;
+        importOXRRuntimes = true;
+      };
 
       config = {
         enable = true;
