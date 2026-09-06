@@ -110,9 +110,9 @@ in
                           timeout = "5s";
                         }
                         {
-                          title = "Open WebUI";
-                          url = "https://ai.hl.pear.cx/";
-                          icon = "sh:open-webui-light";
+                          title = "Grafana";
+                          url = "https://grafana.hl.pear.cx/";
+                          icon = "si:grafana";
                           same-tab = true;
                           timeout = "5s";
                         }

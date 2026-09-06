@@ -1,27 +1,23 @@
 { ... }:
 
-let
-  hosts = import ./info.nix;
-in
-
 {
   pear.lab = {
-    hosts = {
-      tepig = hosts.tepig.ip;
-      uxie = hosts.uxie.ip;
-    };
-
     services = {
+      reshiram = [ "node-exporter" ];
       tepig = [
         "home-assistant"
+        "node-exporter"
         "ntfy"
       ];
       uxie = [
+        "alertmanager"
         "copyparty"
         "dash"
+        "grafana"
         "immich"
         "jellyfin"
-        "open-webui"
+        "node-exporter"
+        "prometheus"
         "reverse-proxy"
       ];
     };

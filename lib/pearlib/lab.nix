@@ -1,6 +1,7 @@
 { config, lib, ... }:
 
 let
+  hosts = import ../../hosts/info.nix;
   labCfg = config.pear.lab;
 in
 rec {
@@ -12,5 +13,5 @@ rec {
     ) (throw "pear.lab: no host defined for service '${svcName}'") (lib.attrNames labCfg.services);
 
   # usage: ipForService "reverse-proxy" -> "100.78.45.59"
-  ipForService = svcName: labCfg.hosts.${hostForService svcName};
+  ipForService = svcName: hosts.${hostForService svcName}.ip;
 }

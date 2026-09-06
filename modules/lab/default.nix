@@ -14,12 +14,15 @@ in
   imports = [
     ../../hosts/pearlab.nix
     ./services/copyparty.nix
+    ./services/alertmanager.nix
     ./services/dash.nix
+    ./services/grafana.nix
     ./services/home-assistant.nix
     ./services/immich.nix
     ./services/jellyfin.nix
+    ./services/node-exporter.nix
     ./services/ntfy.nix
-    ./services/open-webui.nix
+    ./services/prometheus.nix
     ./services/reverse-proxy.nix
   ];
 
@@ -32,12 +35,6 @@ in
   };
 
   options.pear.lab = {
-    hosts = lib.mkOption {
-      type = lib.types.attrsOf lib.types.str;
-      default = { };
-      description = "Map of lab host names to their IP addresses.";
-    };
-
     services = lib.mkOption {
       type = lib.types.attrsOf (lib.types.listOf lib.types.str);
       default = { };

@@ -43,6 +43,7 @@
       "desktop"
       "gaming"
       "development"
+      "pearlab"
     ];
   };
 }

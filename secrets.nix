@@ -40,4 +40,19 @@ in
     jeffrey
     hosts.uxie
   ];
+
+  "secrets/lab/grafana-admin-password.age".publicKeys = [
+    jeffrey
+    hosts.uxie
+  ];
+
+  "secrets/lab/grafana-secret-key.age".publicKeys = [
+    jeffrey
+    hosts.uxie
+  ];
+
+  "secrets/lab/alertmanager-ntfy-url.age".publicKeys = [
+    jeffrey
+    hosts.uxie
+  ];
 }

@@ -5,6 +5,7 @@
 }:
 
 let
+  cfg = config.pear.desktop;
   displays = config.pear.desktop.displays;
   primaryCount = lib.count (d: d.primary) displays;
 in
@@ -75,7 +76,7 @@ in
     description = "List of display configurations.";
   };
 
-  config.assertions = [
+  config.assertions = lib.mkIf cfg.enable [
     {
       assertion = primaryCount == 1;
       message = "pear.desktop.displays: exactly one display may have primary = true (got ${toString primaryCount}).";
