@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pearlib,
   pkgs,
   unstable,
   ...
@@ -48,5 +49,11 @@ in
     # ADB for Oculus Quest
     users.groups.adbusers = { };
     pear.users.adminGroups = [ "adbusers" ];
+
+    pear.system.impermanence.users = pearlib.perUser (name: {
+      persist.directories = [
+        ".local/share/BSManager"
+      ];
+    });
   };
 }
