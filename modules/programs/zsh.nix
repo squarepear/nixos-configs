@@ -104,6 +104,25 @@ in
         '';
       };
 
+      programs.zellij = {
+        enable = true;
+        enableZshIntegration = true;
+        exitShellOnExit = true;
+
+        settings = {
+          on_force_close = "quit";
+          show_startup_tips = false;
+          pane_frames = false;
+          default_layout = "compact";
+          pane_viewport_serialization = true;
+          scrollback_lines_to_serialize = 10000;
+          scroll_buffer_size = 50000;
+
+          theme_dark = "onedark";
+          theme_light = "catppuccin-latte";
+        };
+      };
+
       programs.fastfetch = {
         enable = true;
 
@@ -150,6 +169,7 @@ in
       persist.files = [
         ".cache/.zsh_history"
       ];
+      persist.directories = [ ".local/share/zellij" ];
     });
   };
 }
