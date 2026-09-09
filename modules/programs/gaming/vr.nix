@@ -52,6 +52,9 @@ in
 
     pear.system.impermanence.users = pearlib.perUser (name: {
       persist.directories = [
+        ".config/bs-manager"
+        ".config/wayvr"
+        ".config/wivrn"
         ".local/share/BSManager"
       ];
     });
