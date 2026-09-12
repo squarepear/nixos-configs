@@ -48,6 +48,11 @@ in
     ]
     ++ lib.optionals (vendor.cpu == "amd") [ "kvm_amd" ];
 
+    pear.system.impermanence.persist.directories = [
+      "/var/lib/libvirt"
+      "/var/lib/qemu"
+    ];
+
     pear.users.adminGroups = [
       "libvirtd"
       "kvm"

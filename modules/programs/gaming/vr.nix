@@ -56,6 +56,9 @@ in
         ".config/wayvr"
         ".config/wivrn"
         ".local/share/BSManager"
+        ".config/openvr"
+        ".config/openxr"
+        ".local/state/xrizer"
       ];
     });
   };

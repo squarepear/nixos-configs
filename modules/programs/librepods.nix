@@ -74,6 +74,7 @@ in
     pear.system.impermanence.users = pearlib.perUser (_: {
       persist.directories = [
         ".config/librepods"
+        ".local/share/librepods"
         ".config/autostart"
       ];
     });

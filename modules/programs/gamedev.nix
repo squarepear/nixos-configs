@@ -43,10 +43,8 @@ in
         ".config/blender"
         ".config/aseprite"
         ".config/itch"
-      ];
-
-      persist.files = [
-        ".config/krita/kritarc"
+        ".config/krita"
+        ".local/share/krita"
       ];
     });
   };

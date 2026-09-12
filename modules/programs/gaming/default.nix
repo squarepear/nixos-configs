@@ -50,5 +50,7 @@ in
     hardware.graphics.enable = true;
     hardware.amdgpu.overdrive.enable = lib.mkIf (vendorCfg.gpu == "amd") true;
     services.lact.enable = true;
+
+    pear.system.impermanence.persist.files = [ "/etc/lact/config.yaml" ];
   };
 }
