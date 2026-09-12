@@ -49,8 +49,30 @@ in
 
     hardware.graphics.enable = true;
     hardware.amdgpu.overdrive.enable = lib.mkIf (vendorCfg.gpu == "amd") true;
-    services.lact.enable = true;
+    services.lact = {
+      enable = true;
 
-    pear.system.impermanence.persist.files = [ "/etc/lact/config.yaml" ];
+      settings = {
+        version = 5;
+        daemon = {
+          log_level = "info";
+          admin_group = "wheel";
+          disable_clocks_cleanup = false;
+        };
+        apply_settings_timer = 5;
+        profiles = {
+          VR = {
+            rule = {
+              type = "process";
+              filter = {
+                name = "wayvr";
+              };
+            };
+          };
+        };
+        current_profile = "VR";
+        auto_switch_profiles = true;
+      };
+    };
   };
 }
