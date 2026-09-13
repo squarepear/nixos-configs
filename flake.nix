@@ -18,6 +18,11 @@
     niri.url = "github:epireyn/niri-flake";
     niri.inputs.nixpkgs.follows = "nixpkgs-unstable";
     niri.inputs.nixpkgs-stable.follows = "nixpkgs";
+    niri.inputs.xwayland-satellite-stable.follows = "xwayland-satellite";
+    niri.inputs.xwayland-satellite-unstable.follows = "xwayland-satellite";
+
+    xwayland-satellite.url = "github:Supreeeme/xwayland-satellite";
+    xwayland-satellite.flake = false;
 
     # Disk and boot management tools
     disko.url = "github:nix-community/disko";
