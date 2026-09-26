@@ -11,6 +11,11 @@ let
   cfg = config.pear.desktop.niri;
 
   system = pkgs.stdenv.hostPlatform.system;
+
+  niriSession = pkgs.writeShellScript "niri-session" ''
+    export XDG_SESSION_TYPE=wayland
+    exec ${config.programs.niri.package}/bin/niri-session
+  '';
 in
 {
   imports = [
@@ -55,7 +60,7 @@ in
     services.greetd = {
       enable = true;
       settings.default_session = {
-        command = "${config.programs.niri.package}/bin/niri-session";
+        command = niriSession;
         user = config.users.users.${config.pear.users.primaryUser}.name;
       };
     };
