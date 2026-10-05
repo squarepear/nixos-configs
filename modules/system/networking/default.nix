@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   pearlib,
   ...
 }:
@@ -38,6 +39,9 @@ in
 
     # Enable MTR program
     programs.mtr.enable = true;
+
+    # Wireless diagnostics (iw reg get, etc.), used by dongle troubleshooting
+    environment.systemPackages = [ pkgs.iw ];
 
     pear.users.adminGroups = [ "networkmanager" ];
   };

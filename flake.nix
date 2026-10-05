@@ -44,6 +44,10 @@
     # Hardware-specific NixOS modules (raspberry-pi-4, gigabyte-b550, etc.)
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixos-hardware.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Gaming-related modules and packages
+    wivrn.url = "github:WiVRn/WiVRn/0d9e6e12";
+    wivrn.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
   outputs =

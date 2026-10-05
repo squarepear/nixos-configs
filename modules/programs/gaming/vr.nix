@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pearlib,
   pkgs,
@@ -10,6 +11,8 @@
 let
   gamingCfg = config.pear.programs.gaming;
   cfg = gamingCfg.vr;
+
+  system = pkgs.stdenv.hostPlatform.system;
 in
 {
   options.pear.programs.gaming.vr = {
@@ -19,7 +22,7 @@ in
   config = lib.mkIf cfg.enable {
     services.wivrn = {
       enable = true;
-      package = unstable.wivrn;
+      package = inputs.wivrn.packages.${system}.default;
 
       autoStart = true;
       openFirewall = true;
@@ -34,7 +37,7 @@ in
         enable = true;
 
         json = {
-          bitrate = 135000000;
+          bitrate = 200000000;
           application = [ unstable.wayvr ];
         };
       };
