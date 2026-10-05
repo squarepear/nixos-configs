@@ -9,7 +9,6 @@
 
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
-    agenix.inputs.home-manager.follows = "home-manager";
 
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -46,7 +45,7 @@
     nixos-hardware.inputs.nixpkgs.follows = "nixpkgs";
 
     # Gaming-related modules and packages
-    wivrn.url = "github:WiVRn/WiVRn/0d9e6e12";
+    wivrn.url = "github:WiVRn/WiVRn/4ea9748";
     wivrn.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
