@@ -106,8 +106,6 @@ in
 
       programs.zellij = {
         enable = true;
-        enableZshIntegration = true;
-        exitShellOnExit = true;
 
         settings = {
           on_force_close = "quit";
