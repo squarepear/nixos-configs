@@ -24,7 +24,7 @@ in
   config = lib.mkIf cfg.enable {
     # Enable libvirtd and virt-manager
     virtualisation.libvirtd = {
-      enable = true;
+      enable = false;
       qemu = {
         vhostUserPackages = with pkgs; [ virtiofsd ];
         # Enable OpenGL and GPU acceleration

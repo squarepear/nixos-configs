@@ -21,7 +21,7 @@ in
   config = lib.mkIf cfg.enable {
     home-manager.users = pearlib.perUser (name: {
       home.packages = with unstable; [
-        prismlauncher
+        (prismlauncher.override { jdks = [ jdk25 jdk21 jdk17 jdk8 ]; })
       ];
     });
 

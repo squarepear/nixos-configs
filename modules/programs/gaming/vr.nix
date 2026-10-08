@@ -1,6 +1,5 @@
 {
   config,
-  inputs,
   lib,
   pearlib,
   pkgs,
@@ -11,8 +10,6 @@
 let
   gamingCfg = config.pear.programs.gaming;
   cfg = gamingCfg.vr;
-
-  system = pkgs.stdenv.hostPlatform.system;
 in
 {
   options.pear.programs.gaming.vr = {
@@ -20,30 +17,8 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    services.wivrn = {
-      enable = true;
-      package = inputs.wivrn.packages.${system}.default;
-
-      autoStart = true;
-      openFirewall = true;
-      highPriority = true;
-      steam = lib.mkIf gamingCfg.steam.enable {
-        enable = true;
-        package = config.programs.steam.package;
-        importOXRRuntimes = true;
-      };
-
-      config = {
-        enable = true;
-
-        json = {
-          bitrate = 200000000;
-          application = [ unstable.wayvr ];
-        };
-      };
-    };
-
     environment.systemPackages = [
+      unstable.wayvr
       unstable.bs-manager
       pkgs.sidequest
       pkgs.android-tools
