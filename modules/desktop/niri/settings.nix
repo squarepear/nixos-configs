@@ -237,6 +237,15 @@ in
           {
             matches = [
               {
+                app-id = "^(vrmonitor|vrwebhelper)$";
+              }
+            ];
+            open-floating = true;
+          }
+
+          {
+            matches = [
+              {
                 app-id = "steam";
                 title = "^notificationtoasts";
               }
