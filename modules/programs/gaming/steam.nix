@@ -30,9 +30,15 @@ in
       gamescopeSession.enable = true;
     };
 
+    environment.systemPackages = with pkgs; [
+      r2modman # modding
+    ];
+
     pear.system.impermanence.users = pearlib.perUser (name: {
       persist.directories = [
         ".local/share/Steam"
+        ".config/r2modman"
+        ".config/r2modmanPlus-local"
 
         # Various game settings and save data
         ".local/share/SlayTheSpire2"
