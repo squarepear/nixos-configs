@@ -2,20 +2,19 @@
   description = "NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/master";
-    home-manager.url = "github:nix-community/home-manager/release-26.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
 
     nixvim.url = "github:nix-community/nixvim";
-    nixvim.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs";
 
     # UI/UX related packages and modules
     niri.url = "github:epireyn/niri-flake";
-    niri.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    niri.inputs.nixpkgs.follows = "nixpkgs";
     niri.inputs.nixpkgs-stable.follows = "nixpkgs";
     niri.inputs.xwayland-satellite-stable.follows = "xwayland-satellite";
     niri.inputs.xwayland-satellite-unstable.follows = "xwayland-satellite";
@@ -29,16 +28,16 @@
     impermanence.url = "github:nix-community/impermanence";
     impermanence.inputs.nixpkgs.follows = "nixpkgs";
     impermanence.inputs.home-manager.follows = "home-manager";
-    lanzaboote.url = "github:nix-community/lanzaboote/v1.0.0";
+    lanzaboote.url = "github:nix-community/lanzaboote/v1.2.0";
     lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
 
     # Homelab related modules and packages
     copyparty.url = "github:9001/copyparty";
-    copyparty.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    copyparty.inputs.nixpkgs.follows = "nixpkgs";
 
     # AI stuff to try out
     charmbracelet.url = "github:charmbracelet/nur";
-    charmbracelet.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    charmbracelet.inputs.nixpkgs.follows = "nixpkgs";
 
     # Hardware-specific NixOS modules (raspberry-pi-4, gigabyte-b550, etc.)
     nixos-hardware.url = "github:NixOS/nixos-hardware";

@@ -3,7 +3,6 @@
   lib,
   pearlib,
   pkgs,
-  unstable,
   ...
 }:
 
@@ -25,8 +24,8 @@ in
   config = lib.mkIf cfg.enable {
     home-manager.users = pearlib.perUser (name: {
       home.packages = [
-        unstable.godot_4_6
-        unstable.gdscript-formatter
+        pkgs.godot_4_6
+        pkgs.gdscript-formatter
         pkgs.blender
         pkgs.krita
         pkgs.aseprite

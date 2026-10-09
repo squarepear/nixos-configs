@@ -3,7 +3,7 @@
   inputs,
   lib,
   pearlib,
-  unstable,
+  pkgs,
   ...
 }:
 
@@ -35,13 +35,12 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    # Use latest nix version from unstable
-    nix.package = unstable.nixVersions.latest;
+    # Use latest nix version from nixpkgs
+    nix.package = pkgs.nixVersions.latest;
 
     # Make flake inputs available in the Nix registry for nix command
     nix.registry = {
       nixpkgs.flake = inputs.nixpkgs;
-      unstable.flake = inputs.nixpkgs-unstable;
     };
 
     # Set timezone

@@ -2,7 +2,7 @@
   config,
   lib,
   pearlib,
-  unstable,
+  pkgs,
   ...
 }:
 
@@ -20,7 +20,7 @@ in
 
   config = lib.mkIf cfg.enable {
     home-manager.users = pearlib.perUser (name: {
-      home.packages = with unstable; [
+      home.packages = with pkgs; [
         sameboy # GB/GBC
         mgba # GBA
         melonds # DS

@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  unstable,
   ...
 }:
 
@@ -19,7 +18,6 @@ in
   config = lib.mkIf cfg.enable {
     services.tailscale = {
       enable = true;
-      package = unstable.tailscale;
 
       useRoutingFeatures = "both";
       openFirewall = true;

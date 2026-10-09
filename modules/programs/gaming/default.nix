@@ -3,7 +3,6 @@
   lib,
   pearlib,
   pkgs,
-  unstable,
   ...
 }:
 
@@ -35,14 +34,12 @@ in
 
     programs.gamescope = {
       enable = true;
-      package = unstable.gamescope;
 
       capSysNice = true;
     };
 
     programs.gamemode = {
       enable = true;
-      # package = unstable.gamemode; # TODO: Only added in 26.11+
 
       enableRenice = true;
     };
@@ -53,7 +50,7 @@ in
       enable = true;
 
       settings = {
-        version = 5;
+        version = 7;
         daemon = {
           log_level = "info";
           admin_group = "wheel";
@@ -74,5 +71,8 @@ in
         auto_switch_profiles = true;
       };
     };
+
+    # LACT refuses to start if a stale socket is left behind by a crash.
+    systemd.services.lactd.serviceConfig.ExecStartPre = "${pkgs.coreutils}/bin/rm -f /run/lactd.sock";
   };
 }

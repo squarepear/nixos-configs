@@ -3,7 +3,6 @@
   lib,
   pearlib,
   pkgs,
-  unstable,
   ...
 }:
 
@@ -53,7 +52,6 @@ in
     # Enable OpenSSH
     services.openssh = {
       enable = true;
-      package = unstable.openssh;
 
       # Disable password authentication
       settings = {

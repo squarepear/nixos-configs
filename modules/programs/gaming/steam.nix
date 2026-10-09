@@ -2,7 +2,7 @@
   config,
   lib,
   pearlib,
-  unstable,
+  pkgs,
   ...
 }:
 
@@ -21,9 +21,8 @@ in
   config = lib.mkIf cfg.enable {
     programs.steam = {
       enable = true;
-      package = unstable.steam;
       extraCompatPackages = [
-        unstable.proton-ge-bin
+        pkgs.proton-ge-bin
       ];
 
       remotePlay.openFirewall = true;

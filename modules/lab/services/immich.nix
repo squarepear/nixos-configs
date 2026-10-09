@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  unstable,
   ...
 }:
 
@@ -21,7 +20,6 @@ in
 
     services.immich = lib.mkIf cfg.enable {
       enable = true;
-      package = unstable.immich;
 
       host = "0.0.0.0";
       openFirewall = true;

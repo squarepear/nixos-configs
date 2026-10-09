@@ -18,7 +18,7 @@ in
         nemo-with-extensions
 
         # qt wayland
-        libsForQt5.qt5.qtwayland
+        qt5.qtwayland
         qt6.qtwayland
 
         # theme assets
@@ -36,6 +36,7 @@ in
       ];
 
       home.pointerCursor = {
+        enable = true;
         package = pkgs.bibata-cursors;
         name = "Bibata-Modern-Classic";
         size = 24;
@@ -76,7 +77,7 @@ in
 
       qt = {
         enable = true;
-        platformTheme.name = "gtk";
+        platformTheme.name = "gtk3";
       };
 
       dconf.settings = {

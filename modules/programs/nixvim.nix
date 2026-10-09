@@ -3,7 +3,6 @@
   inputs,
   lib,
   pearlib,
-  unstable,
   ...
 }:
 
@@ -35,7 +34,7 @@ in
       programs.nixvim = {
         enable = true;
 
-        nixpkgs.pkgs = unstable;
+        nixpkgs.source = inputs.nixpkgs;
 
         colorschemes.base16 = {
           enable = true;

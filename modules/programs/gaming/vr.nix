@@ -3,7 +3,6 @@
   lib,
   pearlib,
   pkgs,
-  unstable,
   ...
 }:
 
@@ -44,22 +43,24 @@ in
     };
 
     home-manager.users = pearlib.perUser (name: {
-      xdg.configFile."openxr/1/active_runtime.json".text = ''
-        {
-           "file_format_version": "1.0.0",
-            "runtime": {
-            "VALVE_runtime_is_steamvr": true,
-            "library_path": "/home/${name}/.local/share/Steam/steamapps/common/SteamVR/bin/linux64/vrclient.so",
-            "name": "SteamVR"
-            }
-        }
-      '';
+      xdg.configFile."openxr/1/active_runtime.json" = {
+        force = true;
+        text = ''
+          {
+             "file_format_version": "1.0.0",
+              "runtime": {
+              "VALVE_runtime_is_steamvr": true,
+              "library_path": "/home/${name}/.local/share/Steam/steamapps/common/SteamVR/bin/linux64/vrclient.so",
+              "name": "SteamVR"
+              }
+          }
+        '';
+      };
     });
 
     environment.systemPackages = [
-      unstable.wayvr
-      unstable.bs-manager
-      pkgs.sidequest
+      pkgs.wayvr
+      pkgs.bs-manager
       pkgs.android-tools
     ];
 
