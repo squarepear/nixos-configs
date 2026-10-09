@@ -62,7 +62,7 @@ in
             rule = {
               type = "process";
               filter = {
-                name = "wayvr";
+                name = "vrmonitor";
               };
             };
           };
