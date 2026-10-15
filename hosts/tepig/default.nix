@@ -16,5 +16,4 @@
 
   # Trust the wired ethernet interface (no firewalling on local LAN)
   networking.firewall.trustedInterfaces = [ "end0" ];
-  networking.enableIPv6 = false;
 }
