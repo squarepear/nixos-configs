@@ -42,7 +42,7 @@ in
         };
       };
 
-      services.matter-server.enable = true;
+      services.matterjs-server.enable = true;
     })
   ];
 }
