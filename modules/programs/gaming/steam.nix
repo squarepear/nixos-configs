@@ -27,7 +27,22 @@ in
 
       remotePlay.openFirewall = true;
 
-      gamescopeSession.enable = true;
+      gamescopeSession = {
+        enable = true;
+
+        args = [
+          "-W"
+          "3840"
+          "-H"
+          "2160"
+          "--expose-wayland"
+
+          # Add later once HDR is supported on niri
+          # "--hdr-enabled"
+          # "--sdr-gamut-wideness"
+          # "1"
+        ];
+      };
     };
 
     environment.systemPackages = with pkgs; [
