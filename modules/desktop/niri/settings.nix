@@ -218,7 +218,10 @@ in
           {
             matches = [
               {
-                app-id = "code";
+                app-id = "^code$";
+              }
+              {
+                app-id = "^Godot$";
               }
             ];
             open-maximized = true;
@@ -227,7 +230,33 @@ in
           {
             matches = [
               {
-                app-id = "firefox$";
+                app-id = "^steam$";
+                title = "^Steam$";
+              }
+            ];
+            open-maximized-to-edges = true;
+          }
+
+          {
+            matches = [
+              {
+                app-id = "^steam$";
+                title = "^Steam Big Picture Mode$";
+              }
+              {
+                app-id = "^steam_app_.*$";
+              }
+              {
+                app-id = "^gamescope$";
+              }
+            ];
+            open-fullscreen = true;
+          }
+
+          {
+            matches = [
+              {
+                app-id = "^firefox$";
                 title = "^Picture-in-Picture$";
               }
             ];
@@ -239,6 +268,10 @@ in
               {
                 app-id = "^(vrmonitor|vrwebhelper)$";
               }
+              {
+                app-id = "^steam$";
+                title = "^Steam Settings$";
+              }
             ];
             open-floating = true;
           }
@@ -246,7 +279,7 @@ in
           {
             matches = [
               {
-                app-id = "steam";
+                app-id = "^steam$";
                 title = "^notificationtoasts";
               }
             ];
@@ -276,8 +309,8 @@ in
           # Window management
           "Mod+O".action.show-hotkey-overlay = [ ];
           "Mod+Q".action.close-window = [ ];
-          # "Mod+F".action.maximize-column = [ ];
-          "Mod+F".action.fullscreen-window = [ ];
+          "Mod+F".action.maximize-column = [ ];
+          "Mod+Ctrl+F".action.fullscreen-window = [ ];
           "Mod+R".action.switch-preset-column-width = [ ];
           "Mod+V".action.switch-focus-between-floating-and-tiling = [ ];
           "Mod+Shift+V".action.toggle-window-floating = [ ];
