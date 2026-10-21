@@ -103,6 +103,8 @@ in
       pkgs.holo-realtek-firmware-toggles
     ];
 
+    networking.firewall.allowedUDPPorts = [ 6767 ];
+
     # ADB for Oculus Quest
     users.groups.adbusers = { };
     pear.users.adminGroups = [ "adbusers" ];
