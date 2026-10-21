@@ -44,5 +44,12 @@ in
     environment.systemPackages = [ pkgs.iw ];
 
     pear.users.adminGroups = [ "networkmanager" ];
+
+    # The private keys of eight eMudhra intermediate CA certificates have been compromised.
+    # https://emudhra.we-have-a-problem.com/
+    security.pki.caCertificateBlacklist = [
+      "Comodo AAA Services root"
+      "emSign ECC Root CA - G3"
+    ];
   };
 }
