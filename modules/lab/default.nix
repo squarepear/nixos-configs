@@ -16,6 +16,7 @@ in
     ./services/copyparty.nix
     ./services/alertmanager.nix
     ./services/dash.nix
+    ./services/forgejo.nix
     ./services/grafana.nix
     ./services/home-assistant.nix
     ./services/immich.nix

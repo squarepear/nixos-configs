@@ -13,6 +13,7 @@
         "alertmanager"
         "copyparty"
         "dash"
+        "forgejo"
         "grafana"
         "immich"
         "jellyfin"
