@@ -17,6 +17,7 @@
         "grafana"
         "immich"
         "jellyfin"
+        "music-assistant"
         "node-exporter"
         "prometheus"
         "reverse-proxy"

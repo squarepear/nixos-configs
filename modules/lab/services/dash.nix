@@ -103,6 +103,13 @@ in
                           timeout = "5s";
                         }
                         {
+                          title = "Music Assistant";
+                          url = "https://music.hl.pear.cx/";
+                          icon = "sh:music-assistant";
+                          same-tab = true;
+                          timeout = "5s";
+                        }
+                        {
                           title = "Immich";
                           url = "https://immich.hl.pear.cx/";
                           icon = "si:immich";

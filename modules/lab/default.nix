@@ -21,6 +21,7 @@ in
     ./services/home-assistant.nix
     ./services/immich.nix
     ./services/jellyfin.nix
+    ./services/music-assistant.nix
     ./services/node-exporter.nix
     ./services/ntfy.nix
     ./services/prometheus.nix
