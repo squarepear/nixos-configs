@@ -26,6 +26,7 @@ in
     ./services/ntfy.nix
     ./services/prometheus.nix
     ./services/reverse-proxy.nix
+    ./services/wyoming.nix
   ];
 
   options.pear.system.lab = {

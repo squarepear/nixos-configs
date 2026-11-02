@@ -21,6 +21,7 @@
         "node-exporter"
         "prometheus"
         "reverse-proxy"
+        "wyoming"
       ];
     };
   };
