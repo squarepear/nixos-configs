@@ -24,7 +24,7 @@ in
   config = lib.mkIf cfg.enable {
     home-manager.users = pearlib.perUser (name: {
       home.packages = [
-        pkgs.godot_4_6
+        pkgs.godot_4_7
         pkgs.gdscript-formatter
         pkgs.blender
         pkgs.krita
