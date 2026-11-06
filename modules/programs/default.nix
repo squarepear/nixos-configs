@@ -13,7 +13,6 @@
     ./gamedev.nix
     ./git.nix
     ./kitty.nix
-    ./librepods.nix
     ./music.nix
     ./nixvim.nix
     ./obs.nix

@@ -33,34 +33,39 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    # Patch amdgpu as an out-of-tree module instead of rebuilding the whole
-    # kernel. See https://wiki.nixos.org/wiki/VR#Applying_as_a_NixOS_kernel_patch
-    boot.extraModulePackages = [
-      (pkgs.callPackage ./kernel-pkgs/amdgpu-kernel-module.nix {
-        kernel = config.boot.kernelPackages.kernel;
-      })
-      # Rebuild just the rtw89 module with CONFIG_RTW89_DEBUGFS enabled so the
-      # holo-realtek-firmware-toggles debugfs interface exists, without a full
-      # kernel rebuild.
-      (pkgs.callPackage ./kernel-pkgs/rtw89-debugfs.nix {
-        kernel = config.boot.kernelPackages.kernel;
-      })
-    ];
+    programs.steam =
+      let
+        patchedBwrap = pkgs.bubblewrap.overrideAttrs (o: {
+          patches = (o.patches or [ ]) ++ [
+            ./bwrap.patch
+          ];
+        });
+      in
+      {
+        enable = true;
+
+        # https://wiki.nixos.org/wiki/VR#Patching_bubblewrap_to_allow_capabilities
+        package = pkgs.steam.override {
+          buildFHSEnv = (
+            args:
+            (
+              (pkgs.buildFHSEnv.override {
+                bubblewrap = patchedBwrap;
+              })
+                (
+                  args
+                  // {
+                    extraBwrapArgs = (args.extraBwrapArgs or [ ]) ++ [ "--cap-add ALL" ];
+                  }
+                )
+            )
+          );
+        };
+      };
 
     boot.extraModprobeConfig = ''
       options rtw89_core disable_2ghz=Y reg6_pwr_override=1
     '';
-
-    systemd.user.services.wayvr = {
-      description = "WayVR desktop overlay for OpenXR/OpenVR";
-      partOf = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
-      wantedBy = [ "graphical-session.target" ];
-      serviceConfig = {
-        ExecStart = "${pkgs.wayvr}/bin/wayvr --replace";
-        Restart = "on-failure";
-      };
-    };
 
     # Enable rtw89 low-latency mode for the Steam Frame wireless dongle once it
     # appears. The unit runs as root, so the tool skips its pkexec escalation.

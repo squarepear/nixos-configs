@@ -33,9 +33,9 @@ in
     # Enable mDNS via Avahi
     services.avahi.enable = true;
     services.avahi.nssmdns4 = true;
-    services.avahi.publish.enable = true;
-    services.avahi.publish.addresses = true;
-    services.avahi.publish.workstation = true;
+    services.avahi.settings.publish."disable-publishing" = false;
+    services.avahi.settings.publish."publish-addresses" = true;
+    services.avahi.settings.publish."publish-workstation" = true;
 
     # Enable MTR program
     programs.mtr.enable = true;
@@ -47,10 +47,8 @@ in
 
     # The private keys of eight eMudhra intermediate CA certificates have been compromised.
     # https://emudhra.we-have-a-problem.com/
-    security.pki.caCertificateBlacklist = [
-      "Comodo AAA Services root"
-      "emSign ECC Root CA - G3"
-    ];
+    # nss-cacert >= 3.131.1 no longer ships "emSign ECC Root CA - G3"
+    security.pki.caCertificateBlacklist = [ "Comodo AAA Services root" ];
 
     home-manager.users = pearlib.perUser (name: {
       home.packages = with pkgs; [

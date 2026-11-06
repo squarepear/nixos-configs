@@ -101,7 +101,6 @@ in
     '';
 
     boot.initrd.systemd = {
-      enable = true; # this enabled systemd support in stage1 - required for the below setup
       services.rollback = {
         description = "Rollback BTRFS root subvolume to a pristine state";
         wantedBy = [ "initrd.target" ];

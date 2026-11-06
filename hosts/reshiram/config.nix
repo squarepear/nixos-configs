@@ -2,7 +2,6 @@
 
 {
   pear = {
-    programs.librepods.enable = true;
     programs.obs.enable = true;
     programs.gaming.vr.enable = true;
 

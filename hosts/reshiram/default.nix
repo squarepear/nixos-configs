@@ -11,7 +11,7 @@
   # disko.devices.disk.extra.device = "/dev/disk/by-id/nvme-SKHynix_HFS001TEM4X182N_5ME9N008011209N0Z";
 
   boot = {
-    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    kernelPackages = pkgs.linuxKernel.packages.linux_7_3;
 
     loader = {
       systemd-boot.enable = true;
