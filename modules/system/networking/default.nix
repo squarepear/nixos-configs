@@ -51,5 +51,13 @@ in
       "Comodo AAA Services root"
       "emSign ECC Root CA - G3"
     ];
+
+    home-manager.users = pearlib.perUser (name: {
+      home.packages = with pkgs; [
+        bind
+        nmap
+        tcpdump
+      ];
+    });
   };
 }

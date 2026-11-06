@@ -43,6 +43,7 @@ in
         ripgrep
         tree
         unzip
+        usbutils
         util-linux
         wget
         xdg-utils
