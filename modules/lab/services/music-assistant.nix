@@ -53,7 +53,7 @@ in
             "/mnt/main-pool/media:/media:ro"
           ];
           environment.TZ = "America/Indianapolis";
-          image = "ghcr.io/music-assistant/server:2.10.8";
+          image = "ghcr.io/music-assistant/server:2.10.9";
           extraOptions = [
             "--network=host"
           ];
