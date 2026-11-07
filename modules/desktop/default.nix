@@ -39,6 +39,7 @@ in
       "cdrom"
       "video"
       "input"
+      "dialout"
     ];
 
     assertions = [
