@@ -94,5 +94,9 @@ in
         ".vscode"
       ];
     });
+
+    services.udev.packages = with pkgs; [
+      platformio-core.udev
+    ];
   };
 }
