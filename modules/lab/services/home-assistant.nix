@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 
@@ -30,14 +31,41 @@ in
         ];
       };
 
+      systemd.services.home-assistant-dbus-proxy = {
+        description = "Filtered D-Bus proxy for Home Assistant (BlueZ only)";
+        wantedBy = [ "multi-user.target" ];
+        after = [
+          "dbus.socket"
+          "bluetooth.service"
+        ];
+        serviceConfig = {
+          ExecStart = "${pkgs.xdg-dbus-proxy}/bin/xdg-dbus-proxy unix:path=/run/dbus/system_bus_socket /run/ha-dbus/system_bus_socket --filter --talk=org.bluez";
+          RuntimeDirectory = "ha-dbus";
+          RuntimeDirectoryMode = "0755";
+          Restart = "always";
+        };
+      };
+
+      systemd.services.podman-homeassistant = {
+        after = [ "home-assistant-dbus-proxy.service" ];
+        wants = [ "home-assistant-dbus-proxy.service" ];
+        requires = [ "home-assistant-dbus-proxy.service" ];
+      };
+
       virtualisation.oci-containers = {
         backend = "podman";
         containers.homeassistant = {
           volumes = [ "home-assistant:/config" ];
-          environment.TZ = "America/Indianapolis";
+          environment = {
+            TZ = "America/Indianapolis";
+            DBUS_SYSTEM_BUS_ADDRESS = "unix:path=/run/dbus/system_bus_socket";
+          };
           image = "ghcr.io/home-assistant/home-assistant:2026.11.0";
           extraOptions = [
             "--network=host"
+            "--cap-add=NET_ADMIN"
+            "--cap-add=NET_RAW"
+            "--volume=/run/ha-dbus:/run/dbus:ro"
           ];
         };
       };
