@@ -34,7 +34,7 @@ in
 
   config = lib.mkIf cfg.enable {
     boot.extraModprobeConfig = ''
-      options rtw89_core disable_2ghz=Y reg6_pwr_override=1
+      options rtw89_core disable_2ghz=Y reg6_pwr_override=1 disable_ps_mode=Y
     '';
 
     # Enable rtw89 low-latency mode for the Steam Frame wireless dongle once it

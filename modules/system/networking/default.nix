@@ -25,6 +25,10 @@ in
     # Enable NetworkManager
     networking.networkmanager.enable = true;
 
+    boot.extraModprobeConfig = ''
+      options cfg80211 ieee80211_regdom=US
+    '';
+
     # Enable BBR TCP congestion control
     boot.kernelModules = [ "tcp_bbr" ];
     boot.kernel.sysctl."net.core.default_qdisc" = "fq";
