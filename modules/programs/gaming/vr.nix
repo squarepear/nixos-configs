@@ -33,36 +33,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    programs.steam =
-      let
-        patchedBwrap = pkgs.bubblewrap.overrideAttrs (o: {
-          patches = (o.patches or [ ]) ++ [
-            ./bwrap.patch
-          ];
-        });
-      in
-      {
-        enable = true;
-
-        # https://wiki.nixos.org/wiki/VR#Patching_bubblewrap_to_allow_capabilities
-        package = pkgs.steam.override {
-          buildFHSEnv = (
-            args:
-            (
-              (pkgs.buildFHSEnv.override {
-                bubblewrap = patchedBwrap;
-              })
-                (
-                  args
-                  // {
-                    extraBwrapArgs = (args.extraBwrapArgs or [ ]) ++ [ "--cap-add ALL" ];
-                  }
-                )
-            )
-          );
-        };
-      };
-
     boot.extraModprobeConfig = ''
       options rtw89_core disable_2ghz=Y reg6_pwr_override=1
     '';
