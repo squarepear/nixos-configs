@@ -1,0 +1,41 @@
+--- a/drivers/net/wireless/realtek/rtw89/core.c
++++ b/drivers/net/wireless/realtek/rtw89/core.c
+@@ -25,6 +25,11 @@
+ module_param_named(disable_ps_mode, rtw89_disable_ps_mode, bool, 0644);
+ MODULE_PARM_DESC(disable_ps_mode, "Set Y to disable low power mode");
+ 
++static bool rtw89_disable_2ghz;
++module_param_named(disable_2ghz, rtw89_disable_2ghz, bool, 0444);
++MODULE_PARM_DESC(disable_2ghz,
++		 "Set Y to disable all 2.4 GHz channels (no scanning or transmitting there). Applied when the adapter is probed.");
++
+ #define RTW89_DEF_CHAN(_freq, _hw_val, _flags, _band)	\
+ 	{ .center_freq = _freq, .hw_value = _hw_val, .flags = _flags, .band = _band, }
+ #define RTW89_DEF_CHAN_2G(_freq, _hw_val)	\
+@@ -6329,12 +6334,12 @@
+ 	struct ieee80211_hw *hw = rtwdev->hw;
+ 	struct ieee80211_supported_band *sband;
+ 	u8 support_bands = rtwdev->chip->support_bands;
+-	int ret;
++	int ret, i;
+ 
+	if (test_bit(RTW89_QUIRK_DISABLE_2GHZ, rtwdev->quirks))
+		support_bands &= ~BIT(NL80211_BAND_2GHZ);
+
+ 	if (support_bands & BIT(NL80211_BAND_2GHZ)) {
+ 		sband = rtw89_core_sband_dup(rtwdev, &rtw89_sband_2ghz);
+ 		if (!sband)
+ 			return -ENOMEM;
+@@ -6339,6 +6344,12 @@
+ 		ret = rtw89_init_he_eht_cap(rtwdev, NL80211_BAND_2GHZ, sband);
+ 		if (ret)
+ 			return ret;
++		if (rtw89_disable_2ghz) {
++			/* flags set before wiphy registration are kept as orig_flags */
++			for (i = 0; i < sband->n_channels; i++)
++				sband->channels[i].flags |= IEEE80211_CHAN_DISABLED;
++			rtw89_info(rtwdev, "2.4 GHz channels disabled by disable_2ghz\n");
++		}
+ 		hw->wiphy->bands[NL80211_BAND_2GHZ] = sband;
+ 	}
+ 
