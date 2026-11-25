@@ -8,6 +8,8 @@
 
 ## [Hosts](./hosts/)
 
+- [**kyurem**](./hosts/kyurem/) - Main Laptop (x86_64-linux)
+  - 2019 16" MacBook Pro with AMD GPU, Niri, development environment
 - [**reshiram**](./hosts/reshiram/) - Main Desktop (x86_64-linux)
   - Gaming rig with AMD CPU/GPU, Niri, development environment
 - [**tepig**](./hosts/tepig/) - Raspberry Pi 4b 8G (aarch64-linux)

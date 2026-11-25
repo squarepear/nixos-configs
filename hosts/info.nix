@@ -1,4 +1,9 @@
 {
+  kyurem = {
+    ip = "100.88.245.54";
+    arch = "x86_64-linux";
+    publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMB0DxRa//ISS/eyRJyYr0Frt6KopI9WuHHRQCdmGFdg";
+  };
   reshiram = {
     ip = "100.87.89.55";
     arch = "x86_64-linux";
